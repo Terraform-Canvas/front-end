@@ -69,19 +69,18 @@ function onDrop(event) {
 </style>
 
 <template>
-  <v-app id="inspire">
-    <VueFlow
+  <v-app id="app">
+    <AppBar />
+    <LeftDrawer />
+    <v-main>
+      <VueFlow
         @dragover="onDragOver"
         @drop="onDrop"
         class="customnodeflow">
         <template #node-exam1>
           <ExamNode1 />
         </template>
-    <AppBar />
-    <LeftDrawer />
-    <v-main>
-
+      </VueFlow>
     </v-main>
-  </VueFlow>
   </v-app>
 </template>
