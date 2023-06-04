@@ -72,7 +72,7 @@ function onDrop(event) {
 </style>
 
 <template>
-  <v-app id="inspire">
+  <v-app id="app">
     <AppBar />
     <LeftDrawer />
     <v-main>

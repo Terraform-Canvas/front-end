@@ -1,4 +1,6 @@
 <script setup>
+const types = ["exam1","default","output"];
+
 function onDragStart(event, nodeType) {
   if (event.dataTransfer) {
     event.dataTransfer.setData('application/vueflow', nodeType)
@@ -8,16 +10,35 @@ function onDragStart(event, nodeType) {
 </script>
 
 <template>
-  <v-navigation-drawer
-      width="244"
-    >
-    <div class="nodes">
-      <div class="vue-flow__node-default" :draggable="true"
-      @dragstart="onDragStart($event, 'exam1')">Exam Node</div>
-      <div class="vue-flow__node-default" :draggable="true"
-      @dragstart="onDragStart($event, 'default')">Default Node</div>
-      <div class="vue-flow__node-output" :draggable="true"
-      @dragstart="onDragStart($event, 'output')">Output Node</div>
-    </div>
+    <v-navigation-drawer
+        theme="dark"
+        rail
+        permanent
+      >
+        <v-list
+          density="compact"
+          nav
+        >
+        <!-- add cloud platform icons -->
+          <v-list-item><v-img src="@/assets/images/aws-logo.png" width="auto" height="auto"/></v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+      <v-navigation-drawer
+        width="180"
+      >
+      <v-list class="nodes" nav v-for="(item,idx) in types" density="compact">
+        <v-list-group value="aws">
+          <template v-slot:activator=" { props }">
+            <v-list-item
+              v-bind="props"
+              :title="item"
+            ></v-list-item>
+          </template>
+          <v-list-subheader>aws {{ item }}</v-list-subheader>
+          <v-list-item class="vue-flow__node-default" :draggable="true" @dragstart="onDragStart($event, item)">
+            {{ item }} Node
+          </v-list-item>
+        </v-list-group>
+      </v-list>
     </v-navigation-drawer>
 </template>
