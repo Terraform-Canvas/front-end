@@ -3,8 +3,11 @@ import ExamNode1 from './components/ExamNode1.vue';
 import AppBar from './layouts/default/AppBar.vue'
 import LeftDrawer from './layouts/default/LeftDrawer.vue'
 
-import { VueFlow, useVueFlow } from '@vue-flow/core'
+import { VueFlow, useVueFlow, Panel, PanelPosition } from '@vue-flow/core'
 import { nextTick, watch, ref } from 'vue'
+import { Background } from '@vue-flow/background'
+import { Controls } from '@vue-flow/controls'
+import { MiniMap } from '@vue-flow/minimap'
 
 let id = 0
 function getId() {
@@ -70,18 +73,23 @@ function onDrop(event) {
 
 <template>
   <v-app id="inspire">
-    <VueFlow
-        @dragover="onDragOver"
-        @drop="onDrop"
-        class="customnodeflow">
-        <template #node-exam1>
-          <ExamNode1 />
-        </template>
     <AppBar />
     <LeftDrawer />
     <v-main>
+    <VueFlow v-model="elements"
+        @dragover="onDragOver"
+        @drop="onDrop"
+        :class="{ dark }"
+        class="customnodeflow basicflow">
+        <template #node-exam1>
+          <ExamNode1 />
+        </template>
 
+      <Background :pattern-color="'#FFFFFB'" gap="8" />
+      <MiniMap />
+      <Controls :position="PanelPosition.BottomLeft"/>
+
+    </VueFlow>
     </v-main>
-  </VueFlow>
   </v-app>
 </template>
