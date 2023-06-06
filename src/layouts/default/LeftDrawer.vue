@@ -1,5 +1,5 @@
 <script setup>
-const types = ["exam1","default","output"];
+const types = ["exam1","default","output","parent","child"];
 
 function onDragStart(event, nodeType) {
   if (event.dataTransfer) {
