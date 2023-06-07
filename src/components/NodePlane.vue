@@ -23,8 +23,18 @@ function getId() {
   return `${id++}`
 }
 
-const { findNode, onConnect, addEdges, addNodes, project, vueFlowRef, } = useVueFlow({
+const emit = defineEmits(['nodeClicked'])
+const nodeClicked = () => {
+  emit('nodeClicked', getSelectedNodes)
+}
+
+const { findNode, onConnect, addEdges, addNodes, project, vueFlowRef, onNodeClick, getSelectedNodes, } = useVueFlow({
   nodes: []
+})
+
+onNodeClick((MouseEvent) => {
+  nodeClicked()
+  getSelectedNodes.value.forEach(v => console.log(`Selected: ${v.id}, type: ${v.type}`))
 })
 
 function onDragOver(event) {
