@@ -2,8 +2,17 @@
 import ExamNode1 from './ExamNode1.vue';
 import ParentNode from './ParentNode.vue';
 
-import { VueFlow, useVueFlow, Panel, PanelPosition, } from '@vue-flow/core'
-import { nextTick, watch, onMounted } from 'vue'
+import ALB from './aws/ALB.vue';
+import EC2 from './aws/EC2.vue';
+import NATGateway from './aws/NATGateway.vue';
+import PrivateSubnet from './aws/PrivateSubnet.vue';
+import PublicSubnet from './aws/PublicSubnet.vue';
+import SecurityGroup from './aws/SecurityGroup.vue';
+import Vpc from './aws/Vpc.vue';
+import AutoScalingGroup from './aws/AutoScalingGroup.vue';
+
+import { VueFlow, useVueFlow, PanelPosition, } from '@vue-flow/core'
+import { nextTick, watch, } from 'vue'
 import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
 import { MiniMap } from '@vue-flow/minimap'
@@ -88,9 +97,37 @@ function onDrop(event) {
     <template #node-child>
       <ChildNode />
     </template>
-  <Background :pattern-color="'#FFFFFB'" gap="8" />
-  <MiniMap />
-  <Controls :position="PanelPosition.BottomLeft"/>
 
-</VueFlow>
+    <!-- AWS Resources Below -->
+    <template #node-vpc>
+      <Vpc />
+    </template>
+    <template #node-asg>
+      <AutoScalingGroup />
+    </template>
+    <template #node-alb>
+      <ALB />
+    </template>
+    <template #node-ec2>
+      <EC2 />
+    </template>
+    <template #node-natgw>
+      <NATGateway />
+    </template>
+    <template #node-privatesubnet>
+      <PrivateSubnet />
+    </template>
+    <template #node-publicsubnet>
+      <PublicSubnet />
+    </template>
+    <template #node-sg>
+      <SecurityGroup />
+    </template>
+    <!-- AWS Resources Upper -->
+
+    <Background :pattern-color="'#FFFFFB'" gap="8" />
+    <MiniMap />
+    <Controls :position="PanelPosition.BottomLeft"/>
+
+  </VueFlow>
 </template>
