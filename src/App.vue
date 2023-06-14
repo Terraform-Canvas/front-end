@@ -1,7 +1,8 @@
 <script setup>
 import AppBar from './layouts/default/AppBar.vue'
 import LeftDrawer from './layouts/default/LeftDrawer.vue'
-
+import MainTop from './components/MainTop.vue'
+import MainBottom from './components/MainBottom.vue'
 import NodePlane from './components/NodePlane.vue'
 </script>
 
@@ -10,7 +11,10 @@ import NodePlane from './components/NodePlane.vue'
     <AppBar />
     <LeftDrawer />
     <v-main>
-      <NodePlane />
+      <v-container fluid class="fill-height">
+        <MainTop />
+        <NodePlane />
+      </v-container>
     </v-main>
   </v-app>
 </template>
