@@ -55,3 +55,6 @@ body,
 .row-vueflow {
   height: 80%;
 }
+.container-size {
+  height: 100%;
+}
