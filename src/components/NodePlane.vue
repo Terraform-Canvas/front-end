@@ -93,6 +93,8 @@ function onDrop(event) {
 </style>
 
 <template>
+  <v-container :fluid="true" class="fill-height">
+  <v-row class="fill-height">
   <VueFlow v-model="elements"
     @dragover="onDragOver"
     @drop="onDrop"
@@ -140,4 +142,6 @@ function onDrop(event) {
     <Controls :position="PanelPosition.BottomLeft"/>
 
   </VueFlow>
+  </v-row>
+  </v-container>
 </template>
