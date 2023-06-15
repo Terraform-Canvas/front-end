@@ -12,11 +12,9 @@ body,
 }
 
 #app {
-  text-transform: uppercase;
   font-family: 'JetBrains Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
@@ -25,10 +23,38 @@ body,
   transform-origin: bottom right;
 }
 
-.dndflow{flex-direction:column;display:flex;height:100%}.dndflow aside{color:#fff;font-weight:700;border-right:1px solid #eee;padding:15px 10px;font-size:12px;background:rgba(16,185,129,.75);-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d}.dndflow aside .nodes>*{margin-bottom:10px;cursor:grab;font-weight:500;-webkit-box-shadow:5px 5px 10px 2px rgba(0,0,0,.25);box-shadow:5px 5px 10px 2px #00000040}.dndflow aside .description{margin-bottom:10px}.dndflow .vue-flow-wrapper{flex-grow:1;height:100%}@media screen and (min-width: 640px){.dndflow{flex-direction:row}.dndflow aside{min-width:25%}}@media screen and (max-width: 639px){.dndflow aside .nodes{display:flex;flex-direction:row;gap:5px}}
+.dndflow{flex-direction:column;display:flex;height:100%}
+.dndflow aside{color:#fff;font-weight:700;border-right:1px solid #eee;padding:15px 10px;font-size:12px;background:rgba(16,185,129,.75);-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d}
+.dndflow aside .nodes>*{margin-bottom:10px;cursor:grab;font-weight:500;-webkit-box-shadow:5px 5px 10px 2px rgba(0,0,0,.25);box-shadow:5px 5px 10px 2px #00000040}
+.dndflow aside .description{margin-bottom:10px}
+.dndflow .vue-flow-wrapper{flex-grow:1;height:100%}@media screen and (min-width: 640px){.dndflow{flex-direction:row}
+.dndflow aside{min-width:25%}}@media screen and (max-width: 639px){.dndflow aside .nodes{display:flex;flex-direction:row;gap:5px}}
 
-.customnodeflow .vue-flow__node-exam1{border:1px solid #777;padding:10px;border-radius:10px;background:whitesmoke;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:10px;max-width:250px}.customnodeflow button{padding:5px;width:25px;height:25px;border-radius:25px;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer}.customnodeflow button:hover{opacity:.9;transform:scale(105%);transition:.25s all ease}.animated-bg-gradient{background:linear-gradient(122deg,#6f3381,#81c7d4,#fedfe1,#fffffb);background-size:800% 800%;-webkit-animation:gradient 4s ease infinite;-moz-animation:gradient 4s ease infinite;animation:gradient 4s ease infinite}@-webkit-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@-moz-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}
-.customnodeflow .vue-flow__node-parent{border:1px solid #777;padding:10px;border-radius:10px;background:whitesmoke;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:10px;}.customnodeflow button{padding:5px;width:25px;height:25px;border-radius:25px;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer}.customnodeflow button:hover{opacity:.9;transform:scale(105%);transition:.25s all ease}.animated-bg-gradient{background:linear-gradient(122deg,#6f3381,#81c7d4,#fedfe1,#fffffb);background-size:800% 800%;-webkit-animation:gradient 4s ease infinite;-moz-animation:gradient 4s ease infinite;animation:gradient 4s ease infinite}@-webkit-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@-moz-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}
-.customnodeflow .vue-flow__node-child{border:1px solid #777;padding:10px;border-radius:10px;background:whitesmoke;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:10px;max-width:250px}.customnodeflow button{padding:5px;width:25px;height:25px;border-radius:25px;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer}.customnodeflow button:hover{opacity:.9;transform:scale(105%);transition:.25s all ease}.animated-bg-gradient{background:linear-gradient(122deg,#6f3381,#81c7d4,#fedfe1,#fffffb);background-size:800% 800%;-webkit-animation:gradient 4s ease infinite;-moz-animation:gradient 4s ease infinite;animation:gradient 4s ease infinite}@-webkit-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@-moz-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}
+.customnodeflow .vue-flow__node-exam1{border:1px solid #777;padding:10px;border-radius:10px;background:whitesmoke;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:10px;max-width:250px}
+.customnodeflow button{padding:5px;width:25px;height:25px;border-radius:25px;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer}
+.customnodeflow button:hover{opacity:.9;transform:scale(105%);transition:.25s all ease}
+.animated-bg-gradient{background:linear-gradient(122deg,#6f3381,#81c7d4,#fedfe1,#fffffb);background-size:800% 800%;-webkit-animation:gradient 4s ease infinite;-moz-animation:gradient 4s ease infinite;animation:gradient 4s ease infinite}@-webkit-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@-moz-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}
+.customnodeflow .vue-flow__node-parent{border:1px solid #777;padding:10px;border-radius:10px;background:whitesmoke;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:10px;}
+.customnodeflow button{padding:5px;width:25px;height:25px;border-radius:25px;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer}
+.customnodeflow button:hover{opacity:.9;transform:scale(105%);transition:.25s all ease}
+.animated-bg-gradient{background:linear-gradient(122deg,#6f3381,#81c7d4,#fedfe1,#fffffb);background-size:800% 800%;-webkit-animation:gradient 4s ease infinite;-moz-animation:gradient 4s ease infinite;animation:gradient 4s ease infinite}@-webkit-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@-moz-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}
+.customnodeflow .vue-flow__node-child{border:1px solid #777;padding:10px;border-radius:10px;background:whitesmoke;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:10px;max-width:250px}
+.customnodeflow button{padding:5px;width:25px;height:25px;border-radius:25px;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer}
+.customnodeflow button:hover{opacity:.9;transform:scale(105%);transition:.25s all ease}
+.animated-bg-gradient{background:linear-gradient(122deg,#6f3381,#81c7d4,#fedfe1,#fffffb);background-size:800% 800%;-webkit-animation:gradient 4s ease infinite;-moz-animation:gradient 4s ease infinite;animation:gradient 4s ease infinite}@-webkit-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@-moz-keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}@keyframes gradient{0%{background-position:0% 22%}50%{background-position:100% 79%}to{background-position:0% 22%}}
 
-.basicflow.dark{background:#57534e;color:#fffffb}.basicflow.dark .vue-flow__node{background:#292524;color:#fffffb}.basicflow.dark .vue-flow__controls .vue-flow__controls-button{background:#292524;fill:#fffffb;border-color:#fffffb}.basicflow.dark .vue-flow__edge-textbg{fill:#292524}.basicflow.dark .vue-flow__edge-text{fill:#fffffb}.basicflow .controls{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.basicflow .controls button{padding:4px;border-radius:5px;font-weight:600;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer;display:flex;justify-content:center;align-items:center}.basicflow .controls button:hover{transform:scale(102%);transition:.25s all ease}
+.basicflow.dark{background:#57534e;color:#fffffb}
+.basicflow.dark .vue-flow__node{background:#292524;color:#fffffb}
+.basicflow.dark .vue-flow__controls .vue-flow__controls-button{background:#292524;fill:#fffffb;border-color:#fffffb}
+.basicflow.dark .vue-flow__edge-textbg{fill:#292524}
+.basicflow.dark .vue-flow__edge-text{fill:#fffffb}
+.basicflow .controls{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.basicflow .controls button{padding:4px;border-radius:5px;font-weight:600;-webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);box-shadow:0 5px 10px #0000004d;cursor:pointer;display:flex;justify-content:center;align-items:center}
+.basicflow .controls button:hover{transform:scale(102%);transition:.25s all ease}
+
+.row-vueflow {
+  height: 80%;
+}
+.container-size {
+  height: 100%;
+}
