@@ -26,22 +26,38 @@ const onRemove = () => {
  *
  * 추후 세부 노드 컴포넌트로 옮겨 커스터마이징이 필요할 수 있다. (높은 가능성)
  */
-onNodeDragStop((nodeDragEvent) => {
-  if (nodeDragEvent.node?.id == node.id) {
-    // console.log(nodeDragEvent)
+// onNodeDragStop((nodeDragEvent) => {
+//   if (nodeDragEvent.node?.id == node.id) {
+//     // console.log(nodeDragEvent)
 
-    // TODO: 배열의 0번째로 하는 것은, 노드 생성 순서에 따라 영향을 받으므로 다른 방법을 찾아야 함.
-    //       각 리소스마다 getIntersectingNodes중 parent로 올 수 있는 리소스중에 골라야 할 듯.
-    const intersectingNodes = getIntersectingNodes(node)
-    const parentId = intersectingNodes[intersectingNodes.length-1]?.id
-    // console.log(parentId)
+//     // TODO: 배열의 0번째로 하는 것은, 노드 생성 순서에 따라 영향을 받으므로 다른 방법을 찾아야 함.
+//     //       각 리소스마다 getIntersectingNodes중 parent로 올 수 있는 리소스중에 골라야 할 듯.
+//     const intersectingNodes = getIntersectingNodes(node)
+//     const parentId = intersectingNodes[intersectingNodes.length-1]?.id
+//     // console.log(parentId)
 
-    if (parentId && findNode(parentId).parentNode != node.id) {
-      node.parentNode = parentId
-      node.expandParent = true
-    }
-  }
-})
+//     const findParentNode = findNode(parentId)
+
+//     if (
+//       (node.type == 'asg' && findParentNode?.type == 'vpc') ||
+//       (node.type == 'sg' && findParentNode?.type == 'asg') ||
+//       (node.type == 'publicsubnet' && findParentNode?.type == 'sg') ||
+//       (node.type == 'publicsubnet' && findParentNode?.type == 'vpc') ||
+//       (node.type == 'privatesubnet' && findParentNode?.type == 'sg') ||
+//       (node.type == 'privatesubnet' && findParentNode?.type == 'vpc') ||
+//       (node.type == 'ec2' && findParentNode?.type == 'privatesubnet') ||
+//       (node.type == 'ec2' && findParentNode?.type == 'publicsubnet') ||
+//       (node.type == 'natgw' && findParentNode?.type == 'publicsubnet') ||
+//       (node.type == 'alb' && findParentNode?.type == 'vpc')
+//     ) {
+//       if (parentId && findParentNode.parentNode != node.id) {
+//         node.parentNode = parentId
+//         node.expandParent = true
+//       }
+//     }
+
+//   }
+// })
 </script>
 <template>
   <div style="padding: 10px">

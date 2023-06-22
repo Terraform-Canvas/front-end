@@ -64,9 +64,6 @@ function onDrop(event) {
     type,
     position,
     label: `${type} node`,
-    data: {
-      "foo": "bar"
-    },
   }
 
   addNodes([newNode])
