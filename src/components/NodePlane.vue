@@ -137,7 +137,7 @@ function onDrop(event) {
     </template>
     <!-- AWS Resources Upper -->
 
-    <Background :pattern-color="'#FFFFFB'" gap="8" />
+    <Background :pattern-color="'#FFFFFB'" :bg-color="'#F5F5F5'" gap="8" />
     <MiniMap />
     <Controls :position="PanelPosition.BottomLeft"/>
 

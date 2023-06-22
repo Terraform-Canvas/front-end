@@ -5,15 +5,17 @@ import LeftDrawer from './layouts/default/LeftDrawer.vue'
 import NodePlane from './components/NodePlane.vue'
 
 import { ref } from 'vue';
+import DrawerInput from './components/aws/DrawerInput.vue';
 
 const drawer = ref(false)
-const selectedInfoId = ref('')
+const selectedNode = ref(Object)
+// v-navigation-drawer는 VueFlow 하위 컴포넌트가 아니라 Node를 찾을 수 없어 Object 통째로 넘겨줘야 함
 
 const handleRightDrawer = (selectedNodes) => {
   console.log(selectedNodes.value[0].id)
 
   drawer.value = !drawer.value
-  selectedInfoId.value = selectedNodes.value[0].id
+  selectedNode.value = selectedNodes.value[0]
 }
 </script>
 
@@ -24,12 +26,11 @@ const handleRightDrawer = (selectedNodes) => {
     <v-navigation-drawer
         v-model="drawer"
         location="right"
+        width="500"
         temporary
       >
-        <v-list
-          :items="selectedInfoId"
-        ></v-list>
-      </v-navigation-drawer>
+        <DrawerInput :selectedNode="selectedNode"/>
+    </v-navigation-drawer>
     <v-main>
       <NodePlane @nodeClicked="handleRightDrawer"/>
     </v-main>
