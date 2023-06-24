@@ -17,6 +17,7 @@ import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
 import { MiniMap } from '@vue-flow/minimap'
 import ChildNode from './ChildNode.vue';
+import { ref } from 'vue';
 
 let id = 0
 function getId() {
@@ -28,7 +29,7 @@ const nodeClicked = () => {
   emit('nodeClicked', getSelectedNodes)
 }
 
-const { findNode, onConnect, addEdges, addNodes, project, vueFlowRef, onNodeClick, getSelectedNodes, } = useVueFlow({
+const { findNode, onConnect, addEdges, addNodes, project, vueFlowRef, onNodeClick, getSelectedNodes, getNodes } = useVueFlow({
   nodes: []
 })
 
@@ -83,6 +84,28 @@ function onDrop(event) {
     )
   })
 }
+
+const showModal = ref(false)
+const exportData = ref('')
+
+const exportAndOpenModal = () => {
+  let exportDataArr = []
+
+  getNodes.value.forEach(n => {
+    let nodeData = {
+      id: n.id,
+      type: n.type,
+      parent: n.parentNode,
+      data: n.data
+    }
+
+    exportDataArr.push(nodeData)
+  })
+
+  exportData.value = JSON.stringify(exportDataArr)
+  console.log(exportData.value)
+  showModal.value = true
+}
 </script>
 
 <style>
@@ -90,6 +113,7 @@ function onDrop(event) {
 </style>
 
 <template>
+  <v-btn @click="exportAndOpenModal">export</v-btn>
   <v-container :fluid="true" class="fill-height">
   <v-row class="fill-height">
   <VueFlow v-model="elements"
@@ -141,4 +165,18 @@ function onDrop(event) {
   </VueFlow>
   </v-row>
   </v-container>
+  <div>
+    <v-dialog v-model="showModal" max-width="500px">
+    <v-card>
+      <v-card-title>Export Data</v-card-title>
+      <v-card-text>
+        {{ exportData }}
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" text @click="showModal = false">Close</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+  </div>
 </template>
