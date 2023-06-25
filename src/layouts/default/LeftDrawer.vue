@@ -1,5 +1,12 @@
 <script setup>
-const types = ["exam1","default","output","parent","child"];
+const types = [
+  {'exam1': ['exam1']},
+  {'default':['default']},
+  {'output': ['output']},
+  {'parent': ['parent']},
+  {'child': ['child']},
+  {'asg': ['alb', 'asg', 'ec2', 'natgw', 'privatesubnet', 'publicsubnet', 'sg', 'vpc']}
+];
 
 function onDragStart(event, nodeType) {
   if (event.dataTransfer) {
@@ -26,18 +33,20 @@ function onDragStart(event, nodeType) {
       <v-navigation-drawer
         width="180"
       >
-      <v-list class="nodes" nav v-for="(item,idx) in types" density="compact">
+      <v-list class="nodes" nav v-for="(item, idx) in types" density="compact">
         <v-list-group value="aws">
           <template v-slot:activator=" { props }">
             <v-list-item
               v-bind="props"
-              :title="item"
+              :title="Object.keys(item)[0]"
             ></v-list-item>
           </template>
-          <v-list-subheader>aws {{ item }}</v-list-subheader>
-          <v-list-item class="vue-flow__node-default" :draggable="true" @dragstart="onDragStart($event, item)">
-            {{ item }} Node
-          </v-list-item>
+          <v-list-item
+            nav v-for="(resource, i) in Object.values(item)[0]"
+            :key="i"
+            :title="resource"
+            :draggable="true"
+            @dragstart="onDragStart($event, resource)"></v-list-item>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>

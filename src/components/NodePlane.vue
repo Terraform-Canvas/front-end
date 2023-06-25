@@ -2,20 +2,40 @@
 import ExamNode1 from './ExamNode1.vue';
 import ParentNode from './ParentNode.vue';
 
-import { VueFlow, useVueFlow, Panel, PanelPosition, } from '@vue-flow/core'
-import { nextTick, watch, onMounted } from 'vue'
+import ALB from './aws/ALB.vue';
+import EC2 from './aws/EC2.vue';
+import NATGateway from './aws/NATGateway.vue';
+import PrivateSubnet from './aws/PrivateSubnet.vue';
+import PublicSubnet from './aws/PublicSubnet.vue';
+import SecurityGroup from './aws/SecurityGroup.vue';
+import Vpc from './aws/Vpc.vue';
+import AutoScalingGroup from './aws/AutoScalingGroup.vue';
+
+import { VueFlow, useVueFlow, PanelPosition, } from '@vue-flow/core'
+import { nextTick, watch, } from 'vue'
 import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
 import { MiniMap } from '@vue-flow/minimap'
 import ChildNode from './ChildNode.vue';
+import { ref } from 'vue';
 
 let id = 0
 function getId() {
   return `${id++}`
 }
 
-const { findNode, onConnect, addEdges, addNodes, project, vueFlowRef, } = useVueFlow({
+const emit = defineEmits(['nodeClicked'])
+const nodeClicked = () => {
+  emit('nodeClicked', getSelectedNodes)
+}
+
+const { findNode, onConnect, addEdges, addNodes, project, vueFlowRef, onNodeClick, getSelectedNodes, getNodes } = useVueFlow({
   nodes: []
+})
+
+onNodeClick((MouseEvent) => {
+  nodeClicked()
+  getSelectedNodes.value.forEach(v => console.log(`Selected: ${v.id}, type: ${v.type}`))
 })
 
 function onDragOver(event) {
@@ -45,9 +65,6 @@ function onDrop(event) {
     type,
     position,
     label: `${type} node`,
-    data: {
-      "foo": "bar"
-    },
   }
 
   addNodes([newNode])
@@ -67,6 +84,28 @@ function onDrop(event) {
     )
   })
 }
+
+const showModal = ref(false)
+const exportData = ref('')
+
+const exportAndOpenModal = () => {
+  let exportDataArr = []
+
+  getNodes.value.forEach(n => {
+    let nodeData = {
+      id: n.id,
+      type: n.type,
+      parent: n.parentNode,
+      data: n.data
+    }
+
+    exportDataArr.push(nodeData)
+  })
+
+  exportData.value = JSON.stringify(exportDataArr)
+  console.log(exportData.value)
+  showModal.value = true
+}
 </script>
 
 <style>
@@ -74,6 +113,9 @@ function onDrop(event) {
 </style>
 
 <template>
+  <v-btn @click="exportAndOpenModal">export</v-btn>
+  <v-container :fluid="true" class="fill-height">
+  <v-row class="fill-height">
   <VueFlow v-model="elements"
     @dragover="onDragOver"
     @drop="onDrop"
@@ -88,9 +130,53 @@ function onDrop(event) {
     <template #node-child>
       <ChildNode />
     </template>
-  <Background :pattern-color="'#FFFFFB'" gap="8" />
-  <MiniMap />
-  <Controls :position="PanelPosition.BottomLeft"/>
 
-</VueFlow>
+    <!-- AWS Resources Below -->
+    <template #node-vpc>
+      <Vpc />
+    </template>
+    <template #node-asg>
+      <AutoScalingGroup />
+    </template>
+    <template #node-alb>
+      <ALB />
+    </template>
+    <template #node-ec2>
+      <EC2 />
+    </template>
+    <template #node-natgw>
+      <NATGateway />
+    </template>
+    <template #node-privatesubnet>
+      <PrivateSubnet />
+    </template>
+    <template #node-publicsubnet>
+      <PublicSubnet />
+    </template>
+    <template #node-sg>
+      <SecurityGroup />
+    </template>
+    <!-- AWS Resources Upper -->
+
+    <Background :pattern-color="'#FFFFFB'" :bg-color="'#F5F5F5'" gap="8" />
+    <MiniMap />
+    <Controls :position="PanelPosition.BottomLeft"/>
+
+  </VueFlow>
+  </v-row>
+  </v-container>
+  <div>
+    <v-dialog v-model="showModal" max-width="500px">
+    <v-card>
+      <v-card-title>Export Data</v-card-title>
+      <v-card-text>
+        {{ exportData }}
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" text @click="showModal = false">Close</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+  </div>
 </template>
