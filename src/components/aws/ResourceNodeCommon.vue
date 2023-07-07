@@ -3,20 +3,21 @@ Resource Node들에 공통으로 들어가는 로직과 컴포넌트
 -->
 
 <script setup>
-import { NodeResizer } from '@vue-flow/node-resizer'
-import { useNode, useVueFlow } from '@vue-flow/core';
+import { NodeResizer } from "@vue-flow/node-resizer";
+import { useNode, useVueFlow } from "@vue-flow/core";
 
-const { node } = useNode()
+const { node } = useNode();
 
-const { removeNodes, getIntersectingNodes, onNodeDragStop, findNode } = useVueFlow()
+const { removeNodes, getIntersectingNodes, onNodeDragStop, findNode } =
+  useVueFlow();
 
 /**
  * 삭제 버튼 클릭 핸들러
  * TODO: 노드들 중 해당 노드를 parent로 갖는 노드들의 parentId를 지워줘야 함.
  */
 const onRemove = () => {
-  removeNodes([node.id])
-}
+  removeNodes([node.id]);
+};
 
 /*
  * Node의 마우스 드래그 이벤트가 끝났을 때의 콜백.
@@ -61,7 +62,9 @@ const onRemove = () => {
 </script>
 <template>
   <div style="padding: 10px">
-    <v-btn icon="mdi-delete-outline" size="small" @click="onRemove" />{{ `id: ${node.id}, parent: ${node.parentNode}` }}
+    <v-btn icon="mdi-delete-outline" size="small" @click="onRemove" />{{
+      `id: ${node.id}, parent: ${node.parentNode}`
+    }}
   </div>
   <NodeResizer min-width="100" min-height="30" />
 </template>

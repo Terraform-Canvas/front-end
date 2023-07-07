@@ -1,9 +1,10 @@
 <script setup>
-import ResourceNodeCommon from './ResourceNodeCommon.vue';
+import ResourceNodeCommon from "./ResourceNodeCommon.vue";
 </script>
 
 <template>
-  <div>VPC
+  <div>
+    VPC
     <ResourceNodeCommon />
   </div>
 </template>
