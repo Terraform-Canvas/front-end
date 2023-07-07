@@ -1,7 +1,5 @@
 <template>
-    <p>login page</p>
+  <p>login page</p>
 </template>
-  
-<script setup>
-</script>
-  
+
+<script setup></script>

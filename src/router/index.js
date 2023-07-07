@@ -1,29 +1,29 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
-import Layout from "@/layouts"
+import { createRouter, createWebHistory } from "vue-router";
+import Layout from "@/layouts";
 const routes = [
   {
-    path: '/',
+    path: "/",
     component: Layout,
-    redirect: '/dashboard',
+    redirect: "/dashboard",
     children: [
       {
-        path: 'dashboard',
-        name: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
+        path: "dashboard",
+        name: "dashboard",
+        component: () => import("@/views/dashboard/index"),
       },
     ],
   },
   {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
+    path: "/login",
+    component: () => import("@/views/login/index"),
+    hidden: true,
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-})
+});
 
-export default router
+export default router;

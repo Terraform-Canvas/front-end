@@ -1,12 +1,11 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <v-app id="app">
-    <router-view/>
+    <router-view />
   </v-app>
 </template>
 
 <style>
-@import '@/styles/main.css';
+@import "@/styles/main.css";
 </style>
