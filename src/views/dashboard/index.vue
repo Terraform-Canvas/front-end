@@ -1,4 +1,7 @@
 <template>
+  <v-navigation-drawer v-model="drawer" location="right" width="500" temporary>
+    <DrawerInput :selectedNode="selectedNode" />
+  </v-navigation-drawer>
   <v-main>
     <v-container fluid class="container-size">
       <v-row>
@@ -18,6 +21,7 @@
 import MainTop from "@/components/dashboard/MainTop.vue";
 import NodePlane from "@/components/node/NodePlane";
 import MainBottom from "@/components/dashboard/MainBottom";
+import DrawerInput from "@/components/aws/DrawerInput.vue";
 import { ref, onUpdated } from "vue";
 
 const drawer = ref(false);
