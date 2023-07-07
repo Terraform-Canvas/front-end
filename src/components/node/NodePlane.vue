@@ -2,14 +2,14 @@
 import ExamNode1 from "./ExamNode1.vue";
 import ParentNode from "./ParentNode.vue";
 
-import ALB from "../aws/ALB.vue";
-import EC2 from "../aws/EC2.vue";
-import NATGateway from "../aws/NATGateway.vue";
-import PrivateSubnet from "../aws/PrivateSubnet.vue";
-import PublicSubnet from "../aws/PublicSubnet.vue";
-import SecurityGroup from "../aws/SecurityGroup.vue";
-import Vpc from "../aws/Vpc.vue";
-import AutoScalingGroup from "../aws/AutoScalingGroup.vue";
+import ALB from "@/components/aws/ALB.vue";
+import EC2 from "@/components/aws/EC2.vue";
+import NATGateway from "@/components/aws/NATGateway.vue";
+import PrivateSubnet from "@/components/aws/PrivateSubnet.vue";
+import PublicSubnet from "@/components/aws/PublicSubnet.vue";
+import SecurityGroup from "@/components/aws/SecurityGroup.vue";
+import Vpc from "@/components/aws/Vpc.vue";
+import AutoScalingGroup from "@/components/aws/AutoScalingGroup.vue";
 
 import { VueFlow, useVueFlow, PanelPosition } from "@vue-flow/core";
 import { nextTick, watch } from "vue";
