@@ -15,9 +15,9 @@
 </template>
 
 <script setup>
-import MainTop from "../../components/dashboard/MainTop";
-import NodePlane from "../../components/node/NodePlane";
-import MainBottom from "../../components/dashboard/MainBottom";
+import MainTop from "@/components/dashboard/MainTop.vue";
+import NodePlane from "@/components/node/NodePlane";
+import MainBottom from "@/components/dashboard/MainBottom";
 import { ref, onUpdated } from "vue";
 
 const drawer = ref(false);
