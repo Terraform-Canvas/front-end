@@ -9,6 +9,7 @@ const props = defineProps({
 const nodeType = ref('')
 
 onUpdated(() => {
+  console.log("drawer update")
   nodeType.value = props.selectedNode.type
 
 })
