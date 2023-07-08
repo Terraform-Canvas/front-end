@@ -6,8 +6,12 @@ let password=ref(null);
 let email=ref(null);
 let form=ref(false);
 let show=ref(false);
+let dialogError=ref(false);
 const onSubmit = () => {
-    if (!form.value) return
+    if (!form.value) {
+        dialogError.value=true;
+        return
+    }
     const params = {
         email: email.value,
         password: password.value
@@ -25,11 +29,24 @@ const emailValid = (value) => {
 </script>
   
 <template>
+    
     <v-main class="blue-grey lighten-4">
         <v-container class="fill-height">
             <v-row align-content="center" justify="center">
                 <v-col cols="12" md="4" align-self="center">
                     <v-card class="mx-auto px-6 py-8" max-width="400" elevation="5">
+                        <template>
+                            <v-dialog v-model="dialogError" content-class="align-center">
+                                <v-alert
+                                    type="warning"
+                                    prominent
+                                    border="top"
+                                    width="500"
+                                    >
+                                    사용자의 계정 및 패스워드가 올바르지 않습니다.
+                                </v-alert>
+                            </v-dialog>
+                        </template>
                         <v-card-title>
                             <v-row align-content="center" justify="center">
                                 <v-col cols="12" md="8" align-self="center"><v-img src='@/assets/images/canvas-logo.jpg' aspect-ratio="4/3" :width="200" cover/></v-col>
@@ -76,6 +93,7 @@ const emailValid = (value) => {
                     </v-card>
                 </v-col>
             </v-row>
+        
         </v-container>
     </v-main>
 </template>
