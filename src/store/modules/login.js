@@ -4,7 +4,7 @@ import VueCookies from 'vue-cookies'
 const state = () => ({
     accessToken: null,
     refreshToken: null,
-    host: 'localhost:3000'
+    host: 'http://localhost:8000'
 })
 
 // getters
@@ -23,7 +23,7 @@ const getters = {
 const actions = {
     login: function({commit}, params) {
         return new Promise((resolve,reject) => {
-            axios.post('/login/new',params).then(res => {
+            axios.post("/login/new",params).then(res => {
                 // authInfo라는 변수로 넘겨줘야함.
                 commit('loginToken',res.data.authInfo)
                 resolve(res);

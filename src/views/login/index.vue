@@ -1,20 +1,21 @@
 <script setup>
+import router from '@/router';
 import store from '@/store';
 import { ref } from 'vue'
 let password=ref(null);
 let email=ref(null);
-let loading=ref(false);
 let form=ref(false);
 let show=ref(false);
 const onSubmit = () => {
-    if (!form.value) reutrn
-    loading.value=true;
+    if (!form.value) return
     const params = {
-        email: email,
-        password: password
+        email: email.value,
+        password: password.value
     }
-    console.log(store)
-    store.dispatch('login/login',params);
+    store.dispatch('login/login',params)
+    .then((res)=>{
+        router.push('/')
+    })
 }
 const required = (v) => !!v || 'Field is required!'
 const emailValid = (value) => {
@@ -41,8 +42,7 @@ const emailValid = (value) => {
                             >
                                 <v-text-field
                                     v-model="email"
-                                    :readonly="loading"
-                                    :rules="[required,emailValid]"
+                                    :rules="[required, emailValid]"
                                     class="mb-2"
                                     clearable
                                     label="email"
@@ -50,7 +50,6 @@ const emailValid = (value) => {
                                 ></v-text-field>
                                 <v-text-field
                                     v-model="password"
-                                    :readonly="loading"
                                     :rules="[required]"
                                     clearable
                                     label="password"
@@ -63,7 +62,6 @@ const emailValid = (value) => {
                                 ></v-text-field>
                                 <v-btn 
                                     class="white--text"
-                                    :loading="loading"
                                     block
                                     color="#404AE7"
                                     size="large"
