@@ -36,6 +36,7 @@ router.beforeEach(async(to, from, next) => {
   } else if (VueCookies.get('accessToken') === null && VueCookies.get('refreshToken') === null) {
     return next({name: 'Login'})
   }
-  return next()
+
+  return next();
 })
 export default router;
