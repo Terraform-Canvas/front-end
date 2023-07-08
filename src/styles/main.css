@@ -85,8 +85,6 @@ body,
   width: 25px;
   height: 25px;
   border-radius: 25px;
-  -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 10px #0000004d;
   cursor: pointer;
 }
 .customnodeflow button:hover {
@@ -267,17 +265,25 @@ body,
 }
 
 .customnodeflow .vue-flow__node-vpc {
-  border: 1px solid #777;
+  border: 1px solid #2ca138;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 600px;
   min-height: 400px;
+}
+
+.customnodeflow .vue-flow__node-vpc::after {
+  content: "";
+  background: #2ca138;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 30%;
 }
 .customnodeflow button {
   padding: 5px;
@@ -334,17 +340,25 @@ body,
   }
 }
 .customnodeflow .vue-flow__node-asg {
-  border: 1px solid #777;
+  border: 1px solid #f68536;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 200px;
   min-height: 300px;
+}
+
+.customnodeflow .vue-flow__node-asg::after {
+  content: "";
+  background: #f68536;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 30%;
 }
 .customnodeflow button {
   padding: 5px;
@@ -401,17 +415,24 @@ body,
   }
 }
 .customnodeflow .vue-flow__node-alb {
-  border: 1px solid #777;
+  border: 1px solid #f68536;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 200px;
   min-height: 300px;
+}
+
+.customnodeflow .vue-flow__node-alb::after {
+  content: "";
+  background: #f68536;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 30%;
 }
 .customnodeflow button {
   padding: 5px;
@@ -468,17 +489,26 @@ body,
   }
 }
 .customnodeflow .vue-flow__node-ec2 {
-  border: 1px solid #777;
+  border: 1px solid #f68536;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 200px;
-  min-height: 300px;
+  min-height: 100px;
+  z-index: -1;
+}
+
+.customnodeflow .vue-flow__node-ec2::after {
+  content: "";
+  background: #f68536;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 30%;
 }
 .customnodeflow button {
   padding: 5px;
@@ -535,17 +565,25 @@ body,
   }
 }
 .customnodeflow .vue-flow__node-natgw {
-  border: 1px solid #777;
+  border: 1px solid #f68536;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 200px;
   min-height: 300px;
+}
+
+.customnodeflow .vue-flow__node-natgw::after {
+  content: "";
+  background: #f68536;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 30%;
 }
 .customnodeflow button {
   padding: 5px;
@@ -602,17 +640,25 @@ body,
   }
 }
 .customnodeflow .vue-flow__node-privatesubnet {
-  border: 1px solid #777;
+  border: 1px solid #2ca138;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 200px;
   min-height: 300px;
+}
+
+.customnodeflow .vue-flow__node-privatesubnet::after {
+  content: "";
+  background: #2ca138;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 50px;
 }
 .customnodeflow button {
   padding: 5px;
@@ -669,18 +715,27 @@ body,
   }
 }
 .customnodeflow .vue-flow__node-publicsubnet {
-  border: 1px solid #777;
+  border: 1px solid #2ca138;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 200px;
   min-height: 300px;
 }
+
+.customnodeflow .vue-flow__node-publicsubnet::after {
+  content: "";
+  background: #2ca138;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 50px;
+}
+
 .customnodeflow button {
   padding: 5px;
   width: 25px;
@@ -736,18 +791,27 @@ body,
   }
 }
 .customnodeflow .vue-flow__node-sg {
-  border: 1px solid #777;
+  border: 1px solid #0d7317;
   padding: 10px;
-  border-radius: 10px;
   background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 10px;
   min-width: 200px;
   min-height: 300px;
 }
+
+.customnodeflow .vue-flow__node-sg::after {
+  content: "";
+  background: #0d7317;
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  height: 10px;
+  width: 30%;
+}
+
 .customnodeflow button {
   padding: 5px;
   width: 25px;
