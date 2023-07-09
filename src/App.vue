@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+// onMounted(()=>{
+//   let token = store.getters.getToken
+//   if (token.access == null && token.refresh == null) {
+//     router.push({name: 'Login'}).catch((err)=>{console.log(err)});
+//   }
+// })
+</script>
 
 <template>
   <v-app id="app">
