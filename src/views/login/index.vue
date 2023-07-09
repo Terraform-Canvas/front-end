@@ -18,6 +18,13 @@ const onSubmit = () => {
     }
     store.dispatch('login/login',params)
     .then((res)=>{
+        console.log(res)
+        const userData = {
+            email: email.value,
+            name: res.data.name
+            
+        }
+        store.dispatch('user/save',userData)
         router.push('/')
     })
 }
@@ -29,7 +36,6 @@ const emailValid = (value) => {
 </script>
   
 <template>
-    
     <v-main class="blue-grey lighten-4">
         <v-container class="fill-height">
             <v-row align-content="center" justify="center">

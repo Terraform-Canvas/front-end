@@ -4,12 +4,13 @@
       <v-img src="@/assets/images/canvas-logo.jpg" width="auto" height="auto" />
     </v-responsive>
     <v-spacer></v-spacer>
-    <v-app-bar-nav-icon><v-icon>mdi-account</v-icon></v-app-bar-nav-icon>
+    
     <template v-slot:extension>
       <v-tabs>
         <v-tab class="white--text text-none" href="/">main</v-tab>
       </v-tabs>
     </template>
+    <UserProfile/>
     <!-- text 위치 수정 필요 -->
     <!-- <v-row>
       <v-col>
@@ -27,4 +28,6 @@
   </v-app-bar>
 </template>
 
-<script setup></script>
+<script setup>
+import UserProfile from '@/components/dashboard/UserProfile.vue'
+</script>
