@@ -4,7 +4,7 @@ import VueCookies from 'vue-cookies'
 const state = () => ({
     accessToken: null,
     refreshToken: null,
-    host: 'http://localhost:8000'
+    host: 'http://localhost:8000/api/v1'
 })
 
 // getters
