@@ -18,6 +18,7 @@ import { Controls } from "@vue-flow/controls";
 import { MiniMap } from "@vue-flow/minimap";
 import ChildNode from "./ChildNode.vue";
 import { ref } from "vue";
+import MainTopVue from "../dashboard/MainTop.vue";
 
 let id = 0;
 function getId() {
@@ -46,7 +47,7 @@ const {
 onNodeClick((MouseEvent) => {
   nodeClicked();
   getSelectedNodes.value.forEach((v) =>
-    console.log(`Selected: ${v.id}, type: ${v.type}`),
+    console.log(`Selected: ${v.id}, type: ${v.type}`)
   );
 });
 
@@ -95,7 +96,7 @@ function onDrop(event) {
           stop();
         }
       },
-      { deep: true, flush: "post" },
+      { deep: true, flush: "post" }
     );
   });
 }
@@ -128,7 +129,11 @@ const exportAndOpenModal = () => {
 </style>
 
 <template>
-  <v-btn @click="exportAndOpenModal">export</v-btn>
+  <div class="header-utils">
+    <MainTopVue />
+    <v-btn class="export-btn" @click="exportAndOpenModal">export</v-btn>
+  </div>
+
   <v-container :fluid="true" class="fill-height">
     <v-row class="fill-height">
       <VueFlow
@@ -196,3 +201,16 @@ const exportAndOpenModal = () => {
     </v-dialog>
   </div>
 </template>
+
+<style>
+.header-utils {
+  display: flex;
+}
+.export-btn {
+  margin-left: auto;
+  height: 2rem;
+  background-color: #404ae7;
+  color: white;
+  font-weight: bold;
+}
+</style>

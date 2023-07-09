@@ -1,21 +1,16 @@
 <script setup>
 const types = [
-  { exam1: ["exam1"] },
-  { default: ["default"] },
-  { output: ["output"] },
-  { parent: ["parent"] },
-  { child: ["child"] },
   {
-    asg: [
-      "alb",
-      "asg",
-      "ec2",
-      "natgw",
-      "privatesubnet",
-      "publicsubnet",
-      "sg",
-      "vpc",
-    ],
+    Computing: ["ec2"],
+  },
+  {
+    Networking: ["natgw", "privatesubnet", "publicsubnet", "vpc"],
+  },
+  {
+    Scailing: ["alb", "asg"],
+  },
+  {
+    Security: ["sg"],
   },
 ];
 

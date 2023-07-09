@@ -24,8 +24,52 @@ onNodeDragStop((nodeDragEvent) => {
 </script>
 
 <template>
-  <div>
-    ALB
-    <ResourceNodeCommon />
+  <div class="node-wrapper">
+    <div class="node-header">
+      <div class="node-title">ALB</div>
+      <ResourceNodeCommon />
+    </div>
+
+    <div class="node-detail-container">
+      <div class="node-logo">
+        <v-img src="@/assets/resources/aws/alb.png" />
+      </div>
+      <div class="node-detail">ALB type</div>
+    </div>
   </div>
 </template>
+
+<style>
+.node-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.node-header {
+  display: flex;
+  align-items: center;
+}
+
+.node-title {
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+}
+
+.node-detail-container {
+  display: flex;
+  padding-top: 10px;
+}
+.node-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.node-detail {
+  width: 30px;
+  height: 30px;
+  color: gray;
+  padding-left: 30px;
+}
+</style>
