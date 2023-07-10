@@ -37,7 +37,7 @@ onNodeDragStop((nodeDragEvent) => {
       <div class="node-logo">
         <v-img src="@/assets/resources/aws/ec2.png" />
       </div>
-      <div class="node-detail">t2.nano</div>
+      <div class="node-detail">{{ node.data.instance_type }}</div>
     </div>
   </div>
 </template>

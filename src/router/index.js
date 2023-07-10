@@ -19,25 +19,32 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    hidden:true,
-    component: () => import('@/views/login/index'),
+    hidden: true,
+    component: () => import("@/views/login/index"),
   },
 ];
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-router.beforeEach(async(to, from, next) => {
-  if (to.name ==='Login') {
-    console.log(to)
-    return next()
+
+router.beforeEach(async (to, from, next) => {
+  if (to.name === "Login") {
+    console.log(to);
+    return next();
   }
-  if (VueCookies.get('accessToken') === null && VueCookies.get('refreshToken') !== null) {
-    await store.dispatch('refreshToken')
-  } else if (VueCookies.get('accessToken') === null && VueCookies.get('refreshToken') === null) {
-    return next({name: 'Login'})
+  if (
+    VueCookies.get("accessToken") === null &&
+    VueCookies.get("refreshToken") !== null
+  ) {
+    await store.dispatch("refreshToken");
+  } else if (
+    VueCookies.get("accessToken") === null &&
+    VueCookies.get("refreshToken") === null
+  ) {
+    return next({ name: "Login" });
   }
 
   return next();
-})
+});
 export default router;
