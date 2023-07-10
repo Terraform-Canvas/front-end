@@ -10,24 +10,14 @@
         <v-tab class="white--text text-none" href="/">main</v-tab>
       </v-tabs>
     </template>
-    <UserProfile/>
-    <!-- text 위치 수정 필요 -->
-    <!-- <v-row>
-      <v-col>
-        <v-responsive max-width="156">
-          <v-text-field
-            bg-color="grey-lighten-2"
-            class="rounded-pill overflow-hidden"
-            density="compact"
-            hide-details
-            variant="solo"
-          ></v-text-field>
-        </v-responsive>
-      </v-col>
-    </v-row> -->
   </v-app-bar>
 </template>
 
-<script setup>
-import UserProfile from '@/components/dashboard/UserProfile.vue'
-</script>
+<script setup></script>
+
+<style>
+.logo {
+  padding-left: 2rem;
+  object-fit: cover;
+}
+</style>
