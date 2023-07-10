@@ -4,7 +4,7 @@
       <v-img width="auto" class="logo" src="@/assets/images/canvas-logo.png" />
     </v-responsive>
     <v-spacer></v-spacer>
-    <v-app-bar-nav-icon><v-icon>mdi-account</v-icon></v-app-bar-nav-icon>
+    
     <template v-slot:extension>
       <v-tabs>
         <v-tab class="white--text text-none" href="/">main</v-tab>
