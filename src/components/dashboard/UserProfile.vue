@@ -25,6 +25,9 @@ const save = function() {
   })
 }
 const required = (v) => !!v || 'Field is required!'
+const logout = () => {
+  store.dispatch('login/logout')
+}
 </script>
 
 <style>
@@ -47,6 +50,13 @@ const required = (v) => !!v || 'Field is required!'
             :title="store.state.user.name"
             :subtitle="store.state.user.email"
           />
+          <v-list-item>
+              <v-spacer/>
+              <v-btn
+              variant="text"
+              @click="logout"
+            >로그아웃</v-btn>
+          </v-list-item>
         </v-list>
         <v-divider/>
         <v-list v-if="!reset">
