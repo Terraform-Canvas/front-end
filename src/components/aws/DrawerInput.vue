@@ -74,7 +74,7 @@ onUpdated(() => {
     </v-card>
   </div>
   <div v-else-if="nodeType == 'ec2'">
-    <v-card class="mx-auto" title="EC2">
+    <v-card class="mx-auto">
       <v-container>
         <v-row class="drawer-header" align="center">
           <div class="drawer-header-logo">
@@ -137,8 +137,11 @@ onUpdated(() => {
     </v-card>
   </div>
   <div v-else-if="nodeType == 'vpc'">
-    <v-card class="mx-auto" title="VPC">
+    <v-card class="mx-auto">
       <v-container>
+        <v-row class="drawer-header" align="center">
+          <div class="drawer-header-title">VPC</div>
+        </v-row>
         <v-text-field
           v-model="selectedNode.data.name"
           color="primary"
