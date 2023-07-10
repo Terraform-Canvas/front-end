@@ -30,11 +30,7 @@ onNodeDragStop((nodeDragEvent) => {
       <ResourceNodeCommon />
     </div>
 
-    <div class="node-detail-container">
-      <div class="node-logo">
-        <v-img src="@/assets/resources/aws/ec2.png" />
-      </div>
-    </div>
+    <div class="node-detail-container"></div>
   </div>
 </template>
 
