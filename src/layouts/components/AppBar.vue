@@ -10,10 +10,13 @@
         <v-tab class="white--text text-none" href="/">main</v-tab>
       </v-tabs>
     </template>
+    <UserProfile/>
   </v-app-bar>
 </template>
 
-<script setup></script>
+<script setup>
+import UserProfile from '@/components/dashboard/UserProfile.vue';
+</script>
 
 <style>
 .logo {
