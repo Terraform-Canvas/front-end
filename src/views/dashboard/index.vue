@@ -4,9 +4,6 @@
   </v-navigation-drawer>
   <v-main>
     <v-container fluid class="container-size">
-      <v-row>
-        <v-col><MainTop /></v-col>
-      </v-row>
       <v-row class="row-vueflow">
         <v-col><NodePlane @nodeClicked="handleRightDrawer" /></v-col>
       </v-row>

@@ -62,9 +62,11 @@ const onRemove = () => {
 </script>
 <template>
   <div style="padding: 10px">
-    <v-btn icon="mdi-delete-outline" size="small" @click="onRemove" />{{
-      `id: ${node.id}, parent: ${node.parentNode}`
-    }}
+    <v-btn icon="mdi-delete" size="small" @click="onRemove" variant="plain" />
   </div>
-  <NodeResizer min-width="100" min-height="30" />
+  <NodeResizer
+    line-style="visibility: hidden"
+    min-width="100"
+    min-height="30"
+  />
 </template>
