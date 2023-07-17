@@ -6,16 +6,16 @@
 
 // Components
 import App from "./App.vue";
-import "./styles/reset.css";
 
 // Composables
 import { createApp } from "vue";
 
 // Plugins
 import { registerPlugins } from "@/plugins";
-``;
-const app = createApp(App);
+import axios from "axios";
 
+const app = createApp(App);
+app.config.globalProperties.$axios = axios
 registerPlugins(app);
 
 app.mount("#app");

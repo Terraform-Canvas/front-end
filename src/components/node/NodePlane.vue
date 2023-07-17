@@ -2,15 +2,14 @@
 import ExamNode1 from "./ExamNode1.vue";
 import ParentNode from "./ParentNode.vue";
 
-import ALB from "./aws/ALB.vue";
-import EC2 from "./aws/EC2.vue";
-import NATGateway from "./aws/NATGateway.vue";
-import PrivateSubnet from "./aws/PrivateSubnet.vue";
-import PublicSubnet from "./aws/PublicSubnet.vue";
-import SecurityGroup from "./aws/SecurityGroup.vue";
-import Vpc from "./aws/Vpc.vue";
-import AutoScalingGroup from "./aws/AutoScalingGroup.vue";
-import RegionBox from "./RegionBox.vue";
+import ALB from "@/components/aws/ALB.vue";
+import EC2 from "@/components/aws/EC2.vue";
+import NATGateway from "@/components/aws/NATGateway.vue";
+import PrivateSubnet from "@/components/aws/PrivateSubnet.vue";
+import PublicSubnet from "@/components/aws/PublicSubnet.vue";
+import SecurityGroup from "@/components/aws/SecurityGroup.vue";
+import Vpc from "@/components/aws/Vpc.vue";
+import AutoScalingGroup from "@/components/aws/AutoScalingGroup.vue";
 
 import { VueFlow, useVueFlow, PanelPosition } from "@vue-flow/core";
 import { nextTick, watch } from "vue";
@@ -19,6 +18,7 @@ import { Controls } from "@vue-flow/controls";
 import { MiniMap } from "@vue-flow/minimap";
 import ChildNode from "./ChildNode.vue";
 import { ref } from "vue";
+import MainTopVue from "../dashboard/MainTop.vue";
 
 let id = 0;
 function getId() {
@@ -47,7 +47,7 @@ const {
 onNodeClick((MouseEvent) => {
   nodeClicked();
   getSelectedNodes.value.forEach((v) =>
-    console.log(`Selected: ${v.id}, type: ${v.type}`),
+    console.log(`Selected: ${v.id}, type: ${v.type}`)
   );
 });
 
@@ -96,7 +96,7 @@ function onDrop(event) {
           stop();
         }
       },
-      { deep: true, flush: "post" },
+      { deep: true, flush: "post" }
     );
   });
 }
@@ -125,23 +125,14 @@ const exportAndOpenModal = () => {
 </script>
 
 <style>
-@import "../styles/main.css";
-.nodeplane-top-container {
-  padding: 1rem 0;
-}
-
-.export-btn {
-  background-color: #404ae7;
-}
+@import "@/styles/main.css";
 </style>
 
 <template>
-  <v-row class="nodeplane-top-container">
-    <RegionBox />
-    <v-btn class="export-btn text-white" @click="exportAndOpenModal"
-      >export</v-btn
-    >
-  </v-row>
+  <div class="header-utils">
+    <MainTopVue />
+    <v-btn class="export-btn" @click="exportAndOpenModal">export</v-btn>
+  </div>
 
   <v-container :fluid="true" class="fill-height">
     <v-row class="fill-height">
@@ -210,3 +201,16 @@ const exportAndOpenModal = () => {
     </v-dialog>
   </div>
 </template>
+
+<style>
+.header-utils {
+  display: flex;
+}
+.export-btn {
+  margin-left: auto;
+  height: 2rem;
+  background-color: #404ae7;
+  color: white;
+  font-weight: bold;
+}
+</style>

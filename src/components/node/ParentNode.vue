@@ -1,14 +1,14 @@
 <script setup>
-import { NodeResizer } from '@vue-flow/node-resizer'
-import { useNode, useVueFlow } from '@vue-flow/core';
+import { NodeResizer } from "@vue-flow/node-resizer";
+import { useNode, useVueFlow } from "@vue-flow/core";
 
-const { node } = useNode()
+const { node } = useNode();
 
-const { removeNodes } = useVueFlow()
+const { removeNodes } = useVueFlow();
 
 const onRemove = () => {
-  removeNodes([node.id])
-}
+  removeNodes([node.id]);
+};
 </script>
 
 <template>
