@@ -17,7 +17,7 @@ axios.interceptors.request.use(async function (config) {
     config.url  = store.state.login.host + config.url; //host 및 url 방식 수정필요
   }
   //헤더 셋팅
-  config.timeout = 10000;
+  config.timeout = 20000;
   config.headers['x-access-token'] = VueCookies.get('accessToken');
   config.headers['x-refresh-token'] = VueCookies.get('refreshToken');
   config.headers['Content-Type'] = 'application/json';
