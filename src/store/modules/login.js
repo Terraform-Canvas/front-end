@@ -45,8 +45,16 @@ const actions = {
         })
     },
     logout: function({commit}) {
-        commit('removeToken');
-        location.reload();
+        return new Promise((resolve, reject) => {
+            axios.post('/logout').then(res => {
+                commit('removeToken');
+                location.reload();  
+                resolve(res);
+            }).catch(err => {
+                console.error(err)
+                reject(err)
+            })
+        })
     }
 }
 
