@@ -1,7 +1,7 @@
 <script setup>
-import store from "@/store";
-import axios from "axios";
-import { ref } from "vue";
+import store from '@/store';
+import axios from 'axios';
+import { ref } from 'vue';
 let menu = ref(false);
 let reset = ref(false);
 let accessKey = ref(null);
@@ -12,7 +12,7 @@ const save = function () {
     //실제 api 호출 관련 필요..
     reset.value = false;
     axios
-        .post("/user/key", {
+        .post('/user/key', {
             accessKey: accessKey.value,
             secretKey: secretKey.value,
         })
@@ -26,9 +26,9 @@ const save = function () {
             //에러 처리 따로 추가 필요
         });
 };
-const required = (v) => !!v || "Field is required!";
+const required = (v) => !!v || 'Field is required!';
 const logout = () => {
-    store.dispatch("login/logout");
+    store.dispatch('login/logout');
 };
 </script>
 

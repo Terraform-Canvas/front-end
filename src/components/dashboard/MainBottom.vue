@@ -1,8 +1,8 @@
 <script setup>
-import VueCommand, { createStdout } from "vue-command";
-import "vue-command/dist/vue-command.css";
+import VueCommand, { createStdout } from 'vue-command';
+import 'vue-command/dist/vue-command.css';
 const commands = {
-    "hello-world": () => createStdout("Hello world"),
+    'hello-world': () => createStdout('Hello world'),
 };
 let data_list = [];
 </script>

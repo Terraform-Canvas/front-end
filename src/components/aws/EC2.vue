@@ -1,7 +1,7 @@
 <script setup>
-import ResourceNodeCommon from "./ResourceNodeCommon.vue";
+import ResourceNodeCommon from './ResourceNodeCommon.vue';
 
-import { useVueFlow, useNode } from "@vue-flow/core";
+import { useVueFlow, useNode } from '@vue-flow/core';
 
 const { getIntersectingNodes, findNode, onNodeDragStop } = useVueFlow();
 const { node } = useNode();
@@ -13,7 +13,7 @@ onNodeDragStop((nodeDragEvent) => {
             .filter((e) => {
                 const nodeType = findNode(e.id).type;
                 return (
-                    nodeType == "privatesubnet" || nodeType == "publicsubnet"
+                    nodeType == 'privatesubnet' || nodeType == 'publicsubnet'
                 );
             })
             .map((e) => e);

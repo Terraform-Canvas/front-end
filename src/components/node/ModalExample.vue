@@ -33,12 +33,12 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref, defineEmits } from 'vue';
 
-const emit = defineEmits(["save"]);
+const emit = defineEmits(['save']);
 
 const modalOpen = ref(false);
-const inputValue = ref("");
+const inputValue = ref('');
 
 const openModal = () => {
     modalOpen.value = true;
@@ -50,8 +50,8 @@ const closeModal = () => {
 
 const saveInput = () => {
     // 입력값을 처리하는 로직을 추가
-    console.log("Input Value:", inputValue.value);
-    emit("save", inputValue.value);
+    console.log('Input Value:', inputValue.value);
+    emit('save', inputValue.value);
     closeModal();
 };
 </script>

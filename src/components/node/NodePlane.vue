@@ -1,34 +1,34 @@
 <script setup>
-import ExamNode1 from "./ExamNode1.vue";
-import ParentNode from "./ParentNode.vue";
+import ExamNode1 from './ExamNode1.vue';
+import ParentNode from './ParentNode.vue';
 
-import ALB from "@/components/aws/ALB.vue";
-import EC2 from "@/components/aws/EC2.vue";
-import NATGateway from "@/components/aws/NATGateway.vue";
-import PrivateSubnet from "@/components/aws/PrivateSubnet.vue";
-import PublicSubnet from "@/components/aws/PublicSubnet.vue";
-import SecurityGroup from "@/components/aws/SecurityGroup.vue";
-import Vpc from "@/components/aws/Vpc.vue";
-import AutoScalingGroup from "@/components/aws/AutoScalingGroup.vue";
+import ALB from '@/components/aws/ALB.vue';
+import EC2 from '@/components/aws/EC2.vue';
+import NATGateway from '@/components/aws/NATGateway.vue';
+import PrivateSubnet from '@/components/aws/PrivateSubnet.vue';
+import PublicSubnet from '@/components/aws/PublicSubnet.vue';
+import SecurityGroup from '@/components/aws/SecurityGroup.vue';
+import Vpc from '@/components/aws/Vpc.vue';
+import AutoScalingGroup from '@/components/aws/AutoScalingGroup.vue';
 
-import { VueFlow, useVueFlow, PanelPosition } from "@vue-flow/core";
-import { nextTick, watch } from "vue";
-import { Background } from "@vue-flow/background";
-import { Controls } from "@vue-flow/controls";
-import { MiniMap } from "@vue-flow/minimap";
-import ChildNode from "./ChildNode.vue";
-import { ref } from "vue";
-import MainTopVue from "../dashboard/MainTop.vue";
+import { VueFlow, useVueFlow, PanelPosition } from '@vue-flow/core';
+import { nextTick, watch } from 'vue';
+import { Background } from '@vue-flow/background';
+import { Controls } from '@vue-flow/controls';
+import { MiniMap } from '@vue-flow/minimap';
+import ChildNode from './ChildNode.vue';
+import { ref } from 'vue';
+import MainTopVue from '../dashboard/MainTop.vue';
 
-import axios from "@/plugins/axios";
+import axios from '@/plugins/axios';
 let id = 0;
 function getId() {
     return `${id++}`;
 }
 
-const emit = defineEmits(["nodeClicked"]);
+const emit = defineEmits(['nodeClicked']);
 const nodeClicked = () => {
-    emit("nodeClicked", getSelectedNodes);
+    emit('nodeClicked', getSelectedNodes);
 };
 
 const {
@@ -56,14 +56,14 @@ function onDragOver(event) {
     event.preventDefault();
 
     if (event.dataTransfer) {
-        event.dataTransfer.dropEffect = "move";
+        event.dataTransfer.dropEffect = 'move';
     }
 }
 
 onConnect((params) => addEdges(params));
 
 function onDrop(event) {
-    const type = event.dataTransfer?.getData("application/vueflow");
+    const type = event.dataTransfer?.getData('application/vueflow');
     console.log(type);
     const { left, top } = vueFlowRef.value.getBoundingClientRect();
 
@@ -97,17 +97,17 @@ function onDrop(event) {
                     stop();
                 }
             },
-            { deep: true, flush: "post" },
+            { deep: true, flush: 'post' },
         );
     });
 }
 
 const showModal = ref(false);
-const exportData = ref("");
-let btnData = ref("create");
+const exportData = ref('');
+let btnData = ref('create');
 let bntLoader = ref(false);
-let btnType = ref("");
-let btnMsg = ref("");
+let btnType = ref('');
+let btnMsg = ref('');
 const exportAndOpenModal = () => {
     let exportDataArr = [];
     bntLoader.value = true;
@@ -122,33 +122,33 @@ const exportAndOpenModal = () => {
     });
     exportData.value = JSON.stringify(exportDataArr);
     showModal.value = true;
-    if (btnData.value === "create") {
+    if (btnData.value === 'create') {
         axios
-            .post("/terraform/make-usertf", exportData.value)
+            .post('/terraform/make-usertf', exportData.value)
             .then((res) => {
-                btnData.value = "run";
-                btnType.value = "success";
-                btnMsg.value = "tf 생성 완료";
+                btnData.value = 'run';
+                btnType.value = 'success';
+                btnMsg.value = 'tf 생성 완료';
                 bntLoader.value = false;
             })
             .catch((err) => {
-                btnMsg.value = "tf 생성 실패";
-                btnType.value = "warning";
+                btnMsg.value = 'tf 생성 실패';
+                btnType.value = 'warning';
                 bntLoader.value = false;
                 console.error(err);
             });
-    } else if (btnData.value === "run") {
+    } else if (btnData.value === 'run') {
         axios
-            .post("/terraform/apply", exportData.value)
+            .post('/terraform/apply', exportData.value)
             .then((res) => {
-                btnData.value = "create";
-                btnMsg.value = "tf 실행 완료";
-                btnType.value = "success";
+                btnData.value = 'create';
+                btnMsg.value = 'tf 실행 완료';
+                btnType.value = 'success';
                 bntLoader.value = false;
             })
             .catch((err) => {
-                btnMsg.value = "tf 실행 실패";
-                btnType.value = "warning";
+                btnMsg.value = 'tf 실행 실패';
+                btnType.value = 'warning';
                 bntLoader.value = false;
                 console.error(err);
             });
@@ -157,8 +157,8 @@ const exportAndOpenModal = () => {
 </script>
 
 <style>
-@import "@/styles/main.css";
-@import "@/styles/nodeflow.css";
+@import '@/styles/main.css';
+@import '@/styles/nodeflow.css';
 </style>
 
 <template>

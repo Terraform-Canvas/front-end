@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from "vue";
-import { onUpdated } from "vue";
-import store from "@/store";
+import { ref } from 'vue';
+import { onUpdated } from 'vue';
+import store from '@/store';
 const props = defineProps({
     selectedNode: Object,
 });
 let instance_items = [];
-store.dispatch("aws/getInstanceTypes").then((res) => {
+store.dispatch('aws/getInstanceTypes').then((res) => {
     const instance_type = store.state.aws.instance_types;
     for (let value of instance_type) {
         instance_items.push(value.InstanceType);
@@ -14,11 +14,11 @@ store.dispatch("aws/getInstanceTypes").then((res) => {
     instance_items.sort();
     console.log(instance_items);
 });
-store.dispatch("aws/getAMI");
+store.dispatch('aws/getAMI');
 
-const nodeType = ref("");
+const nodeType = ref('');
 onUpdated(() => {
-    console.log("drawer update");
+    console.log('drawer update');
     nodeType.value = props.selectedNode.type;
 });
 </script>
