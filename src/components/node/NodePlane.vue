@@ -158,6 +158,7 @@ const exportAndOpenModal = () => {
 
 <style>
 @import '@/styles/main.css';
+@import '@/styles/nodeflow.css';
 </style>
 
 <template>
