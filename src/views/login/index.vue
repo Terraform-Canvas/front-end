@@ -92,7 +92,6 @@ const emailValid = (value) => {
                                     "
                                     :type="show ? 'text' : 'password'"
                                     @click:prepend-inner="show = !show"
-                                    type="password"
                                     counter
                                 ></v-text-field>
                                 <v-btn
