@@ -8,5 +8,6 @@ module.exports = {
     rules: {
         indent: ['error', 4],
         'no-unused-vars': 'off',
+        'vue/multi-word-component-names': 'off',
     },
 };
