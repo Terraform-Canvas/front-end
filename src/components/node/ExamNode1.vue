@@ -7,8 +7,6 @@ const { node } = useNode();
 const { removeNodes } = useVueFlow();
 
 const onSave = (inputFromModal) => {
-    console.log(`Input From Modal: ${inputFromModal}`);
-
     node.data.foo = inputFromModal;
 };
 

@@ -64,10 +64,7 @@ onConnect((params) => addEdges(params));
 
 function onDrop(event) {
     const type = event.dataTransfer?.getData('application/vueflow');
-    console.log(type);
     const { left, top } = vueFlowRef.value.getBoundingClientRect();
-
-    console.log(event);
 
     const position = project({
         x: event.clientX - left,
