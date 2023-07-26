@@ -1,6 +1,6 @@
 <script setup>
-import ModalExample from "./ModalExample.vue";
-import { useNode, useVueFlow } from "@vue-flow/core";
+import ModalExample from './ModalExample.vue';
+import { useNode, useVueFlow } from '@vue-flow/core';
 
 const { node } = useNode();
 

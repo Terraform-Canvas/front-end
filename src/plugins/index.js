@@ -5,12 +5,12 @@
  */
 
 // Plugins
-import { loadFonts } from "./webfontloader";
-import vuetify from "@/plugins/vuetify";
-import router from "@/router/index";
+import { loadFonts } from './webfontloader';
+import vuetify from '@/plugins/vuetify';
+import router from '@/router/index';
 // import axios from "./axios";
-import VueCookies from "vue-cookies";
-import store from "@/store/index";
+import VueCookies from 'vue-cookies';
+import store from '@/store/index';
 
 export function registerPlugins(app) {
     loadFonts();

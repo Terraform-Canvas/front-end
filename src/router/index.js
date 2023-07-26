@@ -1,26 +1,26 @@
 // Composables
-import { createRouter, createWebHistory } from "vue-router";
-import Layout from "@/layouts";
-import VueCookies from "vue-cookies";
-import store from "@/store";
+import { createRouter, createWebHistory } from 'vue-router';
+import Layout from '@/layouts';
+import VueCookies from 'vue-cookies';
+import store from '@/store';
 const routes = [
     {
-        path: "/",
+        path: '/',
         component: Layout,
-        redirect: "/dashboard",
+        redirect: '/dashboard',
         children: [
             {
-                path: "dashboard",
-                name: "dashboard",
-                component: () => import("@/views/dashboard/index"),
+                path: 'dashboard',
+                name: 'dashboard',
+                component: () => import('@/views/dashboard/index'),
             },
         ],
     },
     {
-        path: "/login",
-        name: "Login",
+        path: '/login',
+        name: 'Login',
         hidden: true,
-        component: () => import("@/views/login/index"),
+        component: () => import('@/views/login/index'),
     },
 ];
 const router = createRouter({
@@ -29,20 +29,20 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    if (to.name === "Login") {
+    if (to.name === 'Login') {
         console.log(to);
         return next();
     }
     if (
-        VueCookies.get("accessToken") === null &&
-        VueCookies.get("refreshToken") !== null
+        VueCookies.get('accessToken') === null &&
+        VueCookies.get('refreshToken') !== null
     ) {
-        await store.dispatch("refreshToken");
+        await store.dispatch('refreshToken');
     } else if (
-        VueCookies.get("accessToken") === null &&
-        VueCookies.get("refreshToken") === null
+        VueCookies.get('accessToken') === null &&
+        VueCookies.get('refreshToken') === null
     ) {
-        return next({ name: "Login" });
+        return next({ name: 'Login' });
     }
 
     return next();

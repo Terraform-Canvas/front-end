@@ -3,8 +3,8 @@ Resource Node들에 공통으로 들어가는 로직과 컴포넌트
 -->
 
 <script setup>
-import { NodeResizer } from "@vue-flow/node-resizer";
-import { useNode, useVueFlow } from "@vue-flow/core";
+import { NodeResizer } from '@vue-flow/node-resizer';
+import { useNode, useVueFlow } from '@vue-flow/core';
 
 const { node } = useNode();
 

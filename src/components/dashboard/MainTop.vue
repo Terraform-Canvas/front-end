@@ -1,5 +1,5 @@
 <script setup>
-const region = "us-east-1";
+const region = 'us-east-1';
 </script>
 
 <template>

@@ -1,23 +1,23 @@
 <script setup>
 const types = [
     {
-        Computing: ["ec2"],
+        Computing: ['ec2'],
     },
     {
-        Networking: ["natgw", "privatesubnet", "publicsubnet", "vpc"],
+        Networking: ['natgw', 'privatesubnet', 'publicsubnet', 'vpc'],
     },
     {
-        Scailing: ["alb", "asg"],
+        Scailing: ['alb', 'asg'],
     },
     {
-        Security: ["sg"],
+        Security: ['sg'],
     },
 ];
 
 function onDragStart(event, nodeType) {
     if (event.dataTransfer) {
-        event.dataTransfer.setData("application/vueflow", nodeType);
-        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData('application/vueflow', nodeType);
+        event.dataTransfer.effectAllowed = 'move';
     }
 }
 </script>

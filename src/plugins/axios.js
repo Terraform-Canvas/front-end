@@ -1,6 +1,6 @@
-import store from "@/store";
-import axios from "axios";
-import VueCookies from "vue-cookies";
+import store from '@/store';
+import axios from 'axios';
+import VueCookies from 'vue-cookies';
 /**
  * 토큰 재발급 후 axios 헤더 값 수정해줌
  * response안에서 처리하게 했을 때 무한 로딩이 자꾸 걸려서 소스를 분리해서 async/await로 처리함
@@ -20,15 +20,15 @@ axios.interceptors.request.use(
         }
         //헤더 셋팅
         config.timeout = 20000;
-        config.headers["Authorization"] =
-            "Bearer " + VueCookies.get("accessToken");
-        config.headers["X-refresh-token"] = VueCookies.get("refreshToken");
-        config.headers["Content-Type"] = "application/json";
+        config.headers['Authorization'] =
+            'Bearer ' + VueCookies.get('accessToken');
+        config.headers['X-refresh-token'] = VueCookies.get('refreshToken');
+        config.headers['Content-Type'] = 'application/json';
         // console.log(config);
         return config;
     },
     function (error) {
-        console.log("axios request error : ", error);
+        console.log('axios request error : ', error);
         return Promise.reject(error);
     },
 );
@@ -39,7 +39,7 @@ axios.interceptors.response.use(
             return response;
         } catch (err) {
             console.error(
-                "[axios.interceptors.response] response : ",
+                '[axios.interceptors.response] response : ',
                 err.message,
             );
         }
@@ -54,15 +54,15 @@ axios.interceptors.response.use(
             if (
                 error.response.status == 401 &&
                 errorAPI.retry == undefined &&
-                VueCookies.get("refreshToken") != null
+                VueCookies.get('refreshToken') != null
             ) {
                 errorAPI.retry = true; //재요청이라고 추가 정보를 담음
-                await store.dispatch("login/refreshToken"); //로그인 중간 저장소에 있는 토큰 재발급 action을 실행
+                await store.dispatch('login/refreshToken'); //로그인 중간 저장소에 있는 토큰 재발급 action을 실행
                 return await axios(errorAPI); //다시 axios 요청
             }
         } catch (err) {
             console.error(
-                "[axios.interceptors.response] error : ",
+                '[axios.interceptors.response] error : ',
                 err.message,
             );
         }

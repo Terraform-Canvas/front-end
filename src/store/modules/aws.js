@@ -1,4 +1,4 @@
-import axios from "@/plugins/axios";
+import axios from '@/plugins/axios';
 
 // initial state
 const state = () => ({
@@ -23,9 +23,9 @@ const actions = {
     getInstanceTypes: function ({ commit }) {
         return new Promise((resolve, reject) => {
             axios
-                .get("/ec2/instanceTypes")
+                .get('/ec2/instanceTypes')
                 .then((res) => {
-                    commit("saveInstanceTypes", res.data);
+                    commit('saveInstanceTypes', res.data);
                     resolve(res);
                 })
                 .catch((err) => {
@@ -37,9 +37,9 @@ const actions = {
     getAMI: function ({ commit }) {
         return new Promise((resolve, reject) => {
             axios
-                .get("/ec2/ami")
+                .get('/ec2/ami')
                 .then((res) => {
-                    commit("saveAMI", res.data);
+                    commit('saveAMI', res.data);
                     resolve(res);
                 })
                 .catch((err) => {

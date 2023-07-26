@@ -1,6 +1,6 @@
 <script setup>
-import { NodeResizer } from "@vue-flow/node-resizer";
-import { useNode, useVueFlow } from "@vue-flow/core";
+import { NodeResizer } from '@vue-flow/node-resizer';
+import { useNode, useVueFlow } from '@vue-flow/core';
 
 const { node } = useNode();
 

@@ -1,10 +1,10 @@
-import axios from "@/plugins/axios";
-import VueCookies from "vue-cookies";
+import axios from '@/plugins/axios';
+import VueCookies from 'vue-cookies';
 // initial state
 const state = () => ({
     accessToken: null,
     refreshToken: null,
-    host: "http://localhost:8000/api/v1",
+    host: 'http://localhost:8000/api/v1',
 });
 
 // getters
@@ -12,8 +12,8 @@ const state = () => ({
 const getters = {
     getToken: function (state) {
         return {
-            access: VueCookies.get("accessToken"),
-            refresh: VueCookies.get("refreshToken"),
+            access: VueCookies.get('accessToken'),
+            refresh: VueCookies.get('refreshToken'),
         };
     },
 };
@@ -24,10 +24,10 @@ const actions = {
     login: function ({ commit }, params) {
         return new Promise((resolve, reject) => {
             axios
-                .post("/login/new", params)
+                .post('/login/new', params)
                 .then((res) => {
                     // authInfo라는 변수로 넘겨줘야함.
-                    commit("loginToken", res.data.authInfo);
+                    commit('loginToken', res.data.authInfo);
                     resolve(res);
                 })
                 .catch((err) => {
@@ -39,9 +39,9 @@ const actions = {
     refreshToken: function ({ commit }) {
         return new Promise((resolve, reject) => {
             axios
-                .post("/login/refresh")
+                .post('/login/refresh')
                 .then((res) => {
-                    commit("refreshToken", res.data.authInfo);
+                    commit('refreshToken', res.data.authInfo);
                     resolve(res);
                 })
                 .catch((err) => {
@@ -53,9 +53,9 @@ const actions = {
     logout: function ({ commit }) {
         return new Promise((resolve, reject) => {
             axios
-                .post("/logout")
+                .post('/logout')
                 .then((res) => {
-                    commit("removeToken");
+                    commit('removeToken');
                     location.reload();
                     resolve(res);
                 })
@@ -71,19 +71,19 @@ const actions = {
 // 실제 변수 조작이 일어나는 곳
 const mutations = {
     loginToken: function (state, payload) {
-        VueCookies.set("accessToken", payload.accessToken, "10m");
-        VueCookies.set("refreshToken", payload.refreshToken, "1h");
+        VueCookies.set('accessToken', payload.accessToken, '10m');
+        VueCookies.set('refreshToken', payload.refreshToken, '1h');
         state.accessToken = payload.accessToken;
         state.refreshToken = payload.refreshToken;
     },
     refreshToken: function (state, payload) {
-        VueCookies.set("accessToken", payload.accessToken, "10m");
-        VueCookies.set("refreshToken", payload.refreshToken, "1h");
+        VueCookies.set('accessToken', payload.accessToken, '10m');
+        VueCookies.set('refreshToken', payload.refreshToken, '1h');
         state.accessToken = payload;
     },
     removeToken: function (state) {
-        VueCookies.remove("accessToken");
-        VueCookies.remove("refreshToken");
+        VueCookies.remove('accessToken');
+        VueCookies.remove('refreshToken');
     },
 };
 

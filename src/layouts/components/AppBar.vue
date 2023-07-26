@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import UserProfile from "@/components/dashboard/UserProfile.vue";
+import UserProfile from '@/components/dashboard/UserProfile.vue';
 </script>
 
 <style>

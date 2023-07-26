@@ -1,7 +1,7 @@
 <script setup>
-import router from "@/router";
-import store from "@/store";
-import { ref } from "vue";
+import router from '@/router';
+import store from '@/store';
+import { ref } from 'vue';
 let password = ref(null);
 let email = ref(null);
 let form = ref(false);
@@ -16,21 +16,21 @@ const onSubmit = () => {
         email: email.value,
         password: password.value,
     };
-    store.dispatch("login/login", params).then((res) => {
+    store.dispatch('login/login', params).then((res) => {
         console.log(res);
         const userData = {
             email: email.value,
             name: res.data.name,
         };
-        store.dispatch("user/save", userData);
-        router.push("/");
+        store.dispatch('user/save', userData);
+        router.push('/');
     });
 };
-const required = (v) => !!v || "Field is required!";
+const required = (v) => !!v || 'Field is required!';
 const emailValid = (value) => {
     const pattern =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return pattern.test(value) || "Invalid e-mail.";
+    return pattern.test(value) || 'Invalid e-mail.';
 };
 </script>
 

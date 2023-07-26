@@ -16,7 +16,7 @@ const getters = {
 //외부에서 dispatch하는 action 종류
 const actions = {
     save: function ({ commit }, userData) {
-        commit("saveData", userData);
+        commit('saveData', userData);
     },
 };
 
