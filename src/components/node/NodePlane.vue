@@ -20,6 +20,7 @@ import ChildNode from "./ChildNode.vue";
 import { ref } from "vue";
 import MainTopVue from "../dashboard/MainTop.vue";
 
+import axios from '@/plugins/axios'
 let id = 0;
 function getId() {
     return `${id++}`;
@@ -103,24 +104,49 @@ function onDrop(event) {
 
 const showModal = ref(false);
 const exportData = ref("");
-
+let btnData = ref("create")
+let bntLoader = ref(false)
+let btnType = ref("")
+let btnMsg = ref("")
 const exportAndOpenModal = () => {
-    let exportDataArr = [];
-
-    getNodes.value.forEach((n) => {
-        let nodeData = {
-            id: n.id,
-            type: n.type,
-            parent: n.parentNode,
-            data: n.data,
-        };
-
-        exportDataArr.push(nodeData);
-    });
-
-    exportData.value = JSON.stringify(exportDataArr);
-    console.log(exportData.value);
-    showModal.value = true;
+  let exportDataArr = [];
+  bntLoader.value = true
+  getNodes.value.forEach((n) => {
+    let nodeData = {
+      id: n.id,
+      type: n.type,
+      parent: n.parentNode,
+      data: n.data,
+    };
+    exportDataArr.push(nodeData);
+  });
+  exportData.value = JSON.stringify(exportDataArr);
+  showModal.value = true;
+  if (btnData.value === "create") {
+    axios.post("/terraform/make-usertf",exportData.value).then(res => {
+      btnData.value = "run"
+      btnType.value = "success"
+      btnMsg.value = "tf 생성 완료"
+      bntLoader.value = false
+    }).catch(err => {
+      btnMsg.value = "tf 생성 실패"
+      btnType.value = "warning"
+      bntLoader.value = false
+      console.error(err)
+    })
+  } else if (btnData.value === "run") {
+    axios.post("/terraform/apply",exportData.value).then(res => {
+      btnData.value = "create"
+      btnMsg.value = "tf 실행 완료"
+      btnType.value = "success"
+      bntLoader.value = false
+    }).catch(err => {
+      btnMsg.value = "tf 실행 실패"
+      btnType.value = "warning"
+      bntLoader.value = false
+      console.error(err)
+    })
+  }
 };
 </script>
 
@@ -130,83 +156,76 @@ const exportAndOpenModal = () => {
 </style>
 
 <template>
-    <div class="header-utils">
-        <MainTopVue />
-        <v-btn class="export-btn" @click="exportAndOpenModal">export</v-btn>
-    </div>
+  <div class="header-utils">
+    <MainTopVue />
+    <v-btn :loading="bntLoader" class="export-btn" @click="exportAndOpenModal">{{ btnData }}</v-btn>
+  </div>
 
-    <v-container :fluid="true" class="fill-height">
-        <v-row class="fill-height">
-            <VueFlow
-                v-model="elements"
-                @dragover="onDragOver"
-                @drop="onDrop"
-                :class="{ dark }"
-                class="customnodeflow basicflow"
+  <v-container :fluid="true" class="fill-height">
+    <v-row class="fill-height">
+      <VueFlow
+        v-model="elements"
+        @dragover="onDragOver"
+        @drop="onDrop"
+        :class="{ dark }"
+        class="customnodeflow basicflow"
+      >
+        <template #node-exam1>
+          <ExamNode1 />
+        </template>
+        <template #node-parent>
+          <ParentNode />
+        </template>
+        <template #node-child>
+          <ChildNode />
+        </template>
+
+        <!-- AWS Resources Below -->
+        <template #node-vpc>
+          <Vpc />
+        </template>
+        <template #node-asg>
+          <AutoScalingGroup />
+        </template>
+        <template #node-alb>
+          <ALB />
+        </template>
+        <template #node-ec2>
+          <EC2 />
+        </template>
+        <template #node-natgw>
+          <NATGateway />
+        </template>
+        <template #node-privatesubnet>
+          <PrivateSubnet />
+        </template>
+        <template #node-publicsubnet>
+          <PublicSubnet />
+        </template>
+        <template #node-sg>
+          <SecurityGroup />
+        </template>
+        <!-- AWS Resources Upper -->
+
+        <Background :pattern-color="'#FFFFFB'" :bg-color="'#F5F5F5'" gap="8" />
+        <MiniMap />
+        <Controls :position="PanelPosition.BottomLeft" />
+      </VueFlow>
+    </v-row>
+  </v-container>
+  <template>
+    <v-dialog v-model="showModal" content-class="align-center">
+        <v-alert
+            variant="outlined"
+            :type="btnType"
+            prominent
+            border="top"
+            width="300"
             >
-                <template #node-exam1>
-                    <ExamNode1 />
-                </template>
-                <template #node-parent>
-                    <ParentNode />
-                </template>
-                <template #node-child>
-                    <ChildNode />
-                </template>
-
-                <!-- AWS Resources Below -->
-                <template #node-vpc>
-                    <Vpc />
-                </template>
-                <template #node-asg>
-                    <AutoScalingGroup />
-                </template>
-                <template #node-alb>
-                    <ALB />
-                </template>
-                <template #node-ec2>
-                    <EC2 />
-                </template>
-                <template #node-natgw>
-                    <NATGateway />
-                </template>
-                <template #node-privatesubnet>
-                    <PrivateSubnet />
-                </template>
-                <template #node-publicsubnet>
-                    <PublicSubnet />
-                </template>
-                <template #node-sg>
-                    <SecurityGroup />
-                </template>
-                <!-- AWS Resources Upper -->
-
-                <Background
-                    :pattern-color="'#FFFFFB'"
-                    :bg-color="'#F5F5F5'"
-                    gap="8"
-                />
-                <MiniMap />
-                <Controls :position="PanelPosition.BottomLeft" />
-            </VueFlow>
-        </v-row>
-    </v-container>
-    <div>
-        <v-dialog v-model="showModal" max-width="500px">
-            <v-card>
-                <v-card-title>Export Data</v-card-title>
-                <v-card-text>
-                    {{ exportData }}
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="showModal = false"
-                        >Close</v-btn
-                    >
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
-    </div>
+            {{ btnMsg }}
+        </v-alert>
+    </v-dialog>
+  </template>
 </template>
 
 <style>

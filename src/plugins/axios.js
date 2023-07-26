@@ -17,9 +17,9 @@ axios.interceptors.request.use(async function (config) {
     config.url  = store.state.login.host + config.url; //host 및 url 방식 수정필요
   }
   //헤더 셋팅
-  config.timeout = 10000;
-  config.headers['x-access-token'] = VueCookies.get('accessToken');
-  config.headers['x-refresh-token'] = VueCookies.get('refreshToken');
+  config.timeout = 20000;
+  config.headers['Authorization'] = "Bearer "+VueCookies.get('accessToken');
+  config.headers['X-refresh-token'] = VueCookies.get('refreshToken');
   config.headers['Content-Type'] = 'application/json';
   // console.log(config);
   return config;
@@ -45,7 +45,7 @@ axios.interceptors.response.use(
       //인증에러 및 재요청이 아닐 경우... (+재요청인데 refreshToken이 있을 경우)
       if (error.response.status == 401 && errorAPI.retry==undefined && VueCookies.get('refreshToken')!=null)  { 
         errorAPI.retry = true; //재요청이라고 추가 정보를 담음
-        await store.dispatch('refreshToken'); //로그인 중간 저장소에 있는 토큰 재발급 action을 실행
+        await store.dispatch('login/refreshToken'); //로그인 중간 저장소에 있는 토큰 재발급 action을 실행
         return await axios(errorAPI); //다시 axios 요청
       }
     } catch (err) {
