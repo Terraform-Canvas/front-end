@@ -13,6 +13,6 @@ import VueCookies from "vue-cookies";
 import store from "@/store/index";
 
 export function registerPlugins(app) {
-  loadFonts();
-  app.use(vuetify).use(router).use(VueCookies).use(store);
+    loadFonts();
+    app.use(vuetify).use(router).use(VueCookies).use(store);
 }

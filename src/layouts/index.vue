@@ -1,8 +1,8 @@
 <template>
-  <AppBar />
-  <LeftDrawer />
+    <AppBar />
+    <LeftDrawer />
 
-  <AppMain />
+    <AppMain />
 </template>
 
 <script setup>

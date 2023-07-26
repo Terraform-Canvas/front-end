@@ -8,9 +8,9 @@
 </script>
 
 <template>
-  <v-app id="app">
-    <router-view />
-  </v-app>
+    <v-app id="app">
+        <router-view />
+    </v-app>
 </template>
 
 <style>
