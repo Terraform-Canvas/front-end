@@ -1,75 +1,75 @@
 <script setup>
-import ResourceNodeCommon from "./ResourceNodeCommon.vue";
+import ResourceNodeCommon from './ResourceNodeCommon.vue';
 
-import { useVueFlow, useNode } from "@vue-flow/core";
+import { useVueFlow, useNode } from '@vue-flow/core';
 
 const { getIntersectingNodes, findNode, onNodeDragStop } = useVueFlow();
 const { node } = useNode();
 
 onNodeDragStop((nodeDragEvent) => {
-  if (nodeDragEvent.node?.id == node.id) {
-    const intersectingNodes = getIntersectingNodes(node);
-    const filteredNodes = intersectingNodes
-      .filter((e) => findNode(e.id).type == "vpc")
-      .map((e) => e);
+    if (nodeDragEvent.node?.id == node.id) {
+        const intersectingNodes = getIntersectingNodes(node);
+        const filteredNodes = intersectingNodes
+            .filter((e) => findNode(e.id).type == 'vpc')
+            .map((e) => e);
 
-    const parentId = filteredNodes[filteredNodes.length - 1]?.id;
+        const parentId = filteredNodes[filteredNodes.length - 1]?.id;
 
-    if (parentId && findNode(parentId).parentNode != node.id) {
-      node.parentNode = parentId;
-      node.expandParent = true;
+        if (parentId && findNode(parentId).parentNode != node.id) {
+            node.parentNode = parentId;
+            node.expandParent = true;
+        }
     }
-  }
 });
 </script>
 
 <template>
-  <div class="node-wrapper">
-    <div class="node-header">
-      <div class="node-title">ALB</div>
-      <ResourceNodeCommon />
-    </div>
+    <div class="node-wrapper">
+        <div class="node-header">
+            <div class="node-title">ALB</div>
+            <ResourceNodeCommon />
+        </div>
 
-    <div class="node-detail-container">
-      <div class="node-logo">
-        <v-img src="@/assets/resources/aws/alb.png" />
-      </div>
-      <div class="node-detail">ALB type</div>
+        <div class="node-detail-container">
+            <div class="node-logo">
+                <v-img src="@/assets/resources/aws/alb.png" />
+            </div>
+            <div class="node-detail">ALB type</div>
+        </div>
     </div>
-  </div>
 </template>
 
 <style>
 .node-wrapper {
-  display: flex;
-  flex-direction: column;
-  padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
 }
 
 .node-header {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .node-title {
-  width: 30px;
-  height: 30px;
-  font-weight: bold;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
 }
 
 .node-detail-container {
-  display: flex;
-  padding-top: 10px;
+    display: flex;
+    padding-top: 10px;
 }
 .node-logo {
-  width: 30px;
-  height: 30px;
+    width: 30px;
+    height: 30px;
 }
 
 .node-detail {
-  width: 30px;
-  height: 30px;
-  color: gray;
-  padding-left: 30px;
+    width: 30px;
+    height: 30px;
+    color: gray;
+    padding-left: 30px;
 }
 </style>

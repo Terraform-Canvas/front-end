@@ -1,7 +1,7 @@
 ---
 name: ❓ Question
 about: Ask a question about this project 🎓
-title: ""
+title: ''
 labels: question
 assignees:
 ---
@@ -10,7 +10,7 @@ assignees:
 
 <!-- Mark with an `x` all the checkboxes that apply (like `[x]`) -->
 
-- [ ] I've searched the project's [`issues`]
+-   [ ] I've searched the project's [`issues`]
 
 ## ❓ Question
 
