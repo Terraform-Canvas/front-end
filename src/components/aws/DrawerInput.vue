@@ -92,6 +92,14 @@ onUpdated(() => {
                     label="Instance Type"
                     variant="underlined"
                 />
+                <v-textarea
+                    clearable
+                    variant="underlined"
+                    clear-icon="mdi-close-circle"
+                    label="user-data"
+                    v-model="selectedNode.data.user_data"
+                >
+                </v-textarea>
             </v-container>
         </v-card>
     </div>
