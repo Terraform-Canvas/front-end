@@ -8,10 +8,7 @@ const { removeNodes, getIntersectingNodes, onNodeDragStop, findNode } =
 
 onNodeDragStop((nodeDragEvent) => {
     if (nodeDragEvent.node.id == node.id) {
-        console.log(nodeDragEvent);
-
         const parentId = getIntersectingNodes(node)[0]?.id;
-        console.log(parentId);
 
         if (parentId && findNode(parentId).parentNode != node.id) {
             node.parentNode = parentId;

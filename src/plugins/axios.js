@@ -24,7 +24,6 @@ axios.interceptors.request.use(
             'Bearer ' + VueCookies.get('accessToken');
         config.headers['X-refresh-token'] = VueCookies.get('refreshToken');
         config.headers['Content-Type'] = 'application/json';
-        // console.log(config);
         return config;
     },
     function (error) {
@@ -43,12 +42,10 @@ axios.interceptors.response.use(
                 err.message,
             );
         }
-        // console.log(response)
     },
     async function (error) {
         try {
             //에러에 대한 response 정보
-            // console.log(error.response)
             const errorAPI = error.response.config; //요청했던 request 정보가 담겨있음
             //인증에러 및 재요청이 아닐 경우... (+재요청인데 refreshToken이 있을 경우)
             if (

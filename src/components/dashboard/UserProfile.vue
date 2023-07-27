@@ -85,7 +85,6 @@ const logout = () => {
                                 "
                                 :type="showAccess ? 'text' : 'password'"
                                 @click:prepend-inner="showAccess = !showAccess"
-                                type="password"
                                 counter
                                 variant="solo-filled"
                             ></v-text-field>
@@ -109,7 +108,6 @@ const logout = () => {
                                 "
                                 :type="showSecret ? 'text' : 'password'"
                                 @click:prepend-inner="showSecret = !showSecret"
-                                type="password"
                                 counter
                                 variant="solo-filled"
                             ></v-text-field>

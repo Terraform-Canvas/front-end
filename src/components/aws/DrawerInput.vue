@@ -12,13 +12,11 @@ store.dispatch('aws/getInstanceTypes').then((res) => {
         instance_items.push(value.InstanceType);
     }
     instance_items.sort();
-    console.log(instance_items);
 });
 store.dispatch('aws/getAMI');
 
 const nodeType = ref('');
 onUpdated(() => {
-    console.log('drawer update');
     nodeType.value = props.selectedNode.type;
 });
 </script>

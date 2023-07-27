@@ -50,7 +50,6 @@ const closeModal = () => {
 
 const saveInput = () => {
     // 입력값을 처리하는 로직을 추가
-    console.log('Input Value:', inputValue.value);
     emit('save', inputValue.value);
     closeModal();
 };

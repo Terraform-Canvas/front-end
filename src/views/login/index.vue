@@ -17,7 +17,6 @@ const onSubmit = () => {
         password: password.value,
     };
     store.dispatch('login/login', params).then((res) => {
-        console.log(res);
         const userData = {
             email: email.value,
             name: res.data.name,
@@ -92,7 +91,6 @@ const emailValid = (value) => {
                                     "
                                     :type="show ? 'text' : 'password'"
                                     @click:prepend-inner="show = !show"
-                                    type="password"
                                     counter
                                 ></v-text-field>
                                 <v-btn
