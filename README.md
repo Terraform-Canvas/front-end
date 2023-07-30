@@ -14,7 +14,7 @@
 <h3 align="center">Terraform-Canvas</h3>
 
   <p align="center">
-Visual Programming을 통한 Terraform 클라우드 인프라 프로비저닝 웹 서비스 프로젝트
+    Terraform Cloud Infrastructure Provisioning Web Services Project with Visual Programming
     <br />
     <a href="https://facerain.notion.site/e393c21c423e46318f1dd21a3a9ed428?v=cf7ba34920154548a7d0303f27c7710b&pvs=4"><strong>Explore the docs »</strong></a>
     <br />
@@ -60,7 +60,7 @@ Visual Programming을 통한 Terraform 클라우드 인프라 프로비저닝 �
 
 <!-- ABOUT THE PROJECT -->
 ## :mag: About The Project
-많은 기업들이 기존 클라우드 및 온프레미스 환경에서 클라우드 네이티브 환경으로의 전환을 위한 IaC 툴로 Terraform을 선택하고 있다. 하지만 Terraform의 높은 진입 장벽 때문에 많은 어려움을 겪고 있다. 그래서 우리는 “Visual Programming을 통한 Terraform 클라우드 인프라 프로비저닝 웹 서비스”를 통해 Terraform의 기술 진입 장벽을 낮추고자 한다. 이를 통해 새롭게 클라우드 네이티브 환경을 도입하고자 하는 스타트업과 SI 팀 그리고 빠르게 IaC 환경을 테스트 및 프로토타이핑하고자 하는 TF 팀에서 활용할 수 있도록 한다.
+Many companies are choosing Terraform as an IaC tool for transitioning from existing cloud and on-premise environments to cloud native environments. However, they are suffering a lot due to Terraform's high entry barriers. Therefore, we want to lower the barriers to Terraform's entry through "Terraform Cloud Infrastructure Provisioning Web Service with Visual Programming." This enables start-up and SI teams that want to introduce a new cloud-native environment and TF teams that want to test and prototype the IaC environment quickly.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -86,7 +86,7 @@ Visual Programming을 통한 Terraform 클라우드 인프라 프로비저닝 �
 
 ### 🚀 Guideline
 
- `yarn install`을 통한 패키지 및 종속성 관련 설치
+Download and install packages and associated dependencies via `yarn install`
 * Install dependencies using yarn
   
   ```sh
@@ -127,16 +127,16 @@ TBA
 
 <!-- CONTRIBUTING -->
 ## :fire: Contributing
-Contribution을 위해서는 CONTRIBUTION.txt를 참고해주세요.
+Please refer to `CONTRIBUTION.txt` for Contribution.
 
-이슈나 새로운 기능 및 수정에 대한 요청은 다음과 같은 절차를 따라주세요. 🥰
+For issues, new functions and requests to modify please follow the following procedure. 🥰
 
-1. 프로젝트 fork
-2. 새로운 수정이나, 버그, 기능에 대해 이슈 생성 (오타 수정의 경우 따로 x)
-3. dev branch에서 새로운 branch 생성 (git checkout -b feature/Newfeature)
-4. 변경 사항 commit (git commit -m 'feat: add new feature')
-5. 작업한 branch의 내용을 push (git push origin feature/Newfeature)
-6. dev branch로의 병합으로 Pull Request를 열고 해당 Issues에 대한 closes keyword 추가
+1. Fork the Project
+2. Create a Issue when you have new feature or bug, just not Typo fix
+3. Create your Feature Branch from dev Branch (`git checkout -b feat/Newfeature`)
+4. Commit your Changes (`git commit -m 'feat: add new feature'`)
+5. Push to the Branch (`git push origin feat/Newfeature`)
+6. Open a Pull Request to dev branch with Issues
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,9 +155,9 @@ Please refer to `LICENSE` for LICENSE.
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://github.com/Eeap"><img src="https://avatars.githubusercontent.com/u/42088290?v=4" width="100px;" alt=""/><br /><sub><b>김수민</b></sub></a></td>
-            <td align="center"><a href="https://github.com/BambooKim"><img src="https://avatars.githubusercontent.com/u/42964867?v=4" width="100px;" alt=""/><br /><sub><b>김범구</b></sub></a></td>
-      <td align="center"><a href="https://github.com/FacerAin"><img src="https://avatars.githubusercontent.com/u/16442978?v=4" width="100px;" alt=""/><br /><sub><b>송용우</b></sub></a></td>
+      <td align="center"><a href="https://github.com/Eeap"><img src="https://avatars.githubusercontent.com/u/42088290?v=4" width="100px;" alt=""/><br /><sub><b>Sumin Kim</b></sub></a></td>
+            <td align="center"><a href="https://github.com/BambooKim"><img src="https://avatars.githubusercontent.com/u/42964867?v=4" width="100px;" alt=""/><br /><sub><b>Beomgoo Kim</b></sub></a></td>
+      <td align="center"><a href="https://github.com/FacerAin"><img src="https://avatars.githubusercontent.com/u/16442978?v=4" width="100px;" alt=""/><br /><sub><b>Yongwoo Song</b></sub></a></td>
     </tr>
   </tobdy>
 </table>
