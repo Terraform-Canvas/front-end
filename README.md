@@ -33,7 +33,6 @@
 
 
 <!-- TABLE OF CONTENTS -->
-TBA
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -47,12 +46,11 @@ TBA
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#configuration">Configuration</a></li>
+                <li><a href="#guideline">Guideline</a></li>
       </ul>
     </li>
-    <li><a href="#architecture">Architecture</a></li>
-    <li><a href="#rest-api">REST API</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#features">Features</a></li>
+        <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -84,6 +82,9 @@ Many companies are choosing Terraform as an IaC tool for transitioning from exis
 ### :zap: Prerequisites
 - [Node.js v18+](https://nodejs.org/)
 - [yarn](https://yarnpkg.com/)
+
+
+### 🚀 Guideline
 
 Download and install packages and associated dependencies via `yarn install`
 * Install dependencies using yarn
@@ -143,7 +144,7 @@ For issues, new functions and requests to modify please follow the following pro
 
 <!-- LICENSE -->
 ## :closed_lock_with_key: License
-Please refer to `LICENSE.txt` for LICENSE.
+Please refer to `LICENSE` for LICENSE.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
