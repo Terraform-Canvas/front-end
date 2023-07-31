@@ -69,9 +69,17 @@ const onRemove = () => {
             variant="plain"
         />
     </div>
-    <NodeResizer
-        line-style="visibility: hidden"
-        min-width="100"
-        min-height="30"
-    />
+    <NodeResizer min-width="100" min-height="30" />
 </template>
+
+<style>
+.vue-flow__resize-control.line {
+    opacity: 0;
+}
+.vue-flow__resize-control.handle {
+    opacity: 100;
+    background-color: #252f3e !important;
+    height: 5px !important;
+    width: 5px !important;
+}
+</style>
