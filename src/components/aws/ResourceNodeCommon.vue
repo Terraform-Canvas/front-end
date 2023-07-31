@@ -77,7 +77,7 @@ const onRemove = () => {
     opacity: 0;
 }
 .vue-flow__resize-control.handle {
-    opacity: 100;
+    opacity: 50%;
     background-color: #252f3e !important;
     height: 5px !important;
     width: 5px !important;
