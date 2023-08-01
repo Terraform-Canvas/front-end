@@ -108,6 +108,15 @@ onBeforeUpdate(() => {
                     label="Instance Type"
                     variant="underlined"
                 />
+                <v-textarea
+                    clearable
+                    variant="underlined"
+                    clear-icon="mdi-close-circle"
+                    label="user-data"
+                    v-model="currentNodeData.user_data"
+                >
+                </v-textarea>
+
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
