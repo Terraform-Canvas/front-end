@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-import { onUpdated } from 'vue';
+import { reactive, onBeforeUpdate, defineEmits } from 'vue';
 import store from '@/store';
-const props = defineProps({
-    selectedNode: Object,
-});
+
 let instance_items = [];
+let currentNodeData = reactive({});
+const nodeType = ref('');
+
 store.dispatch('aws/getInstanceTypes').then((res) => {
     const instance_type = store.state.aws.instance_types;
     for (let value of instance_type) {
@@ -15,9 +16,21 @@ store.dispatch('aws/getInstanceTypes').then((res) => {
 });
 store.dispatch('aws/getAMI');
 
-const nodeType = ref('');
-onUpdated(() => {
-    nodeType.value = props.selectedNode.type;
+const emit = defineEmits(['handleRightDrawer']);
+
+const saveForm = () => {
+    store.dispatch('node/updateSelectedNodeData', currentNodeData);
+    currentNodeData = reactive({});
+    emit('handleRightDrawer');
+};
+
+onBeforeUpdate(() => {
+    if (store.getters['node/getSelectedNode']) {
+        currentNodeData = reactive({
+            ...store.getters['node/getSelectedNode'].data,
+        });
+        nodeType.value = store.getters['node/getSelectedNode'].type;
+    }
 });
 </script>
 
@@ -32,6 +45,9 @@ onUpdated(() => {
                     <div class="drawer-header-title">AWS Load Balancer</div>
                 </v-row>
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'asg'">
@@ -44,25 +60,25 @@ onUpdated(() => {
                     <div class="drawer-header-title">Auto Scailing Group</div>
                 </v-row>
                 <v-text-field
-                    v-model="selectedNode.data.min_size"
+                    v-model="currentNodeData.min_size"
                     color="primary"
                     label="Min Size"
                     variant="underlined"
                 />
                 <v-text-field
-                    v-model="selectedNode.data.max_size"
+                    v-model="currentNodeData.max_size"
                     color="primary"
                     label="Max Size"
                     variant="underlined"
                 />
                 <v-text-field
-                    v-model="selectedNode.data.desired_capacity"
+                    v-model="currentNodeData.desired_capacity"
                     color="primary"
                     label="Desired Capacity"
                     variant="underlined"
                 ></v-text-field>
                 <v-combobox
-                    v-model="selectedNode.data.image_id"
+                    v-model="currentNodeData.image_id"
                     :items="store.state.aws.ami"
                     item-title="ImageId"
                     item-value="ImageId"
@@ -84,13 +100,16 @@ onUpdated(() => {
                     </template>
                 </v-combobox>
                 <v-combobox
-                    v-model="selectedNode.data.instance_type"
+                    v-model="currentNodeData.instance_type"
                     :items="instance_items"
                     color="primary"
                     label="Instance Type"
                     variant="underlined"
                 />
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'ec2'">
@@ -103,13 +122,16 @@ onUpdated(() => {
                     <div class="drawer-header-title">EC2</div>
                 </v-row>
                 <v-combobox
-                    v-model="selectedNode.data.instance_type"
+                    v-model="currentNodeData.instance_type"
                     :items="instance_items"
                     color="primary"
                     label="Instance Type"
                     variant="underlined"
                 />
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'natgw'">
@@ -122,6 +144,9 @@ onUpdated(() => {
                     <div class="drawer-header-title">Nat Gateway</div>
                 </v-row>
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'privatesubnet'">
@@ -131,6 +156,9 @@ onUpdated(() => {
                     <div class="drawer-header-title">Private Subnet</div>
                 </v-row>
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'publicsubnet'">
@@ -140,6 +168,9 @@ onUpdated(() => {
                     <div class="drawer-header-title">Public Subnet</div>
                 </v-row>
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'sg'">
@@ -149,12 +180,15 @@ onUpdated(() => {
                     <div class="drawer-header-title">Security Group</div>
                 </v-row>
                 <v-text-field
-                    v-model="selectedNode.data.name"
+                    v-model="currentNodeData.name"
                     color="primary"
                     label="Name"
                     variant="underlined"
                 ></v-text-field>
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'vpc'">
@@ -164,30 +198,33 @@ onUpdated(() => {
                     <div class="drawer-header-title">VPC</div>
                 </v-row>
                 <v-text-field
-                    v-model="selectedNode.data.name"
+                    v-model="currentNodeData.name"
                     color="primary"
                     label="Name"
                     variant="underlined"
                 ></v-text-field>
                 <v-text-field
-                    v-model="selectedNode.data.cidr"
+                    v-model="currentNodeData.cidr"
                     color="primary"
                     label="CIDR"
                     variant="underlined"
                 ></v-text-field>
                 <v-text-field
-                    v-model="selectedNode.data.public_subnet"
+                    v-model="currentNodeData.public_subnet"
                     color="primary"
                     label="Public Subnet"
                     variant="underlined"
                 ></v-text-field>
                 <v-text-field
-                    v-model="selectedNode.data.private_subnet"
+                    v-model="currentNodeData.private_subnet"
                     color="primary"
                     label="Private Subnet"
                     variant="underlined"
                 ></v-text-field>
             </v-container>
+            <v-col class="text-right">
+                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+            </v-col>
         </v-card>
     </div>
 </template>
@@ -207,5 +244,13 @@ onUpdated(() => {
 .drawer-header-logo {
     width: 4rem;
     height: 4rem;
+}
+
+.save-btn {
+    margin-left: auto;
+    height: 2rem;
+    background-color: #404ae7;
+    color: white;
+    font-weight: bold;
 }
 </style>
