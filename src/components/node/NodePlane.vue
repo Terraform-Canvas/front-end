@@ -120,7 +120,7 @@ const exportAndOpenModal = () => {
     showModal.value = true;
     if (btnData.value === 'create') {
         axios
-            .post('/terraform/make-usertf', exportData.value)
+            .post('/terraform/usertf', exportData.value)
             .then((res) => {
                 btnData.value = 'run';
                 btnType.value = 'success';
