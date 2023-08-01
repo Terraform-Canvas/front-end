@@ -97,8 +97,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
         with:
           source_file: 'front.yaml'
-          destination_repo: 'Terraform-Canvas/canvas-helm/templates'
-          destination_folder: 'charts/terraform-canvas'
+          destination_repo: 'Terraform-Canvas/canvas-helm'
+          destination_folder: 'charts/terraform-canvas/templates'
           user_email: 'kdg97811@naver.com'
           user_name: 'Eeap'
           commit_message: "build: add img ${{ steps.get-ocir-repository.outputs.repo_path }}:$IMAGE_TAG"
