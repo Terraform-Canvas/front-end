@@ -44,10 +44,12 @@ onBeforeUpdate(() => {
                     </div>
                     <div class="drawer-header-title">AWS Load Balancer</div>
                 </v-row>
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'asg'">
@@ -106,10 +108,12 @@ onBeforeUpdate(() => {
                     label="Instance Type"
                     variant="underlined"
                 />
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'ec2'">
@@ -128,10 +132,12 @@ onBeforeUpdate(() => {
                     label="Instance Type"
                     variant="underlined"
                 />
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'natgw'">
@@ -143,10 +149,12 @@ onBeforeUpdate(() => {
                     </div>
                     <div class="drawer-header-title">Nat Gateway</div>
                 </v-row>
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'privatesubnet'">
@@ -155,10 +163,12 @@ onBeforeUpdate(() => {
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-title">Private Subnet</div>
                 </v-row>
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'publicsubnet'">
@@ -167,10 +177,12 @@ onBeforeUpdate(() => {
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-title">Public Subnet</div>
                 </v-row>
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'sg'">
@@ -185,10 +197,12 @@ onBeforeUpdate(() => {
                     label="Name"
                     variant="underlined"
                 ></v-text-field>
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
     <div v-else-if="nodeType == 'vpc'">
@@ -221,10 +235,12 @@ onBeforeUpdate(() => {
                     label="Private Subnet"
                     variant="underlined"
                 ></v-text-field>
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
-            <v-col class="text-right">
-                <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-            </v-col>
         </v-card>
     </div>
 </template>
@@ -248,6 +264,8 @@ onBeforeUpdate(() => {
 
 .save-btn {
     margin-left: auto;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
     height: 2rem;
     background-color: #404ae7;
     color: white;
