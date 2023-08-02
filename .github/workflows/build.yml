@@ -72,6 +72,12 @@ jobs:
                   - name: http
                     containerPort: {{ .Values.frontend.lb.http.targetPort}}
                     protocol: TCP
+                  env:
+                      - name: base_URL
+                        valueFrom:
+                          secretKeyRef:
+                            name: back-config
+                            key: base_URL
 
           ---
           apiVersion: v1
