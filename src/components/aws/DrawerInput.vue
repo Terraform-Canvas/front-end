@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-import { reactive, onBeforeUpdate, defineEmits } from 'vue';
+import { reactive, onBeforeUpdate, defineEmits, defineProps, watch } from 'vue';
 import store from '@/store';
 
 let instance_items = [];
 let currentNodeData = reactive({});
 const nodeType = ref('');
+const props = defineProps(['drawer']);
 
 store.dispatch('aws/getInstanceTypes').then((res) => {
     const instance_type = store.state.aws.instance_types;
@@ -20,11 +21,18 @@ const emit = defineEmits(['handleRightDrawer']);
 
 const saveForm = () => {
     store.dispatch('node/updateSelectedNodeData', currentNodeData);
-    currentNodeData = reactive({});
     emit('handleRightDrawer');
+    currentNodeData = reactive({});
+};
+
+const updateValue = (newTextValue, arg) => {
+    currentNodeData[arg] = newTextValue.target.value;
 };
 
 onBeforeUpdate(() => {
+    if (!props.drawer) {
+        currentNodeData = {};
+    }
     if (store.getters['node/getSelectedNode']) {
         currentNodeData = reactive({
             ...store.getters['node/getSelectedNode'].data,
@@ -62,25 +70,29 @@ onBeforeUpdate(() => {
                     <div class="drawer-header-title">Auto Scailing Group</div>
                 </v-row>
                 <v-text-field
-                    v-model="currentNodeData.min_size"
+                    :model-value="currentNodeData.min_size"
+                    @input="updateValue($event, 'min_size')"
                     color="primary"
                     label="Min Size"
                     variant="underlined"
                 />
                 <v-text-field
-                    v-model="currentNodeData.max_size"
+                    :model-value="currentNodeData.max_size"
+                    @input="updateValue($event, 'max_size')"
                     color="primary"
                     label="Max Size"
                     variant="underlined"
                 />
                 <v-text-field
-                    v-model="currentNodeData.desired_capacity"
+                    :model-value="currentNodeData.desired_capacity"
+                    @input="updateValue($event, 'desired_capacity')"
                     color="primary"
                     label="Desired Capacity"
                     variant="underlined"
                 ></v-text-field>
                 <v-combobox
-                    v-model="currentNodeData.image_id"
+                    :model-value="currentNodeData.image_id"
+                    @input="updateValue($event, 'image_id')"
                     :items="store.state.aws.ami"
                     item-title="ImageId"
                     item-value="ImageId"
@@ -102,7 +114,8 @@ onBeforeUpdate(() => {
                     </template>
                 </v-combobox>
                 <v-combobox
-                    v-model="currentNodeData.instance_type"
+                    :model-value="currentNodeData.instance_type"
+                    @input="updateValue($event, 'instance_type')"
                     :items="instance_items"
                     color="primary"
                     label="Instance Type"
@@ -113,7 +126,8 @@ onBeforeUpdate(() => {
                     variant="underlined"
                     clear-icon="mdi-close-circle"
                     label="user-data"
-                    v-model="currentNodeData.user_data"
+                    :model-value="currentNodeData.user_data"
+                    @input="updateValue($event, 'user_data')"
                 >
                 </v-textarea>
 
@@ -135,7 +149,8 @@ onBeforeUpdate(() => {
                     <div class="drawer-header-title">EC2</div>
                 </v-row>
                 <v-combobox
-                    v-model="currentNodeData.instance_type"
+                    :model-value="currentNodeData.instance_type"
+                    @input="updateValue($event, 'instance_type')"
                     :items="instance_items"
                     color="primary"
                     label="Instance Type"
@@ -201,7 +216,8 @@ onBeforeUpdate(() => {
                     <div class="drawer-header-title">Security Group</div>
                 </v-row>
                 <v-text-field
-                    v-model="currentNodeData.name"
+                    :model-value="currentNodeData.name"
+                    @input="updateValue($event, 'name')"
                     color="primary"
                     label="Name"
                     variant="underlined"
@@ -221,25 +237,29 @@ onBeforeUpdate(() => {
                     <div class="drawer-header-title">VPC</div>
                 </v-row>
                 <v-text-field
-                    v-model="currentNodeData.name"
+                    :model-value="currentNodeData.name"
+                    @input="updateValue($event, 'name')"
                     color="primary"
                     label="Name"
                     variant="underlined"
                 ></v-text-field>
                 <v-text-field
-                    v-model="currentNodeData.cidr"
+                    :model-value="currentNodeData.cidr"
+                    @input="updateValue($event, 'cidr')"
                     color="primary"
                     label="CIDR"
                     variant="underlined"
                 ></v-text-field>
                 <v-text-field
-                    v-model="currentNodeData.public_subnet"
+                    :model-value="currentNodeData.public_subnet"
+                    @input="updateValue($event, 'public_subnet')"
                     color="primary"
                     label="Public Subnet"
                     variant="underlined"
                 ></v-text-field>
                 <v-text-field
-                    v-model="currentNodeData.private_subnet"
+                    :model-value="currentNodeData.private_subnet"
+                    @input="updateValue($event, 'private_subnet')"
                     color="primary"
                     label="Private Subnet"
                     variant="underlined"
