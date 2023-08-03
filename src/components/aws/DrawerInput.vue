@@ -58,6 +58,16 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'alb'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-logo">
                         <v-img src="@/assets/resources/aws/alb.png" />
@@ -67,7 +77,7 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -78,6 +88,16 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'asg'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <div class="drawer-header-logo">
                     <v-img src="@/assets/resources/aws/asg.png" />
                 </div>
@@ -149,7 +169,7 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -160,6 +180,16 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'ec2'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-logo">
                         <v-img src="@/assets/resources/aws/ec2.png" />
@@ -177,7 +207,7 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -188,6 +218,16 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'natgw'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-logo">
                         <v-img src="@/assets/resources/aws/alb.png" />
@@ -197,7 +237,7 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -208,13 +248,23 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'privatesubnet'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-title">Private Subnet</div>
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -225,13 +275,23 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'publicsubnet'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-title">Public Subnet</div>
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -242,6 +302,16 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'sg'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-title">Security Group</div>
                 </v-row>
@@ -255,7 +325,7 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -266,6 +336,16 @@ onBeforeUpdate(() => {
     <div v-else-if="nodeType == 'vpc'">
         <v-card class="mx-auto">
             <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-title">VPC</div>
                 </v-row>
@@ -300,7 +380,7 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                        <v-btn class="close-btn" @click="closeForm"
+                        <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
                     </v-col>
@@ -313,7 +393,6 @@ onBeforeUpdate(() => {
 <style>
 .drawer-header {
     padding-bottom: 3rem;
-    padding-top: 2rem;
 }
 
 .drawer-header-title {
@@ -327,7 +406,7 @@ onBeforeUpdate(() => {
     height: 4rem;
 }
 
-.close-btn {
+.cancel-btn {
     margin-left: auto;
     margin-right: 1rem;
     margin-bottom: 0.5rem;
@@ -344,5 +423,8 @@ onBeforeUpdate(() => {
     background-color: #404ae7;
     color: white;
     font-weight: bold;
+}
+
+.cancel-btn {
 }
 </style>
