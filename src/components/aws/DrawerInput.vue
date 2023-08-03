@@ -21,18 +21,28 @@ const emit = defineEmits(['handleRightDrawer']);
 
 const saveForm = () => {
     store.dispatch('node/updateSelectedNodeData', currentNodeData);
-    emit('handleRightDrawer');
     currentNodeData = reactive({});
+    emit('handleRightDrawer');
 };
 
+const closeForm = () => {
+    currentNodeData = reactive({});
+    emit('handleRightDrawer');
+};
 const updateValue = (newTextValue, arg) => {
     currentNodeData[arg] = newTextValue.target.value;
 };
+watch(
+    () => props.drawer, // For init input form
+    (newValue, oldValue) => {
+        if (!newValue) {
+            currentNodeData = reactive({});
+            nodeType.value = null;
+        }
+    },
+);
 
 onBeforeUpdate(() => {
-    if (!props.drawer) {
-        currentNodeData = {};
-    }
     if (store.getters['node/getSelectedNode']) {
         currentNodeData = reactive({
             ...store.getters['node/getSelectedNode'].data,
@@ -43,7 +53,9 @@ onBeforeUpdate(() => {
 </script>
 
 <template>
-    <div v-if="nodeType == 'alb'">
+    <!--Trick Component for rerendering -->
+    <div v-if="!nodeType"></div>
+    <div v-else-if="nodeType == 'alb'">
         <v-card class="mx-auto">
             <v-container>
                 <v-row class="drawer-header" align="center">
@@ -55,6 +67,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -134,6 +149,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -159,6 +177,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -176,6 +197,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -190,6 +214,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -204,6 +231,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -225,6 +255,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -267,6 +300,9 @@ onBeforeUpdate(() => {
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                        <v-btn class="close-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
                     </v-col>
                 </v-row>
             </v-container>
@@ -291,6 +327,15 @@ onBeforeUpdate(() => {
     height: 4rem;
 }
 
+.close-btn {
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    height: 2rem;
+    background-color: #fa5252;
+    color: white;
+    font-weight: bold;
+}
 .save-btn {
     margin-left: auto;
     margin-right: 1rem;

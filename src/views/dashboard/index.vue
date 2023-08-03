@@ -5,7 +5,11 @@
         width="500"
         temporary
     >
-        <DrawerInput :drawer="drawer" @handleRightDrawer="handleRightDrawer" />
+        <DrawerInput
+            :drawer="drawer"
+            v-click-outside="handleClickOutside"
+            @handleRightDrawer="handleRightDrawer"
+        />
     </v-navigation-drawer>
     <v-main>
         <v-container fluid class="container-size">
@@ -31,6 +35,12 @@ const drawer = ref(false);
 const handleRightDrawer = () => {
     drawer.value = !drawer.value;
     store.dispatch('node/resetSelectedNode');
+};
+
+const handleClickOutside = () => {
+    if (store.getters['node/getSelectedNode'] && !drawer.value) {
+        drawer.value = true;
+    }
 };
 </script>
 
