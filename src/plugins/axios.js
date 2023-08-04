@@ -1,6 +1,7 @@
 import store from '@/store';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
+const url = 'http://10.98.220.61:8000/api/v1';
 /**
  * 토큰 재발급 후 axios 헤더 값 수정해줌
  * response안에서 처리하게 했을 때 무한 로딩이 자꾸 걸려서 소스를 분리해서 async/await로 처리함
@@ -16,7 +17,7 @@ axios.interceptors.request.use(
              * 기존 요청 정보에서 retry=true만 주가되고
              * 나머지는 그대로 다시 요청하기 때문에 url이 이상해져서 이렇게 나눔
              */
-            config.url = config_env.VUE_CONFIG_BASE_URL + config.url; //host 및 url 방식 수정필요
+            config.url = url + config.url; //host 및 url 방식 수정필요
         }
         //헤더 셋팅
         config.timeout = 20000;
