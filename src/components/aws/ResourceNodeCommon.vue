@@ -8,8 +8,7 @@ import { useNode, useVueFlow } from '@vue-flow/core';
 
 const { node } = useNode();
 
-const { removeNodes, getIntersectingNodes, onNodeDragStop, findNode } =
-    useVueFlow();
+const { removeNodes } = useVueFlow();
 
 /**
  * 삭제 버튼 클릭 핸들러
