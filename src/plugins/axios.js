@@ -1,7 +1,7 @@
 import store from '@/store';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
-const url = 'http://10.98.220.61:8000/api/v1';
+const url = '/api/v1';
 /**
  * 토큰 재발급 후 axios 헤더 값 수정해줌
  * response안에서 처리하게 했을 때 무한 로딩이 자꾸 걸려서 소스를 분리해서 async/await로 처리함
