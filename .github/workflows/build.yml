@@ -64,6 +64,10 @@ jobs:
                 labels:
                   app: {{ include "terraform-canvas.name" . }}-front
               spec:
+                volumes:
+                  - name: config-volume
+                    configMap:
+                      name: fe-config
                 serviceAccountName: {{ include "terraform-canvas.serviceAccountName" . }}
                 containers:
                 - name: {{ .Chart.Name }}-front
@@ -72,13 +76,10 @@ jobs:
                   - name: http
                     containerPort: {{ .Values.frontend.lb.http.targetPort}}
                     protocol: TCP
-                  env:
-                      - name: VITE_BASE_URL
-                        valueFrom:
-                          secretKeyRef:
-                            name: back-config
-                            key: VITE_BASE_URL
-
+                  volumeMounts:
+                      - name: config-volume
+                        mountPath: /usr/share/nginx/html/config.js
+                        subPath: config.js
           ---
           apiVersion: v1
           kind: Service
