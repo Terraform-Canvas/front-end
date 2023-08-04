@@ -16,7 +16,7 @@ axios.interceptors.request.use(
              * 기존 요청 정보에서 retry=true만 주가되고
              * 나머지는 그대로 다시 요청하기 때문에 url이 이상해져서 이렇게 나눔
              */
-            config.url = store.state.login.host + config.url; //host 및 url 방식 수정필요
+            config.url = config_env.VUE_CONFIG_BASE_URL + config.url; //host 및 url 방식 수정필요
         }
         //헤더 셋팅
         config.timeout = 20000;
