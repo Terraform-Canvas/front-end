@@ -76,10 +76,10 @@ onBeforeUpdate(() => {
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -168,10 +168,10 @@ onBeforeUpdate(() => {
 
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -206,10 +206,10 @@ onBeforeUpdate(() => {
                 />
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -236,10 +236,10 @@ onBeforeUpdate(() => {
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -263,10 +263,10 @@ onBeforeUpdate(() => {
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -290,10 +290,10 @@ onBeforeUpdate(() => {
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -324,10 +324,10 @@ onBeforeUpdate(() => {
                 ></v-text-field>
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
@@ -379,10 +379,10 @@ onBeforeUpdate(() => {
                 ></v-text-field>
                 <v-row>
                     <v-col class="text-right">
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                         <v-btn class="cancel-btn" @click="closeForm"
                             >Close</v-btn
                         >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
                     </v-col>
                 </v-row>
             </v-container>
