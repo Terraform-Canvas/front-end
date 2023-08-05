@@ -58,7 +58,6 @@ function onDragOver(event) {
         event.dataTransfer.dropEffect = 'move';
     }
 }
-
 onConnect((params) => addEdges(params));
 
 function onDrop(event) {
