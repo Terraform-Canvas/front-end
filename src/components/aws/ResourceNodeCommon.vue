@@ -63,6 +63,7 @@ const onRemove = () => {
 <template>
     <div style="padding: 10px">
         <v-btn
+            elevation="0"
             icon="mdi-delete"
             size="small"
             @click="onRemove"
