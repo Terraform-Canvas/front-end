@@ -36,20 +36,20 @@ onNodeDragStop((nodeDragEvent) => {
 <template>
     <div class="node-wrapper">
         <div class="node-header">
-            <div class="node-title">ALB</div>
+            <div class="node-title">ELB</div>
             <ResourceNodeCommon />
         </div>
 
         <div class="node-detail-container">
             <div class="node-logo">
-                <v-img src="@/assets/resources/aws/alb.png" />
+                <v-img src="@/assets/resources/aws/ELB.svg" />
             </div>
             <div class="node-detail">ALB type</div>
         </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 .node-wrapper {
     display: flex;
     flex-direction: column;

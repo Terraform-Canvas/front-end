@@ -10,6 +10,7 @@ import PublicSubnet from '@/components/aws/PublicSubnet.vue';
 import SecurityGroup from '@/components/aws/SecurityGroup.vue';
 import Vpc from '@/components/aws/Vpc.vue';
 import AutoScalingGroup from '@/components/aws/AutoScalingGroup.vue';
+import EKS from '@/components/aws/EKS.vue';
 
 import { VueFlow, useVueFlow, PanelPosition } from '@vue-flow/core';
 import { nextTick, watch } from 'vue';
@@ -187,6 +188,9 @@ const exportAndOpenModal = () => {
                 </template>
 
                 <!-- AWS Resources Below -->
+                <template #node-eks>
+                    <EKS />
+                </template>
                 <template #node-vpc>
                     <Vpc />
                 </template>

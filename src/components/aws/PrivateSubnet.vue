@@ -44,25 +44,30 @@ onNodeDragStop((nodeDragEvent) => {
             <div class="node-title">Private Subnet</div>
             <ResourceNodeCommon />
         </div>
+        <div class="node-detail-container">
+            <div class="node-logo">
+                <v-img src="@/assets/resources/aws/PRIVATESN.svg" />
+            </div>
+        </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 .node-wrapper {
     display: flex;
     flex-direction: column;
     padding-left: 10px;
 }
 
+.node-header {
+    display: flex;
+    align-items: center;
+}
+
 .node-title {
     width: 30px;
     height: 30px;
     font-weight: bold;
-    margin-right: auto;
-}
-
-.node-header {
-    display: flex;
 }
 
 .node-detail-container {

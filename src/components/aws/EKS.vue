@@ -41,15 +41,14 @@ onNodeDragStop((nodeDragEvent) => {
 <template>
     <div class="node-wrapper">
         <div class="node-header">
-            <div class="node-title">EC2</div>
+            <div class="node-title">EKS</div>
             <ResourceNodeCommon />
         </div>
 
         <div class="node-detail-container">
             <div class="node-logo">
-                <v-img src="@/assets/resources/aws/EC2.svg" />
+                <v-img src="@/assets/resources/aws/EKS.svg" />
             </div>
-            <div class="node-detail">{{ node.data.instance_type }}</div>
         </div>
     </div>
 </template>

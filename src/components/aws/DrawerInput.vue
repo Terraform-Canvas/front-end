@@ -55,6 +55,38 @@ onBeforeUpdate(() => {
 <template>
     <!--Trick Component for rerendering -->
     <div v-if="!nodeType"></div>
+    <div v-else-if="nodeType == 'eks'">
+        <v-card class="mx-auto">
+            <v-container>
+                <v-row class="text-right">
+                    <v-col>
+                        <v-icon
+                            class="close-btn"
+                            v-bind="props"
+                            @click="closeForm"
+                            >mdi-close</v-icon
+                        >
+                    </v-col>
+                </v-row>
+                <v-row class="drawer-header" align="center">
+                    <div class="drawer-header-logo">
+                        <v-img src="@/assets/resources/aws/EKS.svg" />
+                    </div>
+                    <div class="drawer-header-title">
+                        Elastic Kubernetes Service
+                    </div>
+                </v-row>
+                <v-row>
+                    <v-col class="text-right">
+                        <v-btn class="cancel-btn" @click="closeForm"
+                            >Close</v-btn
+                        >
+                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-card>
+    </div>
     <div v-else-if="nodeType == 'alb'">
         <v-card class="mx-auto">
             <v-container>
@@ -70,9 +102,9 @@ onBeforeUpdate(() => {
                 </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/alb.png" />
+                        <v-img src="@/assets/resources/aws/ELB.svg" />
                     </div>
-                    <div class="drawer-header-title">AWS Load Balancer</div>
+                    <div class="drawer-header-title">Elastic Load Balancer</div>
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
@@ -98,10 +130,11 @@ onBeforeUpdate(() => {
                         >
                     </v-col>
                 </v-row>
-                <div class="drawer-header-logo">
-                    <v-img src="@/assets/resources/aws/asg.png" />
-                </div>
+
                 <v-row class="drawer-header" align="center">
+                    <div class="drawer-header-logo">
+                        <v-img src="@/assets/resources/aws/ASG.svg" />
+                    </div>
                     <div class="drawer-header-title">Auto Scailing Group</div>
                 </v-row>
                 <v-text-field
@@ -192,7 +225,7 @@ onBeforeUpdate(() => {
                 </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/ec2.png" />
+                        <v-img src="@/assets/resources/aws/EC2.svg" />
                     </div>
                     <div class="drawer-header-title">EC2</div>
                 </v-row>
@@ -230,9 +263,9 @@ onBeforeUpdate(() => {
                 </v-row>
                 <v-row class="drawer-header" align="center">
                     <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/alb.png" />
+                        <v-img src="@/assets/resources/aws/NATG.svg" />
                     </div>
-                    <div class="drawer-header-title">Nat Gateway</div>
+                    <div class="drawer-header-title">NAT Gateway</div>
                 </v-row>
                 <v-row>
                     <v-col class="text-right">
@@ -259,6 +292,9 @@ onBeforeUpdate(() => {
                     </v-col>
                 </v-row>
                 <v-row class="drawer-header" align="center">
+                    <div class="drawer-header-logo">
+                        <v-img src="@/assets/resources/aws/PRIVATESN.svg" />
+                    </div>
                     <div class="drawer-header-title">Private Subnet</div>
                 </v-row>
                 <v-row>
@@ -286,6 +322,9 @@ onBeforeUpdate(() => {
                     </v-col>
                 </v-row>
                 <v-row class="drawer-header" align="center">
+                    <div class="drawer-header-logo">
+                        <v-img src="@/assets/resources/aws/PUBLICSN.svg" />
+                    </div>
                     <div class="drawer-header-title">Public Subnet</div>
                 </v-row>
                 <v-row>
@@ -347,6 +386,9 @@ onBeforeUpdate(() => {
                     </v-col>
                 </v-row>
                 <v-row class="drawer-header" align="center">
+                    <div class="drawer-header-logo">
+                        <v-img src="@/assets/resources/aws/VPC.svg" />
+                    </div>
                     <div class="drawer-header-title">VPC</div>
                 </v-row>
                 <v-text-field

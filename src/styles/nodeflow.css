@@ -33,7 +33,7 @@
 }
 
 .customnodeflow .vue-flow__node-vpc {
-    border: 1px solid #2ca138;
+    border: 1px solid #8c4fff;
     padding: inherit;
     min-width: 600px;
     min-height: 400px;
@@ -41,7 +41,7 @@
 
 .customnodeflow .vue-flow__node-vpc::after {
     content: '';
-    background: #2ca138;
+    background: #8c4fff;
     position: absolute;
     top: -10px;
     left: 3px;
@@ -67,7 +67,7 @@
 }
 
 .customnodeflow .vue-flow__node-alb {
-    border: 1px solid #f68536;
+    border: 1px solid #8c4fff;
     padding: inherit;
     min-width: 200px;
     min-height: 300px;
@@ -75,7 +75,7 @@
 
 .customnodeflow .vue-flow__node-alb::after {
     content: '';
-    background: #f68536;
+    background: #8c4fff;
     position: absolute;
     top: -10px;
     left: 3px;
@@ -101,14 +101,15 @@
     width: 30%;
 }
 
-.customnodeflow .vue-flow__node-natgw {
+.customnodeflow .vue-flow__node-eks {
     border: 1px solid #f68536;
-    padding: inherit;
+    padding: 10px;
     min-width: 200px;
-    min-height: 300px;
+    min-height: 100px;
+    z-index: -1;
 }
 
-.customnodeflow .vue-flow__node-natgw::after {
+.customnodeflow .vue-flow__node-eks::after {
     content: '';
     background: #f68536;
     position: absolute;
@@ -118,8 +119,25 @@
     width: 30%;
 }
 
+.customnodeflow .vue-flow__node-natgw {
+    border: 1px solid #8c4fff;
+    padding: inherit;
+    min-width: 200px;
+    min-height: 300px;
+}
+
+.customnodeflow .vue-flow__node-natgw::after {
+    content: '';
+    background: #8c4fff;
+    position: absolute;
+    top: -10px;
+    left: 3px;
+    height: 10px;
+    width: 30%;
+}
+
 .customnodeflow .vue-flow__node-privatesubnet {
-    border: 1px solid #2ca138;
+    border: 1px solid #00a4a6;
     padding: inherit;
     min-width: 200px;
     min-height: 300px;
@@ -127,7 +145,7 @@
 
 .customnodeflow .vue-flow__node-privatesubnet::after {
     content: '';
-    background: #2ca138;
+    background: #00a4a6;
     position: absolute;
     top: -10px;
     left: 3px;
@@ -136,7 +154,7 @@
 }
 
 .customnodeflow .vue-flow__node-publicsubnet {
-    border: 1px solid #2ca138;
+    border: 1px solid #7aa116;
     padding: inherit;
     min-width: 200px;
     min-height: 300px;
@@ -144,7 +162,7 @@
 
 .customnodeflow .vue-flow__node-publicsubnet::after {
     content: '';
-    background: #2ca138;
+    background: #7aa116;
     position: absolute;
     top: -10px;
     left: 3px;
@@ -153,7 +171,7 @@
 }
 
 .customnodeflow .vue-flow__node-sg {
-    border: 1px solid #0d7317;
+    border: 1px solid #dd344c;
     padding: inherit;
     min-width: 200px;
     min-height: 300px;
@@ -161,7 +179,7 @@
 
 .customnodeflow .vue-flow__node-sg::after {
     content: '';
-    background: #0d7317;
+    background: #dd344c;
     position: absolute;
     top: -10px;
     left: 3px;

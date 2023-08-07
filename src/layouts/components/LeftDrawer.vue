@@ -1,16 +1,51 @@
 <script setup>
 const types = [
     {
-        Computing: ['ec2'],
+        Computing: [
+            {
+                name: 'EC2',
+                resource: 'ec2',
+            },
+        ],
     },
     {
-        Networking: ['natgw', 'privatesubnet', 'publicsubnet', 'vpc'],
+        Networking: [
+            {
+                name: 'NAT Gateway',
+                resource: 'natgw',
+            },
+            {
+                name: 'Private Subnet',
+                resource: 'privatesubnet',
+            },
+            {
+                name: 'Public Subnet',
+                resource: 'publicsubnet',
+            },
+            {
+                name: 'VPC',
+                resource: 'vpc',
+            },
+        ],
     },
     {
-        Scailing: ['alb', 'asg'],
+        Scailing: [
+            {
+                name: 'Elastic Kubernetes Service',
+                resource: 'eks',
+            },
+            {
+                name: 'Elastic Load Balancer',
+                resource: 'alb',
+            },
+            {
+                name: 'Auto Scailing Group',
+                resource: 'asg',
+            },
+        ],
     },
     {
-        Security: ['sg'],
+        Security: [{ name: 'Security Group', resource: 'sg' }],
     },
 ];
 
@@ -50,11 +85,11 @@ function onDragStart(event, nodeType) {
                 </template>
                 <v-list-item
                     nav
-                    v-for="(resource, i) in Object.values(item)[0]"
+                    v-for="(item, i) in Object.values(item)[0]"
                     :key="i"
-                    :title="resource"
+                    :title="item.name"
                     :draggable="true"
-                    @dragstart="onDragStart($event, resource)"
+                    @dragstart="onDragStart($event, item.resource)"
                 ></v-list-item>
             </v-list-group>
         </v-list>

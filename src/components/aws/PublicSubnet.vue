@@ -44,10 +44,15 @@ onNodeDragStop((nodeDragEvent) => {
             <div class="node-title">Public Subnet</div>
             <ResourceNodeCommon />
         </div>
+        <div class="node-detail-container">
+            <div class="node-logo">
+                <v-img src="@/assets/resources/aws/PUBLICSN.svg" />
+            </div>
+        </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 .node-wrapper {
     display: flex;
     flex-direction: column;
@@ -56,6 +61,7 @@ onNodeDragStop((nodeDragEvent) => {
 
 .node-header {
     display: flex;
+    align-items: center;
 }
 
 .node-title {
