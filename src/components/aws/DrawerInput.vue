@@ -76,6 +76,36 @@ onBeforeUpdate(() => {
                         Elastic Kubernetes Service
                     </div>
                 </v-row>
+                <v-text-field
+                    :model-value="currentNodeData.name"
+                    @input="updateValue($event, 'name')"
+                    color="primary"
+                    label="Name"
+                    variant="underlined"
+                ></v-text-field>
+                <v-text-field
+                    :model-value="currentNodeData.version"
+                    @input="updateValue($event, 'version')"
+                    color="primary"
+                    label="Cluster Version"
+                    variant="underlined"
+                ></v-text-field>
+                <v-text-field
+                    :model-value="currentNodeData.userarn"
+                    @input="updateValue($event, 'userarn')"
+                    color="primary"
+                    label="User ARN"
+                    variant="underlined"
+                ></v-text-field>
+                <v-text-field
+                    :model-value="currentNodeData.username"
+                    @input="updateValue($event, 'username')"
+                    color="primary"
+                    label="User Name"
+                    variant="underlined"
+                ></v-text-field>
+                <v-switch label="endpoint public" inset> </v-switch>
+
                 <v-row>
                     <v-col class="text-right">
                         <v-btn class="cancel-btn" @click="closeForm"
