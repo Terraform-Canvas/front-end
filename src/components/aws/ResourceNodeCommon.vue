@@ -60,7 +60,7 @@ const onRemove = () => {
 // })
 </script>
 <template>
-    <div style="padding: 10px">
+    <div class="remove-btn" style="padding: 10px">
         <v-btn
             elevation="0"
             icon="mdi-delete"
@@ -81,5 +81,8 @@ const onRemove = () => {
     background-color: #252f3e !important;
     height: 5px !important;
     width: 5px !important;
+}
+.remove-btn {
+    margin-left: auto;
 }
 </style>

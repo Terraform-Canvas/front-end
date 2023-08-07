@@ -39,10 +39,15 @@ onNodeDragStop((nodeDragEvent) => {
             <div class="node-title">Auto Scailing Group</div>
             <ResourceNodeCommon />
         </div>
+        <div class="node-detail-container">
+            <div class="node-logo">
+                <v-img src="@/assets/resources/aws/ASG.svg" />
+            </div>
+        </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 .node-wrapper {
     display: flex;
     flex-direction: column;
@@ -62,7 +67,7 @@ onNodeDragStop((nodeDragEvent) => {
 
 .node-detail-container {
     display: flex;
-    padding-top: 10px;
+    padding-top: 3rem !important;
 }
 .node-logo {
     width: 30px;
