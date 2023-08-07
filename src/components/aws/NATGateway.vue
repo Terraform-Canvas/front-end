@@ -3,7 +3,8 @@ import ResourceNodeCommon from './ResourceNodeCommon.vue';
 
 import { useVueFlow, useNode } from '@vue-flow/core';
 
-const { getIntersectingNodes, findNode, onNodeDragStop } = useVueFlow();
+const { getIntersectingNodes, findNode, onNodeDragStop, updateNodeInternals } =
+    useVueFlow();
 const { node } = useNode();
 
 onNodeDragStop((nodeDragEvent) => {
@@ -14,10 +15,19 @@ onNodeDragStop((nodeDragEvent) => {
             .map((e) => e);
 
         const parentId = filteredNodes[filteredNodes.length - 1]?.id;
+        const parentNode = findNode(parentId);
 
-        if (parentId && findNode(parentId).parentNode != node.id) {
+        if (parentId && parentNode.parentNode != node.id) {
+            //노드에 새로운 부모 노드가 생겼을 때 좌표 값이 부모 노드 기준으로 바뀌는 현상 보정
+            if (!node.parentNode) {
+                node.position = {
+                    x: node.position.x - parentNode.position.x,
+                    y: node.position.y - parentNode.position.y,
+                };
+            }
             node.parentNode = parentId;
             node.expandParent = true;
+            updateNodeInternals([node.id]);
         }
     }
 });
@@ -30,26 +40,30 @@ onNodeDragStop((nodeDragEvent) => {
             <ResourceNodeCommon />
         </div>
 
-        <div class="node-detail-container"></div>
+        <div class="node-detail-container">
+            <div class="node-logo">
+                <v-img src="@/assets/resources/aws/NATG.svg" />
+            </div>
+        </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 .node-wrapper {
     display: flex;
     flex-direction: column;
     padding-left: 10px;
 }
 
+.node-header {
+    display: flex;
+    align-items: center;
+}
+
 .node-title {
     width: 30px;
     height: 30px;
     font-weight: bold;
-    margin-right: auto;
-}
-
-.node-header {
-    display: flex;
 }
 
 .node-detail-container {

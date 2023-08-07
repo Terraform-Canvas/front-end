@@ -5,7 +5,11 @@
         width="500"
         temporary
     >
-        <DrawerInput :selectedNode="selectedNode" />
+        <DrawerInput
+            :drawer="drawer"
+            v-click-outside="handleClickOutside"
+            @handleRightDrawer="handleRightDrawer"
+        />
     </v-navigation-drawer>
     <v-main>
         <v-container fluid class="container-size">
@@ -20,19 +24,23 @@
 </template>
 
 <script setup>
-import MainTop from '@/components/dashboard/MainTop.vue';
 import NodePlane from '@/components/node/NodePlane';
 import MainBottom from '@/components/dashboard/MainBottom';
 import DrawerInput from '@/components/aws/DrawerInput.vue';
-import { ref, onUpdated } from 'vue';
+import { ref } from 'vue';
+import store from '@/store';
 
 const drawer = ref(false);
-const selectedNode = ref(Object);
-// v-navigation-drawer는 VueFlow 하위 컴포넌트가 아니라 Node를 찾을 수 없어 Object 통째로 넘겨줘야 함
 
-const handleRightDrawer = (selectedNodes) => {
+const handleRightDrawer = () => {
     drawer.value = !drawer.value;
-    selectedNode.value = selectedNodes.value[0];
+    store.dispatch('node/resetSelectedNode');
+};
+
+const handleClickOutside = () => {
+    if (store.getters['node/getSelectedNode'] && !drawer.value) {
+        drawer.value = true;
+    }
 };
 </script>
 

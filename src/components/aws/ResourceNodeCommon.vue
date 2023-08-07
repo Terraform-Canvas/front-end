@@ -8,8 +8,7 @@ import { useNode, useVueFlow } from '@vue-flow/core';
 
 const { node } = useNode();
 
-const { removeNodes, getIntersectingNodes, onNodeDragStop, findNode } =
-    useVueFlow();
+const { removeNodes } = useVueFlow();
 
 /**
  * 삭제 버튼 클릭 핸들러
@@ -61,8 +60,9 @@ const onRemove = () => {
 // })
 </script>
 <template>
-    <div style="padding: 10px">
+    <div class="remove-btn" style="padding: 10px">
         <v-btn
+            elevation="0"
             icon="mdi-delete"
             size="small"
             @click="onRemove"
@@ -81,5 +81,8 @@ const onRemove = () => {
     background-color: #252f3e !important;
     height: 5px !important;
     width: 5px !important;
+}
+.remove-btn {
+    margin-left: auto;
 }
 </style>

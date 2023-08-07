@@ -10,6 +10,7 @@ import PublicSubnet from '@/components/aws/PublicSubnet.vue';
 import SecurityGroup from '@/components/aws/SecurityGroup.vue';
 import Vpc from '@/components/aws/Vpc.vue';
 import AutoScalingGroup from '@/components/aws/AutoScalingGroup.vue';
+import EKS from '@/components/aws/EKS.vue';
 
 import { VueFlow, useVueFlow, PanelPosition } from '@vue-flow/core';
 import { nextTick, watch } from 'vue';
@@ -21,6 +22,7 @@ import { ref } from 'vue';
 import MainTopVue from '../dashboard/MainTop.vue';
 
 import axios from '@/plugins/axios';
+import store from '@/store';
 let id = 0;
 function getId() {
     return `${id++}`;
@@ -47,9 +49,7 @@ const {
 
 onNodeClick((MouseEvent) => {
     nodeClicked();
-    getSelectedNodes.value.forEach((v) =>
-        console.log(`Selected: ${v.id}, type: ${v.type}`),
-    );
+    store.dispatch('node/setSelectedNode', getSelectedNodes.value[0]);
 });
 
 function onDragOver(event) {
@@ -59,7 +59,6 @@ function onDragOver(event) {
         event.dataTransfer.dropEffect = 'move';
     }
 }
-
 onConnect((params) => addEdges(params));
 
 function onDrop(event) {
@@ -102,12 +101,12 @@ function onDrop(event) {
 const showModal = ref(false);
 const exportData = ref('');
 let btnData = ref('create');
-let bntLoader = ref(false);
+let btnLoader = ref(false);
 let btnType = ref('');
 let btnMsg = ref('');
 const exportAndOpenModal = () => {
     let exportDataArr = [];
-    bntLoader.value = true;
+    btnLoader.value = true;
     getNodes.value.forEach((n) => {
         let nodeData = {
             id: n.id,
@@ -126,12 +125,12 @@ const exportAndOpenModal = () => {
                 btnData.value = 'run';
                 btnType.value = 'success';
                 btnMsg.value = 'tf 생성 완료';
-                bntLoader.value = false;
+                btnLoader.value = false;
             })
             .catch((err) => {
                 btnMsg.value = 'tf 생성 실패';
                 btnType.value = 'warning';
-                bntLoader.value = false;
+                btnLoader.value = false;
                 console.error(err);
             });
     } else if (btnData.value === 'run') {
@@ -141,12 +140,12 @@ const exportAndOpenModal = () => {
                 btnData.value = 'create';
                 btnMsg.value = 'tf 실행 완료';
                 btnType.value = 'success';
-                bntLoader.value = false;
+                btnLoader.value = false;
             })
             .catch((err) => {
                 btnMsg.value = 'tf 실행 실패';
                 btnType.value = 'warning';
-                bntLoader.value = false;
+                btnLoader.value = false;
                 console.error(err);
             });
     }
@@ -162,7 +161,7 @@ const exportAndOpenModal = () => {
     <div class="header-utils">
         <MainTopVue />
         <v-btn
-            :loading="bntLoader"
+            :loading="btnLoader"
             class="export-btn"
             @click="exportAndOpenModal"
             >{{ btnData }}</v-btn
@@ -189,6 +188,9 @@ const exportAndOpenModal = () => {
                 </template>
 
                 <!-- AWS Resources Below -->
+                <template #node-eks>
+                    <EKS />
+                </template>
                 <template #node-vpc>
                     <Vpc />
                 </template>
