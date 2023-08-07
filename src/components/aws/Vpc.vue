@@ -8,25 +8,30 @@ import ResourceNodeCommon from './ResourceNodeCommon.vue';
             <div class="node-title">VPC</div>
             <ResourceNodeCommon />
         </div>
+        <div class="node-detail-container">
+            <div class="node-logo">
+                <v-img src="@/assets/resources/aws/VPC.svg" />
+            </div>
+        </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 .node-wrapper {
     display: flex;
     flex-direction: column;
     padding-left: 10px;
 }
 
+.node-header {
+    display: flex;
+    align-items: center;
+}
+
 .node-title {
     width: 30px;
     height: 30px;
     font-weight: bold;
-    margin-right: auto;
-}
-
-.node-header {
-    display: flex;
 }
 
 .node-detail-container {

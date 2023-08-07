@@ -45,22 +45,22 @@ onNodeDragStop((nodeDragEvent) => {
     </div>
 </template>
 
-<style>
+<style scoped>
 .node-wrapper {
     display: flex;
     flex-direction: column;
     padding-left: 10px;
 }
 
+.node-header {
+    display: flex;
+    align-items: center;
+}
+
 .node-title {
     width: 30px;
     height: 30px;
     font-weight: bold;
-    margin-right: auto;
-}
-
-.node-header {
-    display: flex;
 }
 
 .node-detail-container {
