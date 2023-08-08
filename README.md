@@ -127,7 +127,7 @@ TBA
 
 <!-- CONTRIBUTING -->
 ## :fire: Contributing
-Please refer to `CONTRIBUTION.txt` for Contribution.
+Please refer to [CONTRIBUTION.md](https://github.com/Terraform-Canvas/front-end/blob/main/CONTRIBUTING.md) for Contribution.
 
 For issues, new functions and requests to modify please follow the following procedure. 🥰
 
