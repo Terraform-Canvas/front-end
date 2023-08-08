@@ -20,6 +20,8 @@
 
 <script setup>
 import UserProfile from '@/components/dashboard/UserProfile.vue';
+import store from '@/store';
+store.dispatch('user/getKey')
 </script>
 
 <style>

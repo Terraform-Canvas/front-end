@@ -1,7 +1,10 @@
+import axios from '@/plugins/axios';
 // initial state
 const state = () => ({
     email: null,
     name: null,
+    accessKey: false,
+    secretKey: false,
 });
 
 // getters
@@ -9,6 +12,12 @@ const state = () => ({
 const getters = {
     getEmail: function (state) {
         return state.email;
+    },
+    getKeyStatus: function (state) {
+        return {
+            accessKey: state.accessKey,
+            secretKey: state.secretKey,
+        };
     },
 };
 
@@ -18,6 +27,34 @@ const actions = {
     save: function ({ commit }, userData) {
         commit('saveData', userData);
     },
+    saveKey: function ({ commit }, params) {
+        return new Promise((resolve, reject) => {
+            axios
+                .post('/user/key', params)
+                .then((res) => {
+                    commit('saveKeyData');
+                    resolve(res);
+                })
+                .catch((err) => {
+                    console.error(err);
+                    reject(err);
+                });
+        });
+    },
+    getKey: function ({ commit }) {
+        return new Promise((resolve, reject) => {
+            axios
+                .get('/user/key/get')
+                .then((res) => {
+                    commit('getKeyData', res.data.keyInfo);
+                    resolve(res);
+                })
+                .catch((err) => {
+                    console.error(err);
+                    reject(err);
+                });
+        });
+    },
 };
 
 // mutations
@@ -26,6 +63,14 @@ const mutations = {
     saveData: function (state, payload) {
         state.email = payload.email;
         state.name = payload.name;
+    },
+    saveKeyData: function (state) {
+        state.accessKey = true;
+        state.secretKey = true;
+    },
+    getKeyData: function (state, payload) {
+        state.accessKey = payload.accessKey;
+        state.secretKey = payload.secretKey;
     },
 };
 
