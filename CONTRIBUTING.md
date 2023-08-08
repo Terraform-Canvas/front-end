@@ -15,7 +15,7 @@ Feel free to browse through our existing issues to find one that aligns with you
 ### Making Changes
 1. Fork the repository.
 2. Install or update dependency such as Node.js. For more information, see [README](https://github.com/Terraform-Canvas/front-end).
-3. Create a working branch and start with your changes!
+3. Create a working branch and start with your changes! (eg. feat/nodestyle)
 4. Test your code using prepared test code or you can add additional test code.
 5. Commit your updates.
 ### Submitting a Pull Request (PR)
