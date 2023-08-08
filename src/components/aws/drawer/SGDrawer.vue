@@ -1,16 +1,7 @@
 <script setup>
 import { onMounted, defineEmits, defineProps } from 'vue';
-import store from '@/store';
-let instance_items = [];
 
 let tempNodeData = {};
-store.dispatch('aws/getInstanceTypes').then((res) => {
-    const instance_type = store.state.aws.instance_types;
-    for (let value of instance_type) {
-        instance_items.push(value.InstanceType);
-    }
-    instance_items.sort();
-});
 
 const emit = defineEmits(['saveForm', 'closeForm']);
 const props = defineProps(['currentNodeData']);
@@ -44,38 +35,24 @@ const handleUpdate = (newTextValue, arg, type) => {
         <v-container>
             <v-row class="text-right">
                 <v-col>
-                    <v-icon class="close-btn" @click="handleClose"
+                    <v-icon
+                        class="close-btn"
+                        v-bind="props"
+                        @click="handleClose"
                         >mdi-close</v-icon
                     >
                 </v-col>
             </v-row>
             <v-row class="drawer-header" align="center">
-                <div class="drawer-header-logo">
-                    <v-img src="@/assets/resources/aws/EC2.svg" />
-                </div>
-                <div class="drawer-header-title">EC2</div>
+                <div class="drawer-header-title">Security Group</div>
             </v-row>
-            <v-combobox
-                :model-value="tempNodeData.instance_type"
-                @input="handleUpdate($event, 'instance_type', 'str')"
-                :items="instance_items"
-                color="primary"
-                label="Instance Type"
-                variant="underlined"
-            />
             <v-text-field
-                :model-value="tempNodeData.key_name"
-                @input="handleUpdate($event, 'key_name', 'str')"
+                :model-value="tempNodeData.name"
+                @input="handleUpdate($event, 'name')"
                 color="primary"
-                label="Key name"
+                label="Name"
                 variant="underlined"
             ></v-text-field>
-            <v-switch
-                :model-value="tempNodeData.monitoring"
-                @input="handleUpdate($event, 'monitoring', 'bool')"
-                color="primary"
-                label="monitoring"
-            />
             <v-row>
                 <v-col class="text-right">
                     <v-btn class="cancel-btn" @click="handleClose">Close</v-btn>

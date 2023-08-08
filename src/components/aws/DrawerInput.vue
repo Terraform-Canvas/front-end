@@ -1,7 +1,22 @@
 <script setup>
-import { ref } from 'vue';
-import { reactive, onBeforeUpdate, defineEmits, defineProps, watch } from 'vue';
+import {
+    ref,
+    reactive,
+    onBeforeUpdate,
+    defineEmits,
+    defineProps,
+    watch,
+} from 'vue';
 import store from '@/store';
+import EC2Drawer from '@/components/aws/drawer/EC2Drawer.vue';
+import ALBDrawer from '@/components/aws/drawer/ALBDrawer.vue';
+import ASGDrawer from '@/components/aws/drawer/ASGDrawer.vue';
+import EKSDrawer from '@/components/aws/drawer/EKSDrawer.vue';
+import NATgwDrawer from '@/components/aws/drawer/NATgwDrawer.vue';
+import PrivateSubnetDrawer from '@/components/aws/drawer/PrivateSubnetDrawer.vue';
+import PublicSubnetDrawer from '@/components/aws/drawer/PublicSubnetDrawer.vue';
+import SGDrawer from '@/components/aws/drawer/SGDrawer.vue';
+import VPCDrawer from '@/components/aws/drawer/VPCDrawer.vue';
 
 let instance_items = [];
 let currentNodeData = reactive({});
@@ -15,23 +30,19 @@ store.dispatch('aws/getInstanceTypes').then((res) => {
     }
     instance_items.sort();
 });
-store.dispatch('aws/getAMI');
 
 const emit = defineEmits(['handleRightDrawer']);
-
-const saveForm = () => {
-    store.dispatch('node/updateSelectedNodeData', currentNodeData);
-    currentNodeData = reactive({});
-    emit('handleRightDrawer');
-};
 
 const closeForm = () => {
     currentNodeData = reactive({});
     emit('handleRightDrawer');
 };
-const updateValue = (newTextValue, arg) => {
-    currentNodeData[arg] = newTextValue.target.value;
+
+const saveForm = (nodeData) => {
+    store.dispatch('node/updateSelectedNodeData', nodeData);
+    closeForm();
 };
+
 watch(
     () => props.drawer, // For init input form
     (newValue, oldValue) => {
@@ -56,409 +67,67 @@ onBeforeUpdate(() => {
     <!--Trick Component for rerendering -->
     <div v-if="!nodeType"></div>
     <div v-else-if="nodeType == 'eks'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/EKS.svg" />
-                    </div>
-                    <div class="drawer-header-title">
-                        Elastic Kubernetes Service
-                    </div>
-                </v-row>
-                <v-text-field
-                    :model-value="currentNodeData.name"
-                    @input="updateValue($event, 'name')"
-                    color="primary"
-                    label="Name"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="currentNodeData.version"
-                    @input="updateValue($event, 'version')"
-                    color="primary"
-                    label="Cluster Version"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="currentNodeData.userarn"
-                    @input="updateValue($event, 'userarn')"
-                    color="primary"
-                    label="User ARN"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="currentNodeData.username"
-                    @input="updateValue($event, 'username')"
-                    color="primary"
-                    label="User Name"
-                    variant="underlined"
-                ></v-text-field>
-                <v-switch label="endpoint public" inset> </v-switch>
-
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <EKSDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'alb'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/ELB.svg" />
-                    </div>
-                    <div class="drawer-header-title">Elastic Load Balancer</div>
-                </v-row>
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <ALBDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'asg'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/ASG.svg" />
-                    </div>
-                    <div class="drawer-header-title">Auto Scailing Group</div>
-                </v-row>
-                <v-text-field
-                    :model-value="currentNodeData.min_size"
-                    @input="updateValue($event, 'min_size')"
-                    color="primary"
-                    label="Min Size"
-                    variant="underlined"
-                />
-                <v-text-field
-                    :model-value="currentNodeData.max_size"
-                    @input="updateValue($event, 'max_size')"
-                    color="primary"
-                    label="Max Size"
-                    variant="underlined"
-                />
-                <v-text-field
-                    :model-value="currentNodeData.desired_capacity"
-                    @input="updateValue($event, 'desired_capacity')"
-                    color="primary"
-                    label="Desired Capacity"
-                    variant="underlined"
-                ></v-text-field>
-                <v-combobox
-                    :model-value="currentNodeData.image_id"
-                    @input="updateValue($event, 'image_id')"
-                    :items="store.state.aws.ami"
-                    item-title="ImageId"
-                    item-value="ImageId"
-                    color="primary"
-                    label="Image Id"
-                    variant="underlined"
-                    chips
-                    closable-chips
-                >
-                    <template v-slot:chip="{ props, item }">
-                        <v-chip v-bind="props" :text="item.raw.Name"></v-chip>
-                    </template>
-                    <template v-slot:item="{ props, item }">
-                        <v-list-item
-                            v-bind="props"
-                            :title="item?.raw?.Name"
-                            :subtitle="item?.raw?.ImageId"
-                        />
-                    </template>
-                </v-combobox>
-                <v-combobox
-                    :model-value="currentNodeData.instance_type"
-                    @input="updateValue($event, 'instance_type')"
-                    :items="instance_items"
-                    color="primary"
-                    label="Instance Type"
-                    variant="underlined"
-                />
-                <v-textarea
-                    clearable
-                    variant="underlined"
-                    clear-icon="mdi-close-circle"
-                    label="user-data"
-                    :model-value="currentNodeData.user_data"
-                    @input="updateValue($event, 'user_data')"
-                >
-                </v-textarea>
-
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <ASGDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'ec2'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/EC2.svg" />
-                    </div>
-                    <div class="drawer-header-title">EC2</div>
-                </v-row>
-                <v-combobox
-                    :model-value="currentNodeData.instance_type"
-                    @input="updateValue($event, 'instance_type')"
-                    :items="instance_items"
-                    color="primary"
-                    label="Instance Type"
-                    variant="underlined"
-                />
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <EC2Drawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'natgw'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/NATG.svg" />
-                    </div>
-                    <div class="drawer-header-title">NAT Gateway</div>
-                </v-row>
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <NATgwDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'privatesubnet'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/PRIVATESN.svg" />
-                    </div>
-                    <div class="drawer-header-title">Private Subnet</div>
-                </v-row>
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <PrivateSubnetDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'publicsubnet'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/PUBLICSN.svg" />
-                    </div>
-                    <div class="drawer-header-title">Public Subnet</div>
-                </v-row>
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <PublicSubnetDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'sg'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-title">Security Group</div>
-                </v-row>
-                <v-text-field
-                    :model-value="currentNodeData.name"
-                    @input="updateValue($event, 'name')"
-                    color="primary"
-                    label="Name"
-                    variant="underlined"
-                ></v-text-field>
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <SGDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
     <div v-else-if="nodeType == 'vpc'">
-        <v-card class="mx-auto">
-            <v-container>
-                <v-row class="text-right">
-                    <v-col>
-                        <v-icon
-                            class="close-btn"
-                            v-bind="props"
-                            @click="closeForm"
-                            >mdi-close</v-icon
-                        >
-                    </v-col>
-                </v-row>
-                <v-row class="drawer-header" align="center">
-                    <div class="drawer-header-logo">
-                        <v-img src="@/assets/resources/aws/VPC.svg" />
-                    </div>
-                    <div class="drawer-header-title">VPC</div>
-                </v-row>
-                <v-text-field
-                    :model-value="currentNodeData.name"
-                    @input="updateValue($event, 'name')"
-                    color="primary"
-                    label="Name"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="currentNodeData.cidr"
-                    @input="updateValue($event, 'cidr')"
-                    color="primary"
-                    label="CIDR"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="currentNodeData.public_subnet"
-                    @input="updateValue($event, 'public_subnet')"
-                    color="primary"
-                    label="Public Subnet"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="currentNodeData.private_subnet"
-                    @input="updateValue($event, 'private_subnet')"
-                    color="primary"
-                    label="Private Subnet"
-                    variant="underlined"
-                ></v-text-field>
-                <v-row>
-                    <v-col class="text-right">
-                        <v-btn class="cancel-btn" @click="closeForm"
-                            >Close</v-btn
-                        >
-                        <v-btn class="save-btn" @click="saveForm">Save</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        <VPCDrawer
+            :currentNodeData="currentNodeData"
+            @saveForm="saveForm"
+            @closeForm="closeForm"
+        />
     </div>
 </template>
 
@@ -495,8 +164,5 @@ onBeforeUpdate(() => {
     background-color: #404ae7;
     color: white;
     font-weight: bold;
-}
-
-.cancel-btn {
 }
 </style>

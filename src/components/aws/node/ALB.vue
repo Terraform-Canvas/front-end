@@ -44,7 +44,6 @@ onNodeDragStop((nodeDragEvent) => {
             <div class="node-logo">
                 <v-img src="@/assets/resources/aws/ELB.svg" />
             </div>
-            <div class="node-detail">ALB type</div>
         </div>
     </div>
 </template>
