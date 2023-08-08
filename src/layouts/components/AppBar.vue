@@ -21,7 +21,10 @@
 <script setup>
 import UserProfile from '@/components/dashboard/UserProfile.vue';
 import store from '@/store';
-store.dispatch('user/getKey')
+import { onMounted } from 'vue';
+onMounted(() => {
+    store.dispatch('user/getKey')
+})
 </script>
 
 <style>
