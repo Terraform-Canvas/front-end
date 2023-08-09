@@ -5,7 +5,7 @@ let tempNodeData = {};
 let args = ['control', 'managed', 'fargate'];
 
 const eks_type_toggles = reactive({
-    control: false,
+    control: true,
     managed: false,
     fargate: false,
 });
@@ -72,69 +72,50 @@ const handleUpdate = (newTextValue, arg1, arg2, type) => {
                     Elastic Kubernetes Service
                 </div>
             </v-row>
-            <v-switch
-                label="EKS control"
+            <v-text-field
+                :model-value="tempNodeData?.control?.name"
+                @input="handleUpdate($event, 'control', 'name')"
                 color="primary"
-                v-model="eks_type_toggles['control']"
-                inset
-            >
-            </v-switch>
-            <div v-if="eks_type_toggles['control']">
-                <v-text-field
-                    :model-value="tempNodeData?.control?.name"
-                    @input="handleUpdate($event, 'control', 'name')"
-                    color="primary"
-                    label="Name"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="tempNodeData?.control?.cluster_version"
-                    @input="handleUpdate($event, 'control', 'cluster_version')"
-                    color="primary"
-                    label="Cluster Version"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="tempNodeData?.control?.userarn"
-                    @input="handleUpdate($event, 'control', 'userarn')"
-                    color="primary"
-                    label="User ARN"
-                    variant="underlined"
-                ></v-text-field>
-                <v-text-field
-                    :model-value="tempNodeData?.control?.username"
-                    @input="handleUpdate($event, 'control', 'username')"
-                    color="primary"
-                    label="User Name"
-                    variant="underlined"
-                ></v-text-field>
-                <v-switch
-                    :model-value="tempNodeData?.control?.endpoint_public"
-                    @input="
-                        handleUpdate(
-                            $event,
-                            'control',
-                            'endpoint_public',
-                            'bool',
-                        )
-                    "
-                    color="primary"
-                    label="endpoint_public"
-                />
-                <v-switch
-                    :model-value="tempNodeData?.control?.endpoint_private"
-                    @input="
-                        handleUpdate(
-                            $event,
-                            'control',
-                            'endpoint_private',
-                            'bool',
-                        )
-                    "
-                    color="primary"
-                    label="endpoint_private"
-                />
-            </div>
+                label="Name"
+                variant="underlined"
+            ></v-text-field>
+            <v-text-field
+                :model-value="tempNodeData?.control?.cluster_version"
+                @input="handleUpdate($event, 'control', 'cluster_version')"
+                color="primary"
+                label="Cluster Version"
+                variant="underlined"
+            ></v-text-field>
+            <v-text-field
+                :model-value="tempNodeData?.control?.userarn"
+                @input="handleUpdate($event, 'control', 'userarn')"
+                color="primary"
+                label="User ARN"
+                variant="underlined"
+            ></v-text-field>
+            <v-text-field
+                :model-value="tempNodeData?.control?.username"
+                @input="handleUpdate($event, 'control', 'username')"
+                color="primary"
+                label="User Name"
+                variant="underlined"
+            ></v-text-field>
+            <v-switch
+                :model-value="tempNodeData?.control?.endpoint_public"
+                @input="
+                    handleUpdate($event, 'control', 'endpoint_public', 'bool')
+                "
+                color="primary"
+                label="endpoint_public"
+            />
+            <v-switch
+                :model-value="tempNodeData?.control?.endpoint_private"
+                @input="
+                    handleUpdate($event, 'control', 'endpoint_private', 'bool')
+                "
+                color="primary"
+                label="endpoint_private"
+            />
             <v-switch
                 label="EKS managed"
                 color="primary"
