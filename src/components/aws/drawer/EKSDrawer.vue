@@ -1,8 +1,9 @@
 <script setup>
 import { onMounted, defineEmits, defineProps, reactive } from 'vue';
 
-let tempNodeData = {};
+let tempNodeData = reactive({});
 let args = ['control', 'managed', 'fargate'];
+let cluster_versions = ['1.23', '1.24', '1.25', '1.26', '1.27'];
 
 const eks_type_toggles = reactive({
     control: true,
@@ -25,13 +26,17 @@ const handleSave = () => {
 };
 
 const handleClose = () => {
-    tempNodeData = {};
+    tempNodeData = reactive({});
     emit('closeForm');
 };
 
 onMounted(() => {
-    tempNodeData = JSON.parse(JSON.stringify(props.currentNodeData));
-
+    tempNodeData = reactive(JSON.parse(JSON.stringify(props.currentNodeData)));
+    for (let arg of args) {
+        if (!eks_type_toggles[arg]) {
+            tempNodeData[arg] = {};
+        }
+    }
     for (let arg of args) {
         if (tempNodeData[arg] && Object.keys(tempNodeData[arg]).length) {
             eks_type_toggles[arg] = true;
@@ -52,6 +57,10 @@ const handleUpdate = (newTextValue, arg1, arg2, type) => {
     } else if (type == 'list') {
         tempNodeData[arg1][arg2] = [newTextValue.target.value];
     }
+};
+
+const handleComboboxUpdate = (newTextValue, arg1, arg2) => {
+    tempNodeData[arg1][arg2] = newTextValue;
 };
 </script>
 <template>
@@ -79,13 +88,16 @@ const handleUpdate = (newTextValue, arg1, arg2, type) => {
                 label="Name"
                 variant="underlined"
             ></v-text-field>
-            <v-text-field
+            <v-combobox
                 :model-value="tempNodeData?.control?.cluster_version"
-                @input="handleUpdate($event, 'control', 'cluster_version')"
+                @update:model-value="
+                    handleComboboxUpdate($event, 'control', 'cluster_version')
+                "
+                :items="cluster_versions"
                 color="primary"
                 label="Cluster Version"
                 variant="underlined"
-            ></v-text-field>
+            />
             <v-text-field
                 :model-value="tempNodeData?.control?.userarn"
                 @input="handleUpdate($event, 'control', 'userarn')"
