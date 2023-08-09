@@ -31,7 +31,7 @@ const required = (v) => !!v || 'Field is required!';
 const logout = () => {
     store.dispatch('login/logout');
 };
-watch(menu, async(newVal, oldVal) => {
+watch(menu, (newVal, oldVal) => {
     if (keyStatus.accessKey === null || keyStatus.secretKey === null) {
         const data = store.getters["user/getKeyStatus"]
         keyStatus.accessKey = data.accessKey;
