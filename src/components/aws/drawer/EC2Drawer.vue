@@ -1,16 +1,9 @@
 <script setup>
-import { onMounted, defineEmits, defineProps } from 'vue';
+import { onMounted, defineEmits, defineProps, reactive } from 'vue';
 import store from '@/store';
-let instance_items = [];
+let instance_items = reactive([]);
 
-let tempNodeData = {};
-store.dispatch('aws/getInstanceTypes').then((res) => {
-    const instance_type = store.state.aws.instance_types;
-    for (let value of instance_type) {
-        instance_items.push(value.InstanceType);
-    }
-    instance_items.sort();
-});
+let tempNodeData = reactive({});
 
 const emit = defineEmits(['saveForm', 'closeForm']);
 const props = defineProps(['currentNodeData']);
@@ -26,7 +19,14 @@ const handleClose = () => {
 };
 
 onMounted(() => {
-    tempNodeData = { ...props.currentNodeData };
+    tempNodeData = reactive({ ...props.currentNodeData });
+    store.dispatch('aws/getInstanceTypes').then((res) => {
+        const instance_type = store.state.aws.instance_types;
+        for (let value of instance_type) {
+            instance_items.push(value.InstanceType);
+        }
+        instance_items.sort();
+    });
 });
 
 const handleUpdate = (newTextValue, arg, type) => {
@@ -56,8 +56,7 @@ const handleUpdate = (newTextValue, arg, type) => {
                 <div class="drawer-header-title">EC2</div>
             </v-row>
             <v-combobox
-                :model-value="tempNodeData.instance_type"
-                @input="handleUpdate($event, 'instance_type', 'str')"
+                v-model="tempNodeData.instance_type"
                 :items="instance_items"
                 color="primary"
                 label="Instance Type"

@@ -1,16 +1,9 @@
 <script setup>
-import { onMounted, defineEmits, defineProps } from 'vue';
+import { onMounted, defineEmits, defineProps, reactive } from 'vue';
 import store from '@/store';
-let instance_items = [];
+let instance_items = reactive([]);
 
-let tempNodeData = {};
-store.dispatch('aws/getInstanceTypes').then((res) => {
-    const instance_type = store.state.aws.instance_types;
-    for (let value of instance_type) {
-        instance_items.push(value.InstanceType);
-    }
-    instance_items.sort();
-});
+let tempNodeData = reactive({});
 
 const emit = defineEmits(['saveForm', 'closeForm']);
 const props = defineProps(['currentNodeData']);
@@ -26,10 +19,16 @@ const handleClose = () => {
 };
 
 onMounted(() => {
-    tempNodeData = { ...props.currentNodeData };
+    tempNodeData = reactive({ ...props.currentNodeData });
+    store.dispatch('aws/getInstanceTypes').then((res) => {
+        const instance_type = store.state.aws.instance_types;
+        for (let value of instance_type) {
+            instance_items.push(value.InstanceType);
+        }
+        instance_items.sort();
+    });
+    store.dispatch('aws/getAMI');
 });
-
-store.dispatch('aws/getAMI');
 
 const handleUpdate = (newTextValue, arg, type) => {
     if (type == 'str' || !type) {
@@ -80,8 +79,7 @@ const handleUpdate = (newTextValue, arg, type) => {
                 variant="underlined"
             ></v-text-field>
             <v-combobox
-                :model-value="tempNodeData.image_id"
-                @input="handleUpdate($event, 'image_id')"
+                v-model="tempNodeData.image_id"
                 :items="store.state.aws.ami"
                 item-title="ImageId"
                 item-value="ImageId"
@@ -103,8 +101,7 @@ const handleUpdate = (newTextValue, arg, type) => {
                 </template>
             </v-combobox>
             <v-combobox
-                :model-value="tempNodeData.instance_type"
-                @input="handleUpdate($event, 'instance_type')"
+                v-model="tempNodeData.instance_type"
                 :items="instance_items"
                 color="primary"
                 label="Instance Type"
