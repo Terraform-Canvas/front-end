@@ -16,16 +16,12 @@
             <v-row class="row-vueflow">
                 <v-col><NodePlane @nodeClicked="handleRightDrawer" /></v-col>
             </v-row>
-            <v-row>
-                <v-col><MainBottom /></v-col>
-            </v-row>
         </v-container>
     </v-main>
 </template>
 
 <script setup>
 import NodePlane from '@/components/node/NodePlane';
-import MainBottom from '@/components/dashboard/MainBottom';
 import DrawerInput from '@/components/aws/DrawerInput.vue';
 import { ref } from 'vue';
 import store from '@/store';
