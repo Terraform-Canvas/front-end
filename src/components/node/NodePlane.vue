@@ -47,6 +47,15 @@ const {
     nodes: [],
 });
 
+onMounted(() => {
+    if (!store.getters['aws/getInstanceValue']) {
+        store.dispatch('aws/getInstanceTypes');
+    }
+    if (!store.getters['aws/getAMIValue']) {
+        store.dispatch('aws/getAMI');
+    }
+});
+
 onNodeClick((MouseEvent) => {
     nodeClicked();
     store.dispatch('node/setSelectedNode', getSelectedNodes.value[0]);
