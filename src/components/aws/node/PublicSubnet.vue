@@ -14,7 +14,10 @@ onNodeDragStop((nodeDragEvent) => {
             .filter((e) => {
                 const nodeType = findNode(e.id).type;
                 return (
-                    nodeType == 'asg' || nodeType == 'sg' || nodeType == 'vpc'
+                    nodeType == 'asg' ||
+                    nodeType == 'sg' ||
+                    nodeType == 'vpc' ||
+                    nodeType == 'alb'
                 );
             })
             .map((e) => e);
