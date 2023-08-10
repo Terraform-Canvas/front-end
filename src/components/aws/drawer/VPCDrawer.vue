@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, defineEmits, defineProps } from 'vue';
+import { onMounted, defineEmits, defineProps, reactive } from 'vue';
 
-let tempNodeData = {};
+let tempNodeData = reactive({});
 
 const emit = defineEmits(['saveForm', 'closeForm']);
 const props = defineProps(['currentNodeData']);
@@ -17,7 +17,7 @@ const handleClose = () => {
 };
 
 onMounted(() => {
-    tempNodeData = { ...props.currentNodeData };
+    tempNodeData = reactive({ ...props.currentNodeData });
 });
 
 const handleUpdate = (newTextValue, arg, type) => {
@@ -64,19 +64,32 @@ const handleUpdate = (newTextValue, arg, type) => {
                 variant="underlined"
             ></v-text-field>
             <v-text-field
-                :model-value="tempNodeData.public_subnet"
-                @input="handleUpdate($event, 'public_subnet', 'int')"
+                :model-value="tempNodeData.publicsubnet"
+                @input="handleUpdate($event, 'publicsubnet', 'int')"
                 color="primary"
                 label="Public Subnet"
                 variant="underlined"
             ></v-text-field>
             <v-text-field
-                :model-value="tempNodeData.private_subnet"
-                @input="handleUpdate($event, 'private_subnet', 'int')"
+                :model-value="tempNodeData.privatesubnet"
+                @input="handleUpdate($event, 'privatesubnet', 'int')"
                 color="primary"
                 label="Private Subnet"
                 variant="underlined"
             ></v-text-field>
+            <v-select
+                label="AZS"
+                v-model="tempNodeData.azs"
+                multiple
+                :items="['us-east-1a', 'us-east-1b', 'us-east-1c']"
+            >
+            </v-select>
+            <v-switch
+                :model-value="tempNodeData.nat_gateway"
+                @input="handleUpdate($event, 'nat_gateway', 'bool')"
+                color="primary"
+                label="nat_gateway"
+            />
             <v-row>
                 <v-col class="text-right">
                     <v-btn class="cancel-btn" @click="handleClose">Close</v-btn>
