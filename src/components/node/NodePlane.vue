@@ -74,6 +74,7 @@ watch(blueprintNodes, (newValue, oldValue) => {
     if (newValue) {
         let nodeData = newValue;
         addNodes(nodeData);
+        id += getNodes.value.length;
     }
 });
 
@@ -92,7 +93,6 @@ function onDrop(event) {
         position,
         label: `${type} node`,
     };
-
     addNodes([newNode]);
 
     // align node position after drop, so it's centered to the mouse
@@ -138,7 +138,7 @@ const exportAndOpenModal = () => {
         axios
             .post('/terraform/usertf', exportData.value)
             .then((res) => {
-                btnData.value = 'run';
+                btnData.value = 'destroy';
                 btnType.value = 'success';
                 btnMsg.value = 'tf 생성 완료';
                 btnLoader.value = false;
