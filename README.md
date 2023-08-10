@@ -37,22 +37,22 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#mag-about-the-projectt">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#card_file_box-built-with">Built With</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#rocket-getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-                <li><a href="#guideline">Guideline</a></li>
+        <li><a href="#zap-prerequisites">Prerequisites</a></li>
+                <li><a href="#-guideline">Guideline</a></li>
       </ul>
     </li>
-    <li><a href="#features">Features</a></li>
-        <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#globe_with_meridians-features">Features</a></li>
+        <li><a href="#fire-contributing">Contributing</a></li>
+    <li><a href="#closed_lock_with_key-license">License</a></li>
+    <li><a href="#speech_balloon-contact">Contact</a></li>
   </ol>
 </details>
 
@@ -120,14 +120,19 @@ Download and install packages and associated dependencies via `yarn install`
 
 
 ## :globe_with_meridians: Features
-TBA
+- Terraform File Generation and Execution Through Visual Programming
+- User Private Key Registration for Provisioning
+- Quick and Convenient Environment Configuration Using Pre-Prepared Blueprints
+  
+![canvas-ex-1](https://github.com/Terraform-Canvas/front-end/assets/16442978/94fccd75-e988-4ad5-a10f-6391ae5aac61)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- CONTRIBUTING -->
 ## :fire: Contributing
-Please refer to `CONTRIBUTION.txt` for Contribution.
+Please refer to [CONTRIBUTION.md](https://github.com/Terraform-Canvas/front-end/blob/main/CONTRIBUTING.md) for Contribution.
 
 For issues, new functions and requests to modify please follow the following procedure. 🥰
 
