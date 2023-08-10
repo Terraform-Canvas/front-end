@@ -24,7 +24,12 @@ axios.interceptors.request.use(
         config.headers['Authorization'] =
             'Bearer ' + VueCookies.get('accessToken');
         config.headers['X-refresh-token'] = VueCookies.get('refreshToken');
-        config.headers['Content-Type'] = 'application/json';
+        const regexp = /s3/;
+        if (regexp.test(config.url)) {
+            config.headers['Content-Type'] = 'multipart/form-data';
+        } else {
+            config.headers['Content-Type'] = 'application/json';
+        }
         return config;
     },
     function (error) {
