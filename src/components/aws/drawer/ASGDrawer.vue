@@ -32,6 +32,10 @@ const handleUpdate = (newTextValue, arg, type) => {
         tempNodeData[arg] = Number(newTextValue.target.value);
     }
 };
+
+const handleAMIUpdate = (value, arg) => {
+    tempNodeData[arg] = value.ImageId;
+};
 </script>
 <template>
     <v-card class="mx-auto">
@@ -72,7 +76,8 @@ const handleUpdate = (newTextValue, arg, type) => {
                 variant="underlined"
             ></v-text-field>
             <v-combobox
-                v-model="tempNodeData.image_id"
+                :model-value="tempNodeData.image_id"
+                @update:model-value="handleAMIUpdate($event, 'image_id')"
                 :items="store.state.aws.ami"
                 item-title="ImageId"
                 item-value="ImageId"
