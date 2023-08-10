@@ -9,11 +9,11 @@
         </v-responsive>
         <v-spacer></v-spacer>
 
-        <template v-slot:extension>
+        <!-- <template v-slot:extension>
             <v-tabs>
                 <v-tab class="white--text text-none" href="/">main</v-tab>
             </v-tabs>
-        </template>
+        </template> -->
         <BluePrint />
         <UserProfile />
     </v-app-bar>
