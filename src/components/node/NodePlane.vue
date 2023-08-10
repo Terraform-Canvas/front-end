@@ -133,7 +133,6 @@ const exportAndOpenModal = () => {
         exportDataArr.push(nodeData);
     });
     exportData.value = JSON.stringify(exportDataArr);
-    showModal.value = true;
 
     if (btnData.value === 'create') {
         axios
@@ -143,29 +142,33 @@ const exportAndOpenModal = () => {
                 btnType.value = 'success';
                 btnMsg.value = 'tf 생성 완료';
                 btnLoader.value = false;
+                showModal.value = true;
             })
             .catch((err) => {
                 btnMsg.value = 'tf 생성 실패';
                 btnType.value = 'warning';
                 btnLoader.value = false;
+                showModal.value = true;
                 console.error(err);
             });
-    } else if (btnData.value === 'run') {
-        axios
-            .post('/terraform/apply', exportData.value)
-            .then((res) => {
-                btnData.value = 'destroy';
-                btnMsg.value = 'tf 실행 완료';
-                btnType.value = 'success';
-                btnLoader.value = false;
-            })
-            .catch((err) => {
-                btnMsg.value = 'tf 실행 실패';
-                btnType.value = 'warning';
-                btnLoader.value = false;
-                console.error(err);
-            });
-    } else if (btnData.value === 'destroy') {
+    }
+    // else if (btnData.value === 'run') {
+    //     axios
+    //         .post('/terraform/apply', exportData.value)
+    //         .then((res) => {
+    //             btnData.value = 'destroy';
+    //             btnMsg.value = 'tf 실행 완료';
+    //             btnType.value = 'success';
+    //             btnLoader.value = false;
+    //         })
+    //         .catch((err) => {
+    //             btnMsg.value = 'tf 실행 실패';
+    //             btnType.value = 'warning';
+    //             btnLoader.value = false;
+    //             console.error(err);
+    //         });
+    // }
+    else if (btnData.value === 'destroy') {
         axios
             .post('/terraform/destroy')
             .then((res) => {
@@ -173,11 +176,13 @@ const exportAndOpenModal = () => {
                 btnMsg.value = 'tf 삭제 완료';
                 btnType.value = 'success';
                 btnLoader.value = false;
+                showModal.value = true;
             })
             .catch((err) => {
                 btnMsg.value = 'tf 삭제 실패';
                 btnType.value = 'warning';
                 btnLoader.value = false;
+                showModal.value = true;
                 console.error(err);
             });
     }
