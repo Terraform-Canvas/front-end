@@ -20,7 +20,7 @@ export const blueprintData = {
                 name: 'example-vpc',
                 cidr: '10.0.0.0/16',
                 publicsubnet: 2,
-                privatesubnet: 3,
+                privatesubnet: 2,
                 azs: ['us-east-1c', 'us-east-1a'],
                 nat_gateway: true,
             },
