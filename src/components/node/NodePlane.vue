@@ -125,7 +125,6 @@ const exportAndOpenModal = () => {
     });
     exportData.value = JSON.stringify(exportDataArr);
     showModal.value = true;
-    console.log(exportData.value);
     if (btnData.value === 'create') {
         axios
             .post('/terraform/usertf', exportData.value)
@@ -145,13 +144,28 @@ const exportAndOpenModal = () => {
         axios
             .post('/terraform/apply', exportData.value)
             .then((res) => {
-                btnData.value = 'create';
+                btnData.value = 'destroy';
                 btnMsg.value = 'tf 실행 완료';
                 btnType.value = 'success';
                 btnLoader.value = false;
             })
             .catch((err) => {
                 btnMsg.value = 'tf 실행 실패';
+                btnType.value = 'warning';
+                btnLoader.value = false;
+                console.error(err);
+            });
+    } else if (btnData.value === 'destroy') {
+        axios
+            .post('/terraform/destroy')
+            .then((res) => {
+                btnData.value = 'create';
+                btnMsg.value = 'tf 삭제 완료';
+                btnType.value = 'success';
+                btnLoader.value = false;
+            })
+            .catch((err) => {
+                btnMsg.value = 'tf 삭제 실패';
                 btnType.value = 'warning';
                 btnLoader.value = false;
                 console.error(err);
