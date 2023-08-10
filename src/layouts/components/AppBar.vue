@@ -14,12 +14,19 @@
                 <v-tab class="white--text text-none" href="/">main</v-tab>
             </v-tabs>
         </template>
+        <BluePrint />
         <UserProfile />
     </v-app-bar>
 </template>
 
 <script setup>
 import UserProfile from '@/components/dashboard/UserProfile.vue';
+import BluePrint from '@/components/dashboard/BluePrint.vue';
+import store from '@/store';
+import { onMounted } from 'vue';
+onMounted(() => {
+    store.dispatch('user/getKey')
+})
 </script>
 
 <style>

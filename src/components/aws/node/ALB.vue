@@ -1,5 +1,5 @@
 <script setup>
-import ResourceNodeCommon from './ResourceNodeCommon.vue';
+import ResourceNodeCommon from '@/components/aws/ResourceNodeCommon.vue';
 
 import { useVueFlow, useNode } from '@vue-flow/core';
 
@@ -14,7 +14,9 @@ onNodeDragStop((nodeDragEvent) => {
             .filter((e) => {
                 const nodeType = findNode(e.id).type;
                 return (
-                    nodeType == 'privatesubnet' || nodeType == 'publicsubnet'
+                    nodeType == 'privatesubnet' ||
+                    nodeType == 'publicsubnet' ||
+                    nodeType == 'vpc'
                 );
             })
             .map((e) => e);
@@ -41,15 +43,14 @@ onNodeDragStop((nodeDragEvent) => {
 <template>
     <div class="node-wrapper">
         <div class="node-header">
-            <div class="node-title">EC2</div>
+            <div class="node-title">ELB</div>
             <ResourceNodeCommon />
         </div>
 
         <div class="node-detail-container">
             <div class="node-logo">
-                <v-img src="@/assets/resources/aws/EC2.svg" />
+                <v-img src="@/assets/resources/aws/ELB.svg" />
             </div>
-            <div class="node-detail">{{ node.data.instance_type }}</div>
         </div>
     </div>
 </template>

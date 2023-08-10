@@ -1,5 +1,5 @@
 <script setup>
-import ResourceNodeCommon from './ResourceNodeCommon.vue';
+import ResourceNodeCommon from '@/components/aws/ResourceNodeCommon.vue';
 </script>
 
 <template>

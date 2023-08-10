@@ -1,35 +1,46 @@
 <script setup>
 import store from '@/store';
-import axios from 'axios';
-import { ref } from 'vue';
+import { ref,watch } from 'vue';
 let menu = ref(false);
 let reset = ref(false);
 let accessKey = ref(null);
 let secretKey = ref(null);
+let keyStatus = {
+    accessKey:null,
+    secretKey:null
+}
 let showAccess = ref(false);
 let showSecret = ref(false);
 const save = function () {
     //실제 api 호출 관련 필요..
-    reset.value = false;
-    axios
-        .post('/user/key', {
-            accessKey: accessKey.value,
-            secretKey: secretKey.value,
-        })
-        .then((res) => {
-            menu.value = false;
-            accessKey.value = null;
-            secretKey.value = null;
-        })
-        .catch((err) => {
-            console.error(err);
-            //에러 처리 따로 추가 필요
-        });
+    store.dispatch('user/saveKey',{
+        accessKey: accessKey.value,
+        secretKey: secretKey.value,
+    }).then((res)=>{
+        reset.value = false;
+        menu.value = false;
+        accessKey.value = null;
+        secretKey.value = null;
+    })
 };
+const closeMenu = function () {
+    reset.value = false;
+    menu.value = false;
+}
 const required = (v) => !!v || 'Field is required!';
 const logout = () => {
     store.dispatch('login/logout');
 };
+watch(menu, (newVal, oldVal) => {
+    if (keyStatus.accessKey === null || keyStatus.secretKey === null) {
+        const data = store.getters["user/getKeyStatus"]
+        keyStatus.accessKey = data.accessKey;
+        keyStatus.secretKey = data.secretKey;
+    }
+    reset.value = false;
+    accessKey.value = null;
+    secretKey.value = null;
+})
 </script>
 
 <style>
@@ -37,6 +48,12 @@ const logout = () => {
     width: 50%;
     align-items: center;
     justify-self: center;
+}
+.text-row-style {
+    height: 120px;
+}
+.text-field-style {
+    height: 50px;
 }
 </style>
 
@@ -54,25 +71,58 @@ const logout = () => {
                     :title="store.state.user.name"
                     :subtitle="store.state.user.email"
                 />
-                <v-list-item>
-                    <v-spacer />
+                <v-list-item align="right">
                     <v-btn variant="text" @click="logout">로그아웃</v-btn>
                 </v-list-item>
             </v-list>
             <v-divider />
             <v-list v-if="!reset">
-                <!-- subtitle의 경우 enable disable 구분 필요 -->
-                <v-list-item title="access key"> </v-list-item>
-                <v-list-item title="secret key"> </v-list-item>
+                <v-list-item>
+                    <v-list-item-title>
+                        <v-row>
+                            <v-col cols="12" md="4" align="right">
+                                ACCESS KEY 
+                            </v-col>
+                            <v-col cols="12" md="3" align="center">
+                                <v-icon color="black" icon="mdi-arrow-right-bold-box-outline"/>
+                            </v-col>
+                            <v-col cols="12" md="5" align="center" v-if="keyStatus.accessKey===null">
+                                <v-chip color="red" text-color="white">Disabled</v-chip>
+                            </v-col>
+                            <v-col cols="12" md="5" align="center" v-else>
+                                <v-chip color="green" text-color="white">Enabled</v-chip>
+                            </v-col>
+                        </v-row>
+                    </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                    <v-list-item-title>
+                        <v-row>
+                            <v-col cols="12" md="4" align="right">
+                                SECRET KEY 
+                            </v-col>
+                            <v-col cols="12" md="3" align="center">
+                                <v-icon color="black" icon="mdi-arrow-right-bold-box-outline"/>
+                            </v-col>
+                            <v-col cols="12" md="5" align="center" v-if="keyStatus.secretKey===null">
+                                <v-chip color="red" text-color="white">Disabled</v-chip>
+                            </v-col>
+                            <v-col cols="12" md="5" align="center" v-else>
+                                <v-chip color="green" text-color="white">Enabled</v-chip>
+                            </v-col>
+                        </v-row>
+                    </v-list-item-title>
+                </v-list-item>
             </v-list>
-            <v-list v-else class="">
+            <v-list v-else>
                 <v-card elevation="0">
                     <v-row
                         align="center"
                         justify="center"
                         align-content="center"
+                        class="text-row-style"
                     >
-                        <v-col cols="12" md="3" align="right">Access = </v-col>
+                        <v-col cols="12" md="4" align="right">ACCESS_KEY = </v-col>
                         <v-col cols="12" md="8" align="left">
                             <v-text-field
                                 v-model="accessKey"
@@ -86,7 +136,8 @@ const logout = () => {
                                 :type="showAccess ? 'text' : 'password'"
                                 @click:prepend-inner="showAccess = !showAccess"
                                 counter
-                                variant="solo-filled"
+                                variant="outlined"
+                                class="text-field-style"
                             ></v-text-field>
                         </v-col>
                     </v-row>
@@ -94,9 +145,10 @@ const logout = () => {
                         align="center"
                         justify="center"
                         align-content="center"
+                        class="text-row-style"
                     >
-                        <v-col cols="12" md="3" align="right">Secret = </v-col>
-                        <v-col cols="12" md="8" align="left">
+                        <v-col cols="12" md="4" align="right">SECRET_KEY = </v-col>
+                        <v-col cols="12" sm="8" align="left">
                             <v-text-field
                                 v-model="secretKey"
                                 :rules="[required]"
@@ -109,7 +161,8 @@ const logout = () => {
                                 :type="showSecret ? 'text' : 'password'"
                                 @click:prepend-inner="showSecret = !showSecret"
                                 counter
-                                variant="solo-filled"
+                                variant="outlined"
+                                class="text-field-style"
                             ></v-text-field>
                         </v-col>
                     </v-row>
@@ -117,7 +170,7 @@ const logout = () => {
             </v-list>
             <v-card-actions>
                 <v-spacer />
-                <v-btn variant="text" @click="menu = false"> 닫기 </v-btn>
+                <v-btn variant="text" @click="closeMenu"> 닫기 </v-btn>
                 <v-btn
                     color="primary"
                     variant="text"

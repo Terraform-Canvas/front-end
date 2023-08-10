@@ -1,5 +1,5 @@
 <script setup>
-import ResourceNodeCommon from './ResourceNodeCommon.vue';
+import ResourceNodeCommon from '@/components/aws/ResourceNodeCommon.vue';
 
 import { useVueFlow, useNode } from '@vue-flow/core';
 
@@ -13,7 +13,9 @@ onNodeDragStop((nodeDragEvent) => {
         const filteredNodes = intersectingNodes
             .filter((e) => {
                 const nodeType = findNode(e.id).type;
-                return nodeType == 'asg' || nodeType == 'vpc';
+                return (
+                    nodeType == 'asg' || nodeType == 'sg' || nodeType == 'vpc'
+                );
             })
             .map((e) => e);
 
@@ -39,8 +41,13 @@ onNodeDragStop((nodeDragEvent) => {
 <template>
     <div class="node-wrapper">
         <div class="node-header">
-            <div class="node-title">Security Group</div>
+            <div class="node-title">Public Subnet</div>
             <ResourceNodeCommon />
+        </div>
+        <div class="node-detail-container">
+            <div class="node-logo">
+                <v-img src="@/assets/resources/aws/PUBLICSN.svg" />
+            </div>
         </div>
     </div>
 </template>

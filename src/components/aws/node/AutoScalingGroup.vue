@@ -1,5 +1,5 @@
 <script setup>
-import ResourceNodeCommon from './ResourceNodeCommon.vue';
+import ResourceNodeCommon from '@/components/aws/ResourceNodeCommon.vue';
 
 import { useVueFlow, useNode } from '@vue-flow/core';
 
@@ -11,12 +11,7 @@ onNodeDragStop((nodeDragEvent) => {
     if (nodeDragEvent.node?.id == node.id) {
         const intersectingNodes = getIntersectingNodes(node);
         const filteredNodes = intersectingNodes
-            .filter((e) => {
-                const nodeType = findNode(e.id).type;
-                return (
-                    nodeType == 'privatesubnet' || nodeType == 'publicsubnet'
-                );
-            })
+            .filter((e) => findNode(e.id).type == 'vpc')
             .map((e) => e);
 
         const parentId = filteredNodes[filteredNodes.length - 1]?.id;
@@ -41,13 +36,12 @@ onNodeDragStop((nodeDragEvent) => {
 <template>
     <div class="node-wrapper">
         <div class="node-header">
-            <div class="node-title">EKS</div>
+            <div class="node-title">Auto Scailing Group</div>
             <ResourceNodeCommon />
         </div>
-
         <div class="node-detail-container">
             <div class="node-logo">
-                <v-img src="@/assets/resources/aws/EKS.svg" />
+                <v-img src="@/assets/resources/aws/ASG.svg" />
             </div>
         </div>
     </div>
@@ -73,7 +67,7 @@ onNodeDragStop((nodeDragEvent) => {
 
 .node-detail-container {
     display: flex;
-    padding-top: 10px;
+    padding-top: 3rem !important;
 }
 .node-logo {
     width: 30px;
