@@ -125,6 +125,7 @@ const exportAndOpenModal = () => {
     });
     exportData.value = JSON.stringify(exportDataArr);
     showModal.value = true;
+    console.log(exportData.value);
     if (btnData.value === 'create') {
         axios
             .post('/terraform/usertf', exportData.value)

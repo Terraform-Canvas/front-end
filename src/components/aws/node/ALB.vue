@@ -13,11 +13,7 @@ onNodeDragStop((nodeDragEvent) => {
         const filteredNodes = intersectingNodes
             .filter((e) => {
                 const nodeType = findNode(e.id).type;
-                return (
-                    nodeType == 'privatesubnet' ||
-                    nodeType == 'publicsubnet' ||
-                    nodeType == 'vpc'
-                );
+                return nodeType == 'vpc';
             })
             .map((e) => e);
 
