@@ -14,12 +14,14 @@
                 <v-tab class="white--text text-none" href="/">main</v-tab>
             </v-tabs>
         </template>
+        <BluePrint />
         <UserProfile />
     </v-app-bar>
 </template>
 
 <script setup>
 import UserProfile from '@/components/dashboard/UserProfile.vue';
+import BluePrint from '@/components/dashboard/BluePrint.vue';
 </script>
 
 <style>
