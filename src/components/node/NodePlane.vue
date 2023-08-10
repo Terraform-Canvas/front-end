@@ -251,6 +251,9 @@ const exportAndOpenModal = () => {
 </template>
 
 <style>
+.vue-flow__controls {
+    box-shadow: unset !important;
+}
 .header-utils {
     display: flex;
 }
