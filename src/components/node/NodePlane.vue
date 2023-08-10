@@ -138,7 +138,7 @@ const exportAndOpenModal = () => {
         axios
             .post('/terraform/usertf', exportData.value)
             .then((res) => {
-                btnData.value = 'run';
+                btnData.value = 'destroy';
                 btnType.value = 'success';
                 btnMsg.value = 'tf 생성 완료';
                 btnLoader.value = false;
