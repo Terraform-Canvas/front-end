@@ -27,6 +27,7 @@ onMounted(() => {
         }
         instance_items.sort();
     });
+    console.log(instance_items);
     store.dispatch('aws/getAMI');
 });
 

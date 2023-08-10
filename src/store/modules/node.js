@@ -1,10 +1,14 @@
 const state = () => ({
     selectedNode: null,
+    blueprintNodes: null,
 });
 
 const getters = {
     getSelectedNode: function (state) {
         return state.selectedNode;
+    },
+    getBlueprintNodes: function (state) {
+        return state.blueprintNodes;
     },
 };
 
@@ -18,6 +22,9 @@ const actions = {
     resetSelectedNode: function ({ commit }) {
         commit('RESET_SELECTED_NODE');
     },
+    setBluePrintNodes: function ({ commit }, nodes) {
+        commit('SET_BLUEPRINT_NODES', nodes);
+    },
 };
 
 const mutations = {
@@ -30,6 +37,9 @@ const mutations = {
     },
     RESET_SELECTED_NODE: function (state) {
         state.selectedNode = null;
+    },
+    SET_BLUEPRINT_NODES: function (state, nodes) {
+        state.blueprintNodes = nodes;
     },
 };
 

@@ -13,7 +13,7 @@ import AutoScalingGroup from '@/components/aws/node/AutoScalingGroup.vue';
 import EKS from '@/components/aws/node/EKS.vue';
 
 import { VueFlow, useVueFlow, PanelPosition } from '@vue-flow/core';
-import { nextTick, watch } from 'vue';
+import { nextTick, watch, computed, onMounted } from 'vue';
 import { Background } from '@vue-flow/background';
 import { Controls } from '@vue-flow/controls';
 import { MiniMap } from '@vue-flow/minimap';
@@ -32,7 +32,7 @@ const emit = defineEmits(['nodeClicked']);
 const nodeClicked = () => {
     emit('nodeClicked', getSelectedNodes);
 };
-
+const blueprintNodes = computed(() => store.getters['node/getBlueprintNodes']);
 const {
     findNode,
     onConnect,
@@ -60,6 +60,13 @@ function onDragOver(event) {
     }
 }
 onConnect((params) => addEdges(params));
+
+watch(blueprintNodes, (newValue, oldValue) => {
+    if (newValue) {
+        let nodeData = newValue;
+        addNodes(nodeData);
+    }
+});
 
 function onDrop(event) {
     const type = event.dataTransfer?.getData('application/vueflow');
