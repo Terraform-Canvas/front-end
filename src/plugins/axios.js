@@ -20,7 +20,7 @@ axios.interceptors.request.use(
             config.url = url + config.url; //host 및 url 방식 수정필요
         }
         //헤더 셋팅
-        config.timeout = 20000;
+        config.timeout = 60000000;
         config.headers['Authorization'] =
             'Bearer ' + VueCookies.get('accessToken');
         config.headers['X-refresh-token'] = VueCookies.get('refreshToken');
