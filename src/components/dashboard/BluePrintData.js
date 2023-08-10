@@ -188,7 +188,7 @@ export const blueprintData = {
             events: {},
             id: '6',
             position: {
-                x: 81.26572941241398,
+                x: 500.26572941241398,
                 y: 60.55606328618319,
             },
             label: 'alb node',
