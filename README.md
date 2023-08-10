@@ -120,7 +120,12 @@ Download and install packages and associated dependencies via `yarn install`
 
 
 ## :globe_with_meridians: Features
-TBA
+- Terraform File Generation and Execution Through Visual Programming
+- User Private Key Registration for Provisioning
+- Quick and Convenient Environment Configuration Using Pre-Prepared Blueprints
+  
+![canvas-ex-1](https://github.com/Terraform-Canvas/front-end/assets/16442978/94fccd75-e988-4ad5-a10f-6391ae5aac61)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
