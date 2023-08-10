@@ -42,19 +42,15 @@ const onClick = () => {
                                     ></v-img>
                                 </v-row>
 
-                                <v-row>
+                                <v-row class="text-header">
                                     <div>
-                                        Build Auto Scailing Group for scale
-                                        in-out.
+                                        Auto Scailing Group for scale in-out.
                                     </div>
                                 </v-row>
                                 <v-row>
                                     <div>
-                                        Resources <br />
-                                        <ul>
-                                            <li>Auto Scailing Group</li>
-                                            <li>Elastic Load Balancer</li>
-                                        </ul>
+                                        Build Auto Scailing Group using ELB and
+                                        ASG on AWS.
                                     </div>
                                 </v-row>
                             </v-container>
@@ -74,7 +70,10 @@ const onClick = () => {
 
 <style>
 .text-header {
-    font-weight: normal;
+    padding-top: 10px;
+    font-weight: bolder;
+}
+.text-description {
 }
 .dialog-form {
     min-width: 400px;
