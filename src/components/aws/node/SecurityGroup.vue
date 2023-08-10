@@ -1,5 +1,5 @@
 <script setup>
-import ResourceNodeCommon from './ResourceNodeCommon.vue';
+import ResourceNodeCommon from '@/components/aws/ResourceNodeCommon.vue';
 
 import { useVueFlow, useNode } from '@vue-flow/core';
 
@@ -11,7 +11,10 @@ onNodeDragStop((nodeDragEvent) => {
     if (nodeDragEvent.node?.id == node.id) {
         const intersectingNodes = getIntersectingNodes(node);
         const filteredNodes = intersectingNodes
-            .filter((e) => findNode(e.id).type == 'publicsubnet')
+            .filter((e) => {
+                const nodeType = findNode(e.id).type;
+                return nodeType == 'asg' || nodeType == 'vpc';
+            })
             .map((e) => e);
 
         const parentId = filteredNodes[filteredNodes.length - 1]?.id;
@@ -36,14 +39,8 @@ onNodeDragStop((nodeDragEvent) => {
 <template>
     <div class="node-wrapper">
         <div class="node-header">
-            <div class="node-title">NAT Gateway</div>
+            <div class="node-title">Security Group</div>
             <ResourceNodeCommon />
-        </div>
-
-        <div class="node-detail-container">
-            <div class="node-logo">
-                <v-img src="@/assets/resources/aws/NATG.svg" />
-            </div>
         </div>
     </div>
 </template>

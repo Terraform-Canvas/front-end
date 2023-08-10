@@ -2,15 +2,15 @@
 import ExamNode1 from './ExamNode1.vue';
 import ParentNode from './ParentNode.vue';
 
-import ALB from '@/components/aws/ALB.vue';
-import EC2 from '@/components/aws/EC2.vue';
-import NATGateway from '@/components/aws/NATGateway.vue';
-import PrivateSubnet from '@/components/aws/PrivateSubnet.vue';
-import PublicSubnet from '@/components/aws/PublicSubnet.vue';
-import SecurityGroup from '@/components/aws/SecurityGroup.vue';
-import Vpc from '@/components/aws/Vpc.vue';
-import AutoScalingGroup from '@/components/aws/AutoScalingGroup.vue';
-import EKS from '@/components/aws/EKS.vue';
+import ALB from '@/components/aws/node/ALB.vue';
+import EC2 from '@/components/aws/node/EC2.vue';
+import NATGateway from '@/components/aws/node/NATGateway.vue';
+import PrivateSubnet from '@/components/aws/node/PrivateSubnet.vue';
+import PublicSubnet from '@/components/aws/node/PublicSubnet.vue';
+import SecurityGroup from '@/components/aws/node/SecurityGroup.vue';
+import Vpc from '@/components/aws/node/Vpc.vue';
+import AutoScalingGroup from '@/components/aws/node/AutoScalingGroup.vue';
+import EKS from '@/components/aws/node/EKS.vue';
 
 import { VueFlow, useVueFlow, PanelPosition } from '@vue-flow/core';
 import { nextTick, watch } from 'vue';
