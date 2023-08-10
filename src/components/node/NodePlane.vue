@@ -74,6 +74,7 @@ watch(blueprintNodes, (newValue, oldValue) => {
     if (newValue) {
         let nodeData = newValue;
         addNodes(nodeData);
+        id += getNodes.value.length;
     }
 });
 
@@ -92,7 +93,6 @@ function onDrop(event) {
         position,
         label: `${type} node`,
     };
-
     addNodes([newNode]);
 
     // align node position after drop, so it's centered to the mouse
@@ -134,6 +134,7 @@ const exportAndOpenModal = () => {
     });
     exportData.value = JSON.stringify(exportDataArr);
     showModal.value = true;
+
     if (btnData.value === 'create') {
         axios
             .post('/terraform/usertf', exportData.value)
