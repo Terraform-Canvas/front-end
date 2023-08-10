@@ -18,18 +18,9 @@ import PublicSubnetDrawer from '@/components/aws/drawer/PublicSubnetDrawer.vue';
 import SGDrawer from '@/components/aws/drawer/SGDrawer.vue';
 import VPCDrawer from '@/components/aws/drawer/VPCDrawer.vue';
 
-let instance_items = [];
 let currentNodeData = reactive({});
 const nodeType = ref('');
 const props = defineProps(['drawer']);
-
-store.dispatch('aws/getInstanceTypes').then((res) => {
-    const instance_type = store.state.aws.instance_types;
-    for (let value of instance_type) {
-        instance_items.push(value.InstanceType);
-    }
-    instance_items.sort();
-});
 
 const emit = defineEmits(['handleRightDrawer']);
 
