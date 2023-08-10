@@ -10,7 +10,12 @@ const state = () => ({
 // 외부에서 가져갈 수 있는 get 부분
 const getters = {
     getInstanceValue: function (state) {
-        return state.instance_types;
+        let instance_items = [];
+        for (let value of state.instance_types) {
+            instance_items.push(value.InstanceType);
+        }
+        instance_items.sort();
+        return instance_items;
     },
     getAMIValue: function (state) {
         return state.ami;

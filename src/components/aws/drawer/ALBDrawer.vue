@@ -40,12 +40,6 @@ const handleUpdate = (newTextValue, arg) => {
                 </div>
                 <div class="drawer-header-title">Elastic Load Balancer</div>
             </v-row>
-            <v-row>
-                <v-col class="text-right">
-                    <v-btn class="cancel-btn" @click="handleClose">Close</v-btn>
-                    <v-btn class="save-btn" @click="handleSave">Save</v-btn>
-                </v-col>
-            </v-row>
         </v-container>
     </v-card>
 </template>
