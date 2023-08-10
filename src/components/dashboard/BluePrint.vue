@@ -42,19 +42,15 @@ const onClick = () => {
                                     ></v-img>
                                 </v-row>
 
-                                <v-row>
+                                <v-row class="text-header">
                                     <div>
-                                        Build Auto Scailing Group for scale
-                                        in-out.
+                                        Auto Scailing Group for scale in-out.
                                     </div>
                                 </v-row>
                                 <v-row>
                                     <div>
-                                        Resources <br />
-                                        <ul>
-                                            <li>Auto Scailing Group</li>
-                                            <li>Elastic Load Balancer</li>
-                                        </ul>
+                                        Build Auto Scailing Group using ELB and
+                                        ASG on AWS.
                                     </div>
                                 </v-row>
                             </v-container>
@@ -62,10 +58,10 @@ const onClick = () => {
                     </div>
                 </v-card-item>
                 <v-card-actions>
-                    <v-btn @click="onClick" class="save-btn"> 만들기 </v-btn>
                     <v-btn @click="showDialog = false" class="cancel-btn">
                         취소
                     </v-btn>
+                    <v-btn @click="onClick" class="save-btn"> 만들기 </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -74,7 +70,10 @@ const onClick = () => {
 
 <style>
 .text-header {
-    font-weight: normal;
+    padding-top: 10px;
+    font-weight: bolder;
+}
+.text-description {
 }
 .dialog-form {
     min-width: 400px;
