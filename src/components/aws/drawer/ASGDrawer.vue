@@ -34,7 +34,6 @@ const handleUpdate = (newTextValue, arg, type) => {
 };
 
 const handleAMIUpdate = (value, arg) => {
-    console.log(value);
     tempNodeData[arg] = value.ImageId;
 };
 </script>
