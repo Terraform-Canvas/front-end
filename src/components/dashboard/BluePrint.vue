@@ -62,10 +62,10 @@ const onClick = () => {
                     </div>
                 </v-card-item>
                 <v-card-actions>
-                    <v-btn @click="onClick" class="save-btn"> 만들기 </v-btn>
                     <v-btn @click="showDialog = false" class="cancel-btn">
                         취소
                     </v-btn>
+                    <v-btn @click="onClick" class="save-btn"> 만들기 </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
